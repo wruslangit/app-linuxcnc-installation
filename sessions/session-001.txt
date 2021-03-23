@@ -1,0 +1,61 @@
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ date
+Tue 23 Mar 2021 11:58:43 PM +08
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ uname -a
+Linux HPEliteBook8470p-Ub2004-rt38 5.4.66-rt38 #1 SMP PREEMPT_RT 
+Sat Sep 26 16:51:59 +08 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github/wruslangit$ cd app-linuxcnc-installation/
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github/wruslangit/app-linuxcnc-installation$ ls -al
+total 32
+drwxrwxr-x  7 wruslan wruslan 4096 Mar 23 23:34 .
+drwxrwxr-x 25 wruslan wruslan 4096 Mar 23 23:14 ..
+drwxrwxr-x  2 wruslan wruslan 4096 Mar 23 23:33 docs
+drwxrwxr-x  8 wruslan wruslan 4096 Mar 23 22:38 .git
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 23 22:39 git-source-linuxcnc
+-rw-rw-r--  1 wruslan wruslan   60 Mar 23 22:38 README.md
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 23 23:54 ubuntu-18.04.5-LTS-rt64
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 23 23:54 ubuntu-20.04.2-LTS-rt38
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github/wruslangit/app-linuxcnc-installation$ 
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github/wruslangit/app-linuxcnc-installation$ tree ./
+./
+├── docs
+│   └── using-preempt-rt-over-rtai-on-linux.txt
+├── git-source-linuxcnc
+│   └── linuxcnc
+....
+....
+├── README.md
+├── ubuntu-18.04.5-LTS-rt64
+│   ├── figures
+│   │   ├── Screenshot from 2020-01-17 18-08-07.png
+│   │   ├── Screenshot from 2020-01-17 18-08-40.png
+│   │   └── Screenshot from 2020-01-17 18-09-50.png
+│   ├── install-linuxcnc-2020-01-17-UB18.04LTS-rt38.txt
+│   └── install-prerequisites-UB18.04LTS-rt38.txt
+└── ubuntu-20.04.2-LTS-rt38
+    ├── figures
+    │   ├── Screenshot from 2021-03-23 21-34-25.png
+    │   ├── Screenshot from 2021-03-23 21-34-45.png
+    │   └── Screenshot from 2021-03-23 21-36-01.png
+    ├── Install-linuxcnc-dev-v2.9.0pre0-2020-10-18-UB20.04LTS-rt38.txt
+    ├── install-linuxcnc-new-v2.90pre0-2021-03-23-UB20.04LTS-rt38.txt
+    └── install-prerequisites-UB20.04LTS-rt38.txt
+
+838 directories, 7714 files
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/github/wruslangit/app-linuxcnc-installation$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+

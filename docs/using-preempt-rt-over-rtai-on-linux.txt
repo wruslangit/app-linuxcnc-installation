@@ -1,0 +1,26 @@
+We successfully managed running LinuxCNC on Linux Preempt-RT (POSIX-Realtime) and Linux RTAI (RTAI-Realtime).
+
+QUESTION: Why choose Linux Preempt-RT (POSIX-Realtime) over Linux RTAI (RTAI-Realtime)?
+
+Here are four(4) of the many reasons.
+
+REASON NO. 1: Need for both parallel and realtime executions at the same time
+
+Linux Preempt-RT allows us to write C/C++ programs that run simultaneously in parallel and in realtime, whereas in Linux RTAI (Realtime), we can only write C/C++ realtime programs, not parallel running programs.
+
+REASON NO. 2: No additional library
+
+To run parallel C/C++ programs on Linux RTAI-Realtime, we need additional libraries like OpenMPI (Open Message Passing Interface), OpenMP (Open Multi-Processing) or the multithreading C-library. We do not need any additional library to run parallel C/C++ programs on Linux Preempt-RT (POSIX-Realtime) because it can already run in parallel using POSIX multithreading.
+
+REASON NO. 3: Ease of program implementation (realtime and parallel)
+
+In Linux Preempt-RT, we use the standard C/C++ language codes to write programs that run both in parallel and in realtime. In Linux RTAI-Realtime, in order to achieve the same dual effect simultaneously, we will have to use a mix of programming languages in one program. For example, Linux RTAI uses its own language constructs for C/C++ programs. Similarly, OpenMPI (Open Message Passing Interface) and OpenMP (Open Multi-Processing) have their own C/C++ language constructs. This mixing can be cumbersome, erroneus and difficult to track in terms of program correctness (both correct in realtime and correct in parallelism). In Linux Preempt-RT, we just use a single standardized C/C++ programming language to achieve both correctness in realtime and correctness in parallelism. 
+
+REASON NO 4: Maintenance, debugging and upgrades
+
+Because Linux Preempt-RT involves a single POSIX Realtime kernel, it is easier to maintain when there is a need to upgrade, to debug and so on. In the mixed library models like (Linux + RTAI + OpenMPI) or (Linux + RTAI + OpenMP), we worry about incompatibilies when any one of the three components introduces an upgrade. It will be a nightmare. 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES.
+===========================================================
+

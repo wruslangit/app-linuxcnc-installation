@@ -1,0 +1,895 @@
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ date
+Sun 18 Oct 2020 06:34:05 PM +08
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ uname -a
+Linux HPEliteBook8470p-Ub2004-rt38 5.4.66-rt38 #1 SMP PREEMPT_RT Sat Sep 26 16:51:59 +08 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.1 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ nano ~/.bashrc
+
+## SETTINGS FOR JAVA
+## ==================================================
+export JAVA_HOME=/usr/lib/jvm/jdk-13.0.2
+export PATH=$PATH:/usr/lib/jvm/jdk-13.0.2/bin
+
+## SETTINGS FOR  BOOST C++ LIBRARY CONFIGURATION
+## ==================================================
+export LD_LIBRARY_PATH=/home/wruslan/opt/boost_1_74_0/stage/lib
+export CPLUS_INCLUDE_PATH=/home/wruslan/opt/boost_1_74_0 
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ gcc -v
+gcc version 10.2.0 (Ubuntu 10.2.0-5ubuntu1~20.04) 
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ gcc -v
+gcc version 10.2.0 (Ubuntu 10.2.0-5ubuntu1~20.04) 
+
+===========================================================
+SUMMARY INSTALLATION
+===========================================================
+cd ~
+git clone git://github.com/linuxcnc/linuxcnc.git linuxcnc-dev
+cd linuxcnc-dev/src
+./autogen.sh
+./configure --with-realtime=uspace
+make
+sudo make setuid
+
+TESTING
+===========================================================
+source ../scripts/rip-environment
+runtests
+
+EXECUTION
+===========================================================
+cd ~/linuxcnc-dev
+. scripts/rip-environment
+linuxcnc
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ cd linuxcnc-dev/src
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ ls -al
+total 224
+drwxrwxr-x 12 wruslan wruslan  4096 Oct 18 16:56 .
+drwxrwxr-x 19 wruslan wruslan  4096 Oct 18 16:56 ..
+-rwxrwxr-x  1 wruslan wruslan   250 Oct 18 16:56 autogen.sh
+-rw-rw-r--  1 wruslan wruslan 11082 Oct 18 16:56 CodingStyle
+-rw-rw-r--  1 wruslan wruslan 59400 Oct 18 16:56 configure.ac
+-rw-rw-r--  1 wruslan wruslan  7937 Oct 18 16:56 doxconfig
+drwxrwxr-x 16 wruslan wruslan  4096 Oct 18 16:56 emc
+drwxrwxr-x  3 wruslan wruslan  4096 Oct 18 16:56 external
+-rw-rw-r--  1 wruslan wruslan   258 Oct 18 16:56 .gitignore
+drwxrwxr-x  7 wruslan wruslan  4096 Oct 18 16:56 hal
+drwxrwxr-x 10 wruslan wruslan  4096 Oct 18 16:56 libnml
+drwxrwxr-x  2 wruslan wruslan  4096 Oct 18 16:56 m4
+-rw-rw-r--  1 wruslan wruslan 49702 Oct 18 16:56 Makefile
+-rw-rw-r--  1 wruslan wruslan  5341 Oct 18 16:56 Makefile.inc.in
+-rw-rw-r--  1 wruslan wruslan  3582 Oct 18 16:56 Makefile.modinc.in
+-rw-rw-r--  1 wruslan wruslan    38 Oct 18 16:56 meson.build
+-rw-rw-r--  1 wruslan wruslan   486 Oct 18 16:56 modsilent.py
+drwxrwxr-x  2 wruslan wruslan  4096 Oct 18 16:56 module_helper
+-rw-rw-r--  1 wruslan wruslan   883 Oct 18 16:56 move-if-change
+drwxrwxr-x  3 wruslan wruslan  4096 Oct 18 16:56 po
+drwxrwxr-x  2 wruslan wruslan  4096 Oct 18 16:56 py3c
+drwxrwxr-x  3 wruslan wruslan  4096 Oct 18 16:56 rtapi
+-rw-rw-r--  1 wruslan wruslan   907 Oct 18 16:56 Submakefile.skel
+-rw-rw-r--  1 wruslan wruslan  1573 Oct 18 16:56 .swish_config
+drwxrwxr-x  2 wruslan wruslan  4096 Oct 18 16:56 tests
+-rw-rw-r--  1 wruslan wruslan   934 Oct 18 16:56 .vimrc
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ ./autogen.sh
+
+=========================================================== 
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ ./configure --with-realtime=uspace
+checking for g++... g++
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking boost/lockfree/queue.hpp usability... yes
+checking boost/lockfree/queue.hpp presence... yes
+checking for boost/lockfree/queue.hpp... yes
+checking whether g++ supports C++11 features by default... yes
+checking build toplevel... /home/wruslan/linuxcnc-dev
+checking installation prefix... run in place
+checking for grep... (cached) /bin/grep
+checking for egrep... (cached) /bin/grep -E
+checking for pkg-config... /usr/bin/pkg-config
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking rpc/rpc.h usability... yes
+checking rpc/rpc.h presence... yes
+checking for rpc/rpc.h... yes
+checking for rtai-config... none
+checking for xeno-config... /usr/bin/xeno-config
+checking for realtime API(s) to use... uspace+xenomai
+checking whether to enable userspace PCI access... yes
+checking for libudev... yes - version 245
+checking for cc version... not specified
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking how to run the C preprocessor... gcc -E
+checking for usability of linux/hidraw.h... yes
+checking for usability of rpc/rpc.h... yes
+checking for libmodbus3... yes - version 3.1.6
+checking for libusb-1.0... yes
+checking for module installation directory... configuring for run-in-place
+/home/wruslan/linuxcnc-dev/rtlib
+checking for glib... yes - 2.64.3
+checking for GTK 2.4.0 or above... yes - 2.24.32
+checking for libgnomeprintui-2.2... no -- printing from classicladder will not be possible
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for install... /usr/bin/install
+checking for sed... /bin/sed
+checking for ps... /bin/ps
+checking for kill... /bin/kill
+checking for whoami... /usr/bin/whoami
+checking for awk... /usr/bin/awk
+checking for pidof... /bin/pidof
+checking for ipcs... /usr/bin/ipcs
+checking for fuser... /bin/fuser
+checking for yapps... no
+checking for yapps2... /usr/local/bin/yapps2
+checking for mandb... /usr/bin/mandb
+checking for intltool-extract... /usr/bin/intltool-extract
+checking for yapps... (cached) /usr/local/bin/yapps2
+checking for python2... /usr/local/bin/python2
+checking whether to build documentation... no
+checking sys/io.h usability... yes
+checking sys/io.h presence... yes
+checking for sys/io.h... yes
+checking for ANSI C header files... (cached) yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for semtimedop... yes
+checking for optreset... no
+checking for library containing dlopen... -ldl
+checking for library containing clock_nanosleep... none required
+checking for tcl... /usr/lib/tcl8.6/tclConfig.sh found
+checking for tk... /usr/lib/tk8.6/tkConfig.sh found
+checking whether to check for runtime dependencies... yes
+checking for BWidget using /usr/bin/tclsh8.6... found
+checking for BLT using tclsh8.5... not found
+checking for img::png using /usr/bin/tclsh8.6... found
+checking for tclX using /usr/bin/tclsh8.6... found
+checking for python pango and cairo modules... found
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking X11/extensions/Xinerama.h usability... yes
+checking X11/extensions/Xinerama.h presence... yes
+checking for X11/extensions/Xinerama.h... yes
+checking for XineramaQueryExtension in -lXinerama... yes
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+Trying readline without -ltermcap
+checking for readline in -lreadline... yes
+Trying readline with -ltermcap
+checking for readline in -lreadline... yes
+Readline does not require -ltermcap
+checking whether readline license is compatible with GPL-2... yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for setlocale... yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking for gettext in -lintl... no
+checking for xgettext... /usr/bin/xgettext
+checking for msgfmt... /usr/bin/msgfmt
+checking python version... OK
+checking version of python libraries... python2.7
+checking match between tk and Tkinter versions... 8.6
+checking location of Python header files... /usr/include/python2.7
+checking for Python headers... -I/usr/include/python2.7
+checking for Python libraries... -lpthread -ldl  -lutil
+checking whether the Boost::Python headers are available... yes
+checking for boost::python shared library... -lboost_python
+checking /usr/include/python2.7/Python.h usability... yes
+checking /usr/include/python2.7/Python.h presence... yes
+checking for /usr/include/python2.7/Python.h... yes
+checking for site-package location... /usr/lib/python2.7/dist-packages
+checking GL/gl.h usability... yes
+checking GL/gl.h presence... yes
+checking for GL/gl.h... yes
+checking GL/glu.h usability... yes
+checking GL/glu.h presence... yes
+checking for GL/glu.h... yes
+checking for glBegin in -lGL... yes
+checking for working GLU quadrics... yes
+checking for Xmu headers... checking X11/Xmu/Xmu.h usability... yes
+checking X11/Xmu/Xmu.h presence... yes
+checking for X11/Xmu/Xmu.h... yes
+configure: creating ./config.status
+config.status: creating ../scripts/rtapi.conf
+config.status: creating ../scripts/linuxcnc
+config.status: creating ../scripts/linuxcnc-python
+config.status: creating ../scripts/linuxcnc_info
+config.status: creating ../scripts/halrun
+config.status: creating ../scripts/rip-environment
+config.status: creating ../scripts/haltcl
+config.status: creating ../scripts/halcmd_twopass
+config.status: creating ../scripts/realtime
+config.status: creating ../scripts/runtests
+config.status: creating ../scripts/linuxcnc_var
+config.status: creating ../scripts/linuxcnc-checklink
+config.status: creating Makefile.inc
+config.status: creating Makefile.modinc
+config.status: creating ../tcl/linuxcnc.tcl
+config.status: creating ../lib/python/nf.py
+config.status: creating ../scripts/linuxcncmkdesktop
+config.status: creating ../share/applications/linuxcnc-latency.desktop
+config.status: creating ../share/applications/linuxcnc.desktop
+config.status: creating ../share/desktop-directories/linuxcnc-cnc.directory
+config.status: creating ../share/desktop-directories/linuxcnc-ref.directory
+config.status: creating ../share/desktop-directories/linuxcnc-doc.directory
+config.status: creating ../share/menus/CNC.menu
+config.status: creating config.h
+
+
+######################################################################
+#                LinuxCNC - Enhanced Machine Controller              #
+######################################################################
+#                                                                    #
+#   LinuxCNC is a software system for computer control of machine    #
+#   tools such as milling machines. LinuxCNC is released under the   #
+#   GPL.  Check out http://www.linuxcnc.org/ for more details.       #
+#                                                                    #
+#                                                                    #
+#   It seems that ./configure completed successfully.                #
+#   This means that RT is properly installed                         #
+#   If things don't work check config.log for errors & warnings      #
+#                                                                    #
+#   Next compile by typing                                           #
+#         make                                                       #
+#         sudo make setuid                                           #
+#          (if realtime behavior and hardware access are required)   #
+#                                                                    #
+#   Before running the software, set the environment:                #
+#         . (top dir)/scripts/rip-environment                        #
+#                                                                    #
+#   To run the software type                                         #
+#         linuxcnc                                                   #
+#                                                                    #
+######################################################################
+
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ make
+Reading 0/200 dependency files
+Done reading dependencies
+Reading 0/105 realtime dependency files
+Done reading realtime dependencies
+Creating mesa_7i65.mak
+Creating serport.mak
+Creating xor2.mak
+Creating xhc_hb04_util.mak
+Creating wcomp.mak
+Creating userkins.mak
+Creating updown.mak
+Creating tristate_float.mak
+Creating tristate_bit.mak
+Creating toggle2nist.mak
+Creating toggle.mak
+Creating timedelta.mak
+Creating timedelay.mak
+Creating time.mak
+Creating threadtest.mak
+Creating thcud.mak
+Creating thc.mak
+Creating sum2.mak
+Creating steptest.mak
+Creating spindle_monitor.mak
+Creating spindle.mak
+Creating sphereprobe.mak
+Creating simple_tp.mak
+Creating sim_spindle.mak
+Creating sim_parport.mak
+Creating sim_matrix_kb.mak
+Creating sim_home_switch.mak
+Creating sim_axis_hardware.mak
+Creating select8.mak
+Creating scale.mak
+Creating sample_hold.mak
+Creating plasmac.mak
+Creating orient.mak
+Creating or2.mak
+Creating oneshot.mak
+Creating ohmic.mak
+Creating offset.mak
+Creating not.mak
+Creating near.mak
+Creating mux8.mak
+Creating mux4.mak
+Creating mux2.mak
+Creating mux16.mak
+Creating multiswitch.mak
+Creating multiclick.mak
+Creating mult2.mak
+Creating moveoff.mak
+Creating minmax.mak
+Creating message.mak
+Creating mesa_pktgyro_test.mak
+Creating max31855.mak
+Creating match8.mak
+Creating maj3.mak
+Creating lut5.mak
+Creating lowpass.mak
+Creating logic.mak
+Creating lincurve.mak
+Creating limit3.mak
+Creating limit2.mak
+Creating limit1.mak
+Creating latencybins.mak
+Creating knob2float.mak
+Creating joyhandle.mak
+Creating invert.mak
+Creating integ.mak
+Creating ilowpass.mak
+Creating hypot.mak
+Creating histobins.mak
+Creating gray2bin.mak
+Creating gearchange.mak
+Creating gantry.mak
+Creating flipflop.mak
+Creating filter_kalman.mak
+Creating feedcomp.mak
+Creating estop_latch.mak
+Creating eoffset_per_angle.mak
+Creating edge.mak
+Creating differential.mak
+Creating demux.mak
+Creating deadzone.mak
+Creating ddt.mak
+Creating dbounce.mak
+Creating corexy_by_hal.mak
+converting conv for conv_u32_s32.comp
+Creating conv_u32_s32.mak
+converting conv for conv_u32_float.comp
+Creating conv_u32_float.mak
+converting conv for conv_u32_bit.comp
+Creating conv_u32_bit.mak
+converting conv for conv_s32_u32.comp
+Creating conv_s32_u32.mak
+converting conv for conv_s32_float.comp
+Creating conv_s32_float.mak
+converting conv for conv_s32_bit.comp
+Creating conv_s32_bit.mak
+converting conv for conv_float_u32.comp
+Creating conv_float_u32.mak
+converting conv for conv_float_s32.comp
+Creating conv_float_s32.mak
+converting conv for conv_bit_u32.comp
+Creating conv_bit_u32.mak
+converting conv for conv_bit_s32.comp
+Creating conv_bit_s32.mak
+converting conv for conv_bit_float.comp
+Creating conv_bit_float.mak
+Creating constant.mak
+Creating comp.mak
+Creating clarkeinv.mak
+Creating clarke3.mak
+Creating clarke2.mak
+Creating charge_pump.mak
+Creating carousel.mak
+Creating blend.mak
+Creating bldc.mak
+Creating bitwise.mak
+Creating bitslice.mak
+Creating biquad.mak
+Creating bin2gray.mak
+Creating axistest.mak
+Creating and2.mak
+Creating abs_s32.mak
+Creating abs.mak
+Reading 0/200 dependency files
+Done reading dependencies
+Reading 0/216 realtime dependency files
+Done reading realtime dependencies
+Copying test input hal/components/lincurve.comp
+Copying test input hal/components/logic.comp
+Copying test input hal/components/bitslice.comp:12:
+....
+....
+
+cp rtapi/rtapi.h ../include/rtapi.h
+cp rtapi/rtapi_app.h ../include/rtapi_app.h
+cp rtapi/rtapi_atomic.h ../include/rtapi_atomic.h
+....
+....
+Compiling realtime emc/kinematics/cubic.c
+Compiling realtime emc/tp/tc.c
+Compiling realtime emc/tp/tcq.c
+Compiling realtime emc/tp/tp.c
+Compiling realtime emc/tp/spherical_arc.c
+Compiling realtime emc/tp/blendmath.c
+Compiling realtime emc/motion/motion.c
+Compiling realtime emc/motion/command.c
+Compiling realtime emc/motion/control.c
+Compiling realtime emc/motion/homing.c
+Compiling realtime emc/motion/simple_tp.c
+Compiling realtime emc/motion/emcmotutil.c
+Compiling realtime emc/motion/stashf.c
+Compiling realtime emc/motion/dbuf.c
+Compiling realtime emc/nml_intf/emcpose.c
+Linking ../rtlib/motmod.so
+./config.status --file=../docs/man/man1/linuxcnc.1:../docs/src/man/man1/linuxcnc.1.in
+config.status: creating ../docs/man/man1/linuxcnc.1
+Making halcompile manpage thermistor.1
+Making halcompile manpage abs.9
+Making halcompile manpage abs_s32.9
+Making halcompile manpage and2.9
+Making halcompile manpage axistest.9
+Making halcompile manpage bin2gray.9
+Making halcompile manpage biquad.9
+Making halcompile manpage bitslice.9
+Making halcompile manpage bitwise.9
+Making halcompile manpage bldc.9
+Making halcompile manpage blend.9
+Making halcompile manpage carousel.9
+Making halcompile manpage charge_pump.9
+Making halcompile manpage clarke2.9
+Making halcompile manpage clarke3.9
+Making halcompile manpage clarkeinv.9
+Making halcompile manpage comp.9
+Making halcompile manpage constant.9
+Making halcompile manpage conv_bit_float.9
+Making halcompile manpage conv_bit_s32.9
+Making halcompile manpage conv_bit_u32.9
+Making halcompile manpage conv_float_s32.9
+Making halcompile manpage conv_float_u32.9
+Making halcompile manpage conv_s32_bit.9
+Making halcompile manpage conv_s32_float.9
+Making halcompile manpage conv_s32_u32.9
+Making halcompile manpage conv_u32_bit.9
+Making halcompile manpage conv_u32_float.9
+Making halcompile manpage conv_u32_s32.9
+Making halcompile manpage corexy_by_hal.9
+Making halcompile manpage dbounce.9
+Making halcompile manpage ddt.9
+Making halcompile manpage deadzone.9
+Making halcompile manpage demux.9
+Making halcompile manpage differential.9
+Making halcompile manpage edge.9
+Making halcompile manpage eoffset_per_angle.9
+Making halcompile manpage estop_latch.9
+Making halcompile manpage feedcomp.9
+Making halcompile manpage filter_kalman.9
+Making halcompile manpage flipflop.9
+Making halcompile manpage gantry.9
+Making halcompile manpage gearchange.9
+Making halcompile manpage gray2bin.9
+Making halcompile manpage histobins.9
+Making halcompile manpage hypot.9
+Making halcompile manpage ilowpass.9
+Making halcompile manpage integ.9
+Making halcompile manpage invert.9
+Making halcompile manpage joyhandle.9
+Making halcompile manpage knob2float.9
+Making halcompile manpage latencybins.9
+Making halcompile manpage limit1.9
+Making halcompile manpage limit2.9
+Making halcompile manpage limit3.9
+Making halcompile manpage lincurve.9
+Making halcompile manpage logic.9
+Making halcompile manpage lowpass.9
+Making halcompile manpage lut5.9
+Making halcompile manpage maj3.9
+Making halcompile manpage match8.9
+Making halcompile manpage max31855.9
+Making halcompile manpage mesa_7i65.9
+Making halcompile manpage mesa_pktgyro_test.9
+Making halcompile manpage message.9
+Making halcompile manpage minmax.9
+Making halcompile manpage moveoff.9
+Making halcompile manpage mult2.9
+Making halcompile manpage multiclick.9
+Making halcompile manpage multiswitch.9
+Making halcompile manpage mux16.9
+Making halcompile manpage mux2.9
+Making halcompile manpage mux4.9
+Making halcompile manpage mux8.9
+Making halcompile manpage near.9
+Making halcompile manpage not.9
+Making halcompile manpage offset.9
+Making halcompile manpage ohmic.9
+Making halcompile manpage oneshot.9
+Making halcompile manpage or2.9
+Making halcompile manpage orient.9
+Making halcompile manpage plasmac.9
+Making halcompile manpage sample_hold.9
+Making halcompile manpage scale.9
+Making halcompile manpage select8.9
+Making halcompile manpage serport.9
+Making halcompile manpage sim_axis_hardware.9
+Making halcompile manpage sim_home_switch.9
+Making halcompile manpage sim_matrix_kb.9
+Making halcompile manpage sim_parport.9
+Making halcompile manpage sim_spindle.9
+Making halcompile manpage simple_tp.9
+Making halcompile manpage sphereprobe.9
+Making halcompile manpage spindle.9
+Making halcompile manpage spindle_monitor.9
+Making halcompile manpage steptest.9
+Making halcompile manpage sum2.9
+Making halcompile manpage thc.9
+Making halcompile manpage thcud.9
+Making halcompile manpage threadtest.9
+Making halcompile manpage time.9
+Making halcompile manpage timedelay.9
+Making halcompile manpage timedelta.9
+Making halcompile manpage toggle.9
+Making halcompile manpage toggle2nist.9
+Making halcompile manpage tristate_bit.9
+Making halcompile manpage tristate_float.9
+Making halcompile manpage updown.9
+Making halcompile manpage userkins.9
+Making halcompile manpage wcomp.9
+Making halcompile manpage xhc_hb04_util.9
+Making halcompile manpage xor2.9
+Updating 'whatis' database
+Processing manual pages under /home/wruslan/linuxcnc-dev/src/../docs/man...
+Updating index cache for path `/home/wruslan/linuxcnc-dev/src/../docs/man/man3'. Wait...done.
+Checking for stray cats under /home/wruslan/linuxcnc-dev/src/../docs/man...
+Processing manual pages under /home/wruslan/linuxcnc-dev/src/../docs/man/cat1...
+Processing manual pages under /home/wruslan/linuxcnc-dev/src/../docs/man/cat3...
+Processing manual pages under /home/wruslan/linuxcnc-dev/src/../docs/man/es...
+Updating index cache for path `/home/wruslan/linuxcnc-dev/src/../docs/man/es/man3'. Wait...done.
+Checking for stray cats under /home/wruslan/linuxcnc-dev/src/../docs/man/es...
+Processing manual pages under /home/wruslan/linuxcnc-dev/src/../docs/man/cat9...
+6 man subdirectories contained newer manual pages.
+676 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+You now need to run 'sudo make setuid' in order to run in place with access to hardware.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ sudo make setuid
+[sudo] password for wruslan: 
+chown root ../bin/rtapi_app
+chmod 4750 ../bin/rtapi_app
+chown root ../bin/linuxcnc_module_helper
+chmod 4750 ../bin/linuxcnc_module_helper
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ source ../scripts/rip-environment
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ runtests
+Running test: /home/wruslan/linuxcnc-dev/tests/abort/feed-rate
+Skipping test: /home/wruslan/linuxcnc-dev/tests/abort/g64
+Running test: /home/wruslan/linuxcnc-dev/tests/abort/on_abort_command-crazy-move
+Running test: /home/wruslan/linuxcnc-dev/tests/abort/stop-button-crazy-move
+Running test: /home/wruslan/linuxcnc-dev/tests/abs.0
+Running test: /home/wruslan/linuxcnc-dev/tests/alias.0
+Running test: /home/wruslan/linuxcnc-dev/tests/and-or-not-mux.0
+Running test: /home/wruslan/linuxcnc-dev/tests/basic
+Running test: /home/wruslan/linuxcnc-dev/tests/biquad
+Running test: /home/wruslan/linuxcnc-dev/tests/build/header-sanity
+*** /home/wruslan/linuxcnc-dev/tests/build/header-sanity: XFAIL: test run exited with 1
+Running test: /home/wruslan/linuxcnc-dev/tests/build/ui
+Running test: /home/wruslan/linuxcnc-dev/tests/ccomp/early-exit
+Running test: /home/wruslan/linuxcnc-dev/tests/ccomp/lathe-comp
+Running test: /home/wruslan/linuxcnc-dev/tests/ccomp/mill-g90g91g92
+Running test: /home/wruslan/linuxcnc-dev/tests/ccomp/mill-line-arc-entry
+Running test: /home/wruslan/linuxcnc-dev/tests/ccomp/mill-zchanges
+Running test: /home/wruslan/linuxcnc-dev/tests/counter-encoder.0
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/both-starting-high
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/both
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/falling-starting-high
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/falling
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/rising-starting-high
+Running test: /home/wruslan/linuxcnc-dev/tests/edge/rising
+Running test: /home/wruslan/linuxcnc-dev/tests/flipflop.0
+Running test: /home/wruslan/linuxcnc-dev/tests/hal-link-unlink
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/extralib
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/names
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/personalities_mod
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/relative-header
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/serial-out-of-tree
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/userspace-count-names
+Running test: /home/wruslan/linuxcnc-dev/tests/halcompile/userspace
+Running test: /home/wruslan/linuxcnc-dev/tests/halmodule.0
+Running test: /home/wruslan/linuxcnc-dev/tests/halmodule.1
+Running test: /home/wruslan/linuxcnc-dev/tests/halrun-getopt-reset
+Running test: /home/wruslan/linuxcnc-dev/tests/halui/jogging
+Running test: /home/wruslan/linuxcnc-dev/tests/halui/mdi
+Running test: /home/wruslan/linuxcnc-dev/tests/hard-limits
+Running test: /home/wruslan/linuxcnc-dev/tests/hm2-idrom
+Running test: /home/wruslan/linuxcnc-dev/tests/ilowpass/low-gain
+Running test: /home/wruslan/linuxcnc-dev/tests/ilowpass/wrap-around
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/abort-hot-comment
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/bad
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/cam-nisley
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/compile
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/crazy-paths
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/do-while-break
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/exists
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/flowsnake
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/fractional-linenumbers
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g10/g10-l1-l10
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g10/g10-l11
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g10/g10-l2-while-active
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g10/g10-l20-while-active
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g10/g10-with-g92
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g33.1
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g52/g52-g92-interaction
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g52/g92-offset-persistence
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g6164
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g76
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g17/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g17/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g18/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g18/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g19/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g81/g19/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g17/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g17/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g18/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g18/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g19/g98
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/g84/g19/g99
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/good
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/iniparam-failassign
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/iniparam
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/inside-corners
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/inverse-time-with-comp
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m19
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/01-basics
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/02-variables
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/03-error-M98-no-P-word
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/04-M98-but-no-sub
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/05-M98-loops
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/06-error-mixed-sub-styles
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/07-nested-subs
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/08-sub-follows-main
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/09-disable-fanuc-subs
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/10-M98-P001
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/11-main-program-oword
+Skipping test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/12-M99-endless-main-program
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/13-named-program
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/m98m99/14-o-expression-call
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/mdi-oword-m66
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/namedparam-bug424
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/oword-bug315-p2
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/oword-bug315
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/oword-mdi-sub-update
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/oword-unwind
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/plug
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/pymove
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/python-self
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/python/error
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/return-value
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/sequence-number
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/subroutine-return
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/subs-follow-main
+Running test: /home/wruslan/linuxcnc-dev/tests/interp/value-returned
+Running test: /home/wruslan/linuxcnc-dev/tests/io-startup/nonrandom/no-tool-in-P0
+Running test: /home/wruslan/linuxcnc-dev/tests/io-startup/nonrandom/tool-in-P0
+Running test: /home/wruslan/linuxcnc-dev/tests/io-startup/random/no-tool-in-P0
+Running test: /home/wruslan/linuxcnc-dev/tests/io-startup/random/tool-in-P0
+Running test: /home/wruslan/linuxcnc-dev/tests/lathe
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/constraints
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/limit-accel-and-max
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/limit-max-velocity
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/lock-on-input-and-limits
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/min-max-overshoot
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/runaway
+Running test: /home/wruslan/linuxcnc-dev/tests/limit3/sunny-day
+Running test: /home/wruslan/linuxcnc-dev/tests/linuxcncrsh-tcp
+Running test: /home/wruslan/linuxcnc-dev/tests/linuxcncrsh
+Running test: /home/wruslan/linuxcnc-dev/tests/loadrt.1
+Running test: /home/wruslan/linuxcnc-dev/tests/loadrt.2
+Running test: /home/wruslan/linuxcnc-dev/tests/lowlevel/mutex
+Running test: /home/wruslan/linuxcnc-dev/tests/m70-m73/m70m72-restore.0
+Running test: /home/wruslan/linuxcnc-dev/tests/m70-m73/m73-flood-mist-restore.0
+Running test: /home/wruslan/linuxcnc-dev/tests/m70-m73/m73autorestore.0
+Running test: /home/wruslan/linuxcnc-dev/tests/mdi-queue-length
+Running test: /home/wruslan/linuxcnc-dev/tests/mdi-queue/oword-queue-buster
+Running test: /home/wruslan/linuxcnc-dev/tests/mdi-queue/simple-queue-buster
+Running test: /home/wruslan/linuxcnc-dev/tests/mdi-while-queuebuster-waitflag
+Running test: /home/wruslan/linuxcnc-dev/tests/modparam.0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/8-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/9-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/num_chan=0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/num_chan=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/num_chan=8
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder/num_chan=9
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/8-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/9-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/num_chan=0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/num_chan=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/num_chan=8
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/encoder_ratio/num_chan=9
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/0-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/16-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/count=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/count=16
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/or2/count=17
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/16-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/17-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/num_chan=0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/num_chan=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/num_chan=16
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/pid/num_chan=17
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/rtapi-app-main-fails
+loadrt found the test component, and it failed to load
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/16-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/17-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/num_chan=0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/num_chan=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/num_chan=16
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/siggen/num_chan=17
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/1-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/8-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/9-names
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/num_chan=0
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/num_chan=1
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/num_chan=8
+Running test: /home/wruslan/linuxcnc-dev/tests/module-loading/sim_encoder/num_chan=9
+Running test: /home/wruslan/linuxcnc-dev/tests/motion-logger/basic
+Running test: /home/wruslan/linuxcnc-dev/tests/motion-logger/mountaindew
+Skipping test: /home/wruslan/linuxcnc-dev/tests/motion-logger/startup-gcode-abort
+Skipping test: /home/wruslan/linuxcnc-dev/tests/motion/g0
+Running test: /home/wruslan/linuxcnc-dev/tests/motion/jogwheel-axis
+Running test: /home/wruslan/linuxcnc-dev/tests/motion/jogwheel-joint
+Running test: /home/wruslan/linuxcnc-dev/tests/multiclick
+Running test: /home/wruslan/linuxcnc-dev/tests/mux
+Running test: /home/wruslan/linuxcnc-dev/tests/near.0
+Running test: /home/wruslan/linuxcnc-dev/tests/overrun
+Running test: /home/wruslan/linuxcnc-dev/tests/oword/sub.0
+Running test: /home/wruslan/linuxcnc-dev/tests/oword/while.0
+Running test: /home/wruslan/linuxcnc-dev/tests/pyhal
+Running test: /home/wruslan/linuxcnc-dev/tests/realtime-math
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/duplicate-o-word
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/args.0
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/args.1
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/args.2
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/body-ngc
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/body-py
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/canon_error
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/epilog
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/fail/prolog
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/introspect
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/m30-interaction
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/nested-remaps-oword
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/oword-pycall
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/posargs.0
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/predefined-named-params
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/remap-io
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/remap-reentry
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/sequencing
+Running test: /home/wruslan/linuxcnc-dev/tests/remap/variable-injection
+Running test: /home/wruslan/linuxcnc-dev/tests/rs274ngc-startup
+Running test: /home/wruslan/linuxcnc-dev/tests/rtapi_printf.0
+Running test: /home/wruslan/linuxcnc-dev/tests/save.0
+Skipping test: /home/wruslan/linuxcnc-dev/tests/save.1
+Running test: /home/wruslan/linuxcnc-dev/tests/single-step
+Running test: /home/wruslan/linuxcnc-dev/tests/source.0
+Running test: /home/wruslan/linuxcnc-dev/tests/startup-state
+Running test: /home/wruslan/linuxcnc-dev/tests/statbuffer-g5x-abort
+Running test: /home/wruslan/linuxcnc-dev/tests/stepgen.0
+Running test: /home/wruslan/linuxcnc-dev/tests/stepgen.1
+Running test: /home/wruslan/linuxcnc-dev/tests/stepgen.2
+Running test: /home/wruslan/linuxcnc-dev/tests/symbols.0
+Running test: /home/wruslan/linuxcnc-dev/tests/symbols.1
+Running test: /home/wruslan/linuxcnc-dev/tests/t0/nonrandom
+Running test: /home/wruslan/linuxcnc-dev/tests/t0/random-with-t0
+Running test: /home/wruslan/linuxcnc-dev/tests/t0/random-without-t0
+Running test: /home/wruslan/linuxcnc-dev/tests/tclsh-extensions
+Running test: /home/wruslan/linuxcnc-dev/tests/threads.0
+Running test: /home/wruslan/linuxcnc-dev/tests/threads.1
+Running test: /home/wruslan/linuxcnc-dev/tests/timedelay.0
+Running test: /home/wruslan/linuxcnc-dev/tests/tlo
+Running test: /home/wruslan/linuxcnc-dev/tests/tool-info/non-random
+Running test: /home/wruslan/linuxcnc-dev/tests/tool-info/random-no-startup-tool
+Running test: /home/wruslan/linuxcnc-dev/tests/tool-info/random-with-startup-tool
+Running test: /home/wruslan/linuxcnc-dev/tests/toolchanger/m61
+Running test: /home/wruslan/linuxcnc-dev/tests/toolchanger/reload-tool/non-random
+Running test: /home/wruslan/linuxcnc-dev/tests/toolchanger/reload-tool/random
+Running test: /home/wruslan/linuxcnc-dev/tests/toolchanger/toolno-pocket-differ/nonrandom
+Running test: /home/wruslan/linuxcnc-dev/tests/toolchanger/toolno-pocket-differ/random
+Running test: /home/wruslan/linuxcnc-dev/tests/twopass-personality
+Running test: /home/wruslan/linuxcnc-dev/tests/twopass
+Running test: /home/wruslan/linuxcnc-dev/tests/uspace/spawnv-root
+Runtest: 234 tests run, 233 successful, 1 failed + 0 expected
+Failed: 
+	/home/wruslan/linuxcnc-dev/tests/build/header-sanity
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev/src$ cd ..
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev$ 
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev$ . scripts/rip-environment
+This script only needs to be run once per shell session.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev$ linuxcnc
+LINUXCNC - 2.9.0~pre0
+Machine configuration directory is '/home/wruslan/linuxcnc-dev/configs/sim/axis'
+Machine configuration file is 'axis.ini'
+Starting LinuxCNC...
+Found file(lib): /home/wruslan/linuxcnc-dev/lib/hallib/core_sim.hal
+Note: Using POSIX realtime
+Found file(lib): /home/wruslan/linuxcnc-dev/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /home/wruslan/linuxcnc-dev/lib/hallib/axis_manualtoolchange.hal
+Found file(lib): /home/wruslan/linuxcnc-dev/lib/hallib/simulated_home.hal
+Found file(lib): /home/wruslan/linuxcnc-dev/lib/hallib/check_xyz_constraints.hal
+link (updating variable file): No such file or directory
+note: MAXV     max: 5.000 units/sec 300.000 units/min
+note: LJOG     max: 5.000 units/sec 300.000 units/min
+note: LJOG default: 0.250 units/sec 15.000 units/min
+note: jog_order='XYZ'
+note: jog_invert=set([])
+Gtk-Message: 17:54:40.443: Failed to load module "pk-gtk-module"   <=== TO FIX
+task: main loop took 0.063445 seconds
+task: main loop took 0.014701 seconds
+task: main loop took 0.106257 seconds
+Shutting down and cleaning up LinuxCNC...
+task: 73878 cycles, min=0.000043, max=0.106257, avg=0.001069, 3 latency excursions (> 10x expected cycle time of 0.001000s)
+Note: Using POSIX realtime
+wruslan@HPEliteBook8470p-Ub2004-rt38:~/linuxcnc-dev$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ locate pk-gtk-module
+/usr/lib/gnome-settings-daemon-3.0/gtk-modules/pk-gtk-module.desktop
+/usr/lib/x86_64-linux-gnu/gtk-3.0/modules/libpk-gtk-module.so
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES.
+===========================================================
+
+
+
+
+
+
+

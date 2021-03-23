@@ -1,0 +1,146 @@
+LinuxCNC on Ubuntu 20.04 LTS using Preempt-RT (Realtime) 
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ date
+Tue 23 Mar 2021 11:52:28 PM +08
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ uname -a
+Linux HPEliteBook8470p-Ub2004-rt38 5.4.66-rt38 #1 SMP PREEMPT_RT 
+Sat Sep 26 16:51:59 +08 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+INSTALLATION OF PREREQUISITES FOR LINUXCNC
+===========================================================
+(1) sudo apt install -y debhelper dh-python libudev-dev libxenomai-dev libtk-img
+(2) sudo apt install -y tcl8.6-dev tk8.6-dev libreadline-gplv2-dev tclx
+(3) sudo apt install -y asciidoc dvipng graphviz groff imagemagick
+(4) sudo apt install -y inkscape python-lxml source-highlight
+(5) sudo apt install -y texlive-font-utils w3c-linkchecker python-dev python-tk  libxmu-dev python3-dev python3-tk
+(6) sudo apt install -y libgtk2.0-dev intltool autoconf libboost-python-dev
+(7) sudo apt install -y libmodbus-dev libusb-1.0-0-dev yapps2
+(8) sudo apt install -y asciidoc-dblatex libglu1-mesa-dev libgl1-mesa-dev
+(9)  sudo apt update
+(10) sudo apt upgrade (optional)
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y debhelper dh-python libudev-dev libxenomai-dev libtk-img
+[sudo] password for wruslan: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+debhelper is already the newest version (12.10ubuntu1).
+dh-python is already the newest version (4.20191017ubuntu7).
+libtk-img is already the newest version (1:1.4.9+dfsg-1).
+libxenomai-dev is already the newest version (2.6.4+dfsg-1).
+libudev-dev is already the newest version (245.4-4ubuntu3.5).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y tcl8.6-dev tk8.6-dev libreadline-gplv2-dev tclx
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'tclx8.4' instead of 'tclx'
+libreadline-gplv2-dev is already the newest version (5.2+dfsg-3build3).
+tcl8.6-dev is already the newest version (8.6.10+dfsg-1).
+tk8.6-dev is already the newest version (8.6.10-1).
+tclx8.4 is already the newest version (8.4.1-4).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y asciidoc dvipng graphviz groff imagemagick
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+asciidoc is already the newest version (9.0.0~rc1-1).
+dvipng is already the newest version (1.15-1.1).
+graphviz is already the newest version (2.42.2-3build2).
+groff is already the newest version (1.22.4-4build1).
+imagemagick is already the newest version (8:6.9.10.23+dfsg-2.1ubuntu11.2).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y inkscape python-lxml source-highlight
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+source-highlight is already the newest version (3.1.8-1.2build5).
+inkscape is already the newest version (0.92.5-1ubuntu1.1).
+python-lxml is already the newest version (4.5.0-1ubuntu0.2).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y texlive-font-utils w3c-linkchecker python-dev python-tk  libxmu-dev python3-dev python3-tk
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'python-dev-is-python2' instead of 'python-dev'
+libxmu-dev is already the newest version (2:1.1.3-0ubuntu1).
+python3-dev is already the newest version (3.8.2-0ubuntu2).
+python-dev-is-python2 is already the newest version (2.7.17-4).
+python-tk is already the newest version (2.7.18-1).
+texlive-font-utils is already the newest version (2019.202000218-1).
+w3c-linkchecker is already the newest version (4.81-10).
+python3-tk is already the newest version (3.8.5-1~20.04.1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt install -y libgtk2.0-dev intltool autoconf libboost-python-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+autoconf is already the newest version (2.69-11.1).
+intltool is already the newest version (0.51.0-5ubuntu1).
+libboost-python-dev is already the newest version (1.71.0.0ubuntu2).
+libgtk2.0-dev is already the newest version (2.24.32-4ubuntu4).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt-get install -y asciidoc-dblatex libglu1-mesa-dev libgl1-mesa-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libglu1-mesa-dev is already the newest version (9.0.1-1build1).
+asciidoc-dblatex is already the newest version (9.0.0~rc1-1).
+libgl1-mesa-dev is already the newest version (20.2.6-0ubuntu0.20.04.1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt update
+Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease            
+Hit:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease   
+Hit:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease      
+Hit:5 http://archive.ubuntu.com/ubuntu focal-security InRelease       
+Hit:6 https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu focal InRelease
+Reading package lists... Done
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBook8470p-Ub2004-rt38:~$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+
+
