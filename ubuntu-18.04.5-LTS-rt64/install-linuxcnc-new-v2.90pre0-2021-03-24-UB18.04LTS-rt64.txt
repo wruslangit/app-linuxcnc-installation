@@ -1,0 +1,2253 @@
+wruslan@hp-elitebook-ub1804-rt64:~$ date
+Wed Mar 24 00:28:07 +08 2021
+
+wruslan@hp-elitebook-ub1804-rt64:~$ uname -a
+Linux hp-elitebook-ub1804-rt64 4.19.148-rt64 #1 SMP PREEMPT RT 
+Wed Oct 7 08:11:43 +08 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@hp-elitebook-ub1804-rt64:~$ lsb_release -a
+LSB Version:	core-9.20170808ubuntu1-noarch:security-9.20170808ubuntu1-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.5 LTS
+Release:	18.04
+Codename:	bionic
+wruslan@hp-elitebook-ub1804-rt64:~$ 
+
+===========================================================
+SUMMARY INSTALLATION
+===========================================================
+$ cd ~
+$ git clone git://github.com/linuxcnc/linuxcnc.git linuxcnc-new
+$ cd linuxcnc-new/src
+$ ./autogen.sh
+$ ./configure --with-realtime=uspace --enable-non-distributable=yes
+$ make
+$ sudo make setuid
+
+TESTING
+===========================================================
+$ source ../scripts/rip-environment
+$ runtests
+
+EXECUTION
+===========================================================
+$ cd ~/linuxcnc-new
+$ . scripts/rip-environment
+$ linuxcnc
+
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~$ cd opt/linuxcnc-new/
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ ls -al
+total 256
+drwxrwxr-x 19 wruslan wruslan  4096 Mar 23 22:44 .
+drwxrwxr-x 20 wruslan wruslan  4096 Mar 24 00:22 ..
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 bin
+drwxrwxr-x  8 wruslan wruslan  4096 Mar 23 22:44 configs
+-rw-rw-r--  1 wruslan wruslan 18092 Mar 23 22:44 COPYING
+-rw-rw-r--  1 wruslan wruslan 43090 Mar 23 22:44 COPYING.more
+drwxrwxr-x  5 wruslan wruslan  4096 Mar 23 22:44 debian
+drwxrwxr-x  7 wruslan wruslan  4096 Mar 23 22:44 docs
+drwxrwxr-x  8 wruslan wruslan  4096 Mar 23 22:44 .git
+-rw-rw-r--  1 wruslan wruslan    37 Mar 23 22:44 .gitattributes
+drwxrwxr-x  3 wruslan wruslan  4096 Mar 23 22:44 .github
+-rw-rw-r--  1 wruslan wruslan   836 Mar 23 22:44 .gitignore
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 gnupg
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 include
+-rw-rw-r--  1 wruslan wruslan  1374 Mar 23 22:44 ISSUE_TEMPLATE.md
+drwxrwxr-x  4 wruslan wruslan  4096 Mar 23 22:44 lib
+-rw-rw-r--  1 wruslan wruslan  8718 Mar 23 22:44 linuxcnc.gif
+-rw-rw-r--  1 wruslan wruslan  4198 Mar 23 22:44 linuxcncicon.png
+-rw-rw-r--  1 wruslan wruslan  6971 Mar 23 22:44 linuxcnc-wizard.gif
+-rw-rw-r--  1 wruslan wruslan 45094 Mar 23 22:44 linuxcnc.xcf
+-rw-rw-r--  1 wruslan wruslan  7250 Mar 23 22:44 meson.build
+drwxrwxr-x 11 wruslan wruslan  4096 Mar 23 22:44 nc_files
+-rw-rw-r--  1 wruslan wruslan  1352 Mar 23 22:44 README_es.md
+-rw-rw-r--  1 wruslan wruslan  1044 Mar 23 22:44 README.md
+-rw-rw-r--  1 wruslan wruslan  2779 Mar 23 22:44 reportar-bugs-como_es.md
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 rtlib
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 scripts
+drwxrwxr-x 11 wruslan wruslan  4096 Mar 23 22:44 share
+drwxrwxr-x 12 wruslan wruslan  4096 Mar 23 22:44 src
+drwxrwxr-x  4 wruslan wruslan  4096 Mar 23 22:44 tcl
+drwxrwxr-x 72 wruslan wruslan  4096 Mar 23 22:44 tests
+-rw-rw-r--  1 wruslan wruslan   722 Mar 23 22:44 TODO
+drwxrwxr-x  4 wruslan wruslan  4096 Mar 23 22:44 unit_tests
+-rw-rw-r--  1 wruslan wruslan    11 Mar 23 22:44 VERSION
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$
+
+=========================================================== 
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ cd src
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ ls -al
+total 224
+drwxrwxr-x 12 wruslan wruslan  4096 Mar 23 22:44 .
+drwxrwxr-x 19 wruslan wruslan  4096 Mar 23 22:44 ..
+-rwxrwxr-x  1 wruslan wruslan   250 Mar 23 22:44 autogen.sh
+-rw-rw-r--  1 wruslan wruslan 11082 Mar 23 22:44 CodingStyle
+-rw-rw-r--  1 wruslan wruslan 59943 Mar 23 22:44 configure.ac
+-rw-rw-r--  1 wruslan wruslan  7937 Mar 23 22:44 doxconfig
+drwxrwxr-x 16 wruslan wruslan  4096 Mar 23 22:44 emc
+drwxrwxr-x  3 wruslan wruslan  4096 Mar 23 22:44 external
+-rw-rw-r--  1 wruslan wruslan   258 Mar 23 22:44 .gitignore
+drwxrwxr-x  7 wruslan wruslan  4096 Mar 23 22:44 hal
+drwxrwxr-x 10 wruslan wruslan  4096 Mar 23 22:44 libnml
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 m4
+-rw-rw-r--  1 wruslan wruslan 51256 Mar 23 22:44 Makefile
+-rw-rw-r--  1 wruslan wruslan  5363 Mar 23 22:44 Makefile.inc.in
+-rw-rw-r--  1 wruslan wruslan  3582 Mar 23 22:44 Makefile.modinc.in
+-rw-rw-r--  1 wruslan wruslan    38 Mar 23 22:44 meson.build
+-rw-rw-r--  1 wruslan wruslan   486 Mar 23 22:44 modsilent.py
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 module_helper
+-rw-rw-r--  1 wruslan wruslan   883 Mar 23 22:44 move-if-change
+drwxrwxr-x  3 wruslan wruslan  4096 Mar 23 22:44 po
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 py3c
+drwxrwxr-x  3 wruslan wruslan  4096 Mar 23 22:44 rtapi
+-rw-rw-r--  1 wruslan wruslan   907 Mar 23 22:44 Submakefile.skel
+-rw-rw-r--  1 wruslan wruslan  1573 Mar 23 22:44 .swish_config
+drwxrwxr-x  2 wruslan wruslan  4096 Mar 23 22:44 tests
+-rw-rw-r--  1 wruslan wruslan   934 Mar 23 22:44 .vimrc
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ ./autogen.sh 
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ ls -al
+total 556
+drwxrwxr-x 13 wruslan wruslan   4096 Mar 24 00:25 .
+drwxrwxr-x 19 wruslan wruslan   4096 Mar 23 22:44 ..
+-rwxrwxr-x  1 wruslan wruslan    250 Mar 23 22:44 autogen.sh
+drwxr-xr-x  2 wruslan wruslan   4096 Mar 24 00:25 autom4te.cache
+-rw-rw-r--  1 wruslan wruslan  11082 Mar 23 22:44 CodingStyle
+-rw-rw-r--  1 wruslan wruslan   5851 Mar 24 00:25 config.h.in
+-rwxrwxr-x  1 wruslan wruslan 325320 Mar 24 00:25 configure
+-rw-rw-r--  1 wruslan wruslan  59943 Mar 23 22:44 configure.ac
+-rw-rw-r--  1 wruslan wruslan   7937 Mar 23 22:44 doxconfig
+drwxrwxr-x 16 wruslan wruslan   4096 Mar 23 22:44 emc
+drwxrwxr-x  3 wruslan wruslan   4096 Mar 23 22:44 external
+-rw-rw-r--  1 wruslan wruslan    258 Mar 23 22:44 .gitignore
+drwxrwxr-x  7 wruslan wruslan   4096 Mar 23 22:44 hal
+drwxrwxr-x 10 wruslan wruslan   4096 Mar 23 22:44 libnml
+drwxrwxr-x  2 wruslan wruslan   4096 Mar 23 22:44 m4
+-rw-rw-r--  1 wruslan wruslan  51256 Mar 23 22:44 Makefile
+-rw-rw-r--  1 wruslan wruslan   5363 Mar 23 22:44 Makefile.inc.in
+-rw-rw-r--  1 wruslan wruslan   3582 Mar 23 22:44 Makefile.modinc.in
+-rw-rw-r--  1 wruslan wruslan     38 Mar 23 22:44 meson.build
+-rw-rw-r--  1 wruslan wruslan    486 Mar 23 22:44 modsilent.py
+drwxrwxr-x  2 wruslan wruslan   4096 Mar 23 22:44 module_helper
+-rw-rw-r--  1 wruslan wruslan    883 Mar 23 22:44 move-if-change
+drwxrwxr-x  3 wruslan wruslan   4096 Mar 23 22:44 po
+drwxrwxr-x  2 wruslan wruslan   4096 Mar 23 22:44 py3c
+drwxrwxr-x  3 wruslan wruslan   4096 Mar 23 22:44 rtapi
+-rw-rw-r--  1 wruslan wruslan    907 Mar 23 22:44 Submakefile.skel
+-rw-rw-r--  1 wruslan wruslan   1573 Mar 23 22:44 .swish_config
+drwxrwxr-x  2 wruslan wruslan   4096 Mar 23 22:44 tests
+-rw-rw-r--  1 wruslan wruslan    934 Mar 23 22:44 .vimrc
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+CONFIGURE
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ ./configure --with-realtime=uspace --enable-non-distributable=yes
+checking for g++... g++
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking boost/lockfree/queue.hpp usability... yes
+checking boost/lockfree/queue.hpp presence... yes
+checking for boost/lockfree/queue.hpp... yes
+checking whether g++ supports C++11 features by default... yes
+checking build toplevel... /home/wruslan/opt/linuxcnc-new
+checking installation prefix... run in place
+checking for grep... (cached) /bin/grep
+checking for egrep... (cached) /bin/grep -E
+checking for pkg-config... /usr/bin/pkg-config
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking rpc/rpc.h usability... yes
+checking rpc/rpc.h presence... yes
+checking for rpc/rpc.h... yes
+checking for rtai-config... none
+checking for xeno-config... /usr/bin/xeno-config
+checking for realtime API(s) to use... uspace+xenomai
+checking whether to enable userspace PCI access... yes
+checking for libudev... yes - version 237
+checking for cc version... not specified
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking how to run the C preprocessor... gcc -E
+checking for usability of linux/hidraw.h... yes
+checking for usability of rpc/rpc.h... yes
+checking for libmodbus3... yes - version 3.0.6
+checking for libusb-1.0... yes
+checking for module installation directory... configuring for run-in-place
+/home/wruslan/opt/linuxcnc-new/rtlib
+checking for glib... yes - 2.56.4
+checking for GTK 2.4.0 or above... yes - 2.24.32
+checking for libgnomeprintui-2.2... no -- printing from classicladder will not be possible
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for install... /usr/bin/install
+checking for sed... /bin/sed
+checking for ps... /bin/ps
+checking for kill... /bin/kill
+checking for whoami... /usr/bin/whoami
+checking for awk... /usr/bin/awk
+checking for pidof... /bin/pidof
+checking for ipcs... /usr/bin/ipcs
+checking for fuser... /bin/fuser
+checking for yapps... /usr/bin/yapps
+checking for mandb... /usr/bin/mandb
+checking for intltool-extract... /usr/bin/intltool-extract
+checking for yapps... (cached) /usr/bin/yapps
+checking for python2... /usr/bin/python2
+checking whether to build documentation... no
+checking sys/io.h usability... yes
+checking sys/io.h presence... yes
+checking for sys/io.h... yes
+checking for ANSI C header files... (cached) yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for semtimedop... yes
+checking for optreset... no
+checking for library containing dlopen... -ldl
+checking for library containing clock_nanosleep... none required
+checking for tcl... /usr/lib/tcl8.6/tclConfig.sh found
+checking for tk... /usr/lib/tk8.6/tkConfig.sh found
+checking whether to check for runtime dependencies... yes
+checking for BWidget using /usr/bin/tclsh8.6... found
+checking for BLT using tclsh8.5... not found
+checking for img::png using /usr/bin/tclsh8.6... found
+checking for tclX using /usr/bin/tclsh8.6... found
+checking for python pango and cairo modules... found
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking X11/extensions/Xinerama.h usability... yes
+checking X11/extensions/Xinerama.h presence... yes
+checking for X11/extensions/Xinerama.h... yes
+checking for XineramaQueryExtension in -lXinerama... yes
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+Trying readline without -ltermcap
+checking for readline in -lreadline... yes
+Trying readline with -ltermcap
+checking for readline in -lreadline... yes
+Readline does not require -ltermcap
+checking whether readline license is compatible with GPL-2... yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for setlocale... yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking for gettext in -lintl... no
+checking for xgettext... /usr/bin/xgettext
+checking for msgfmt... /usr/bin/msgfmt
+checking python version... OK
+checking version of python libraries... python2.7
+checking match between tk and Tkinter versions... 8.6
+checking location of Python header files... /usr/include/python2.7
+checking for Python headers... -I/usr/include/python2.7
+checking for Python libraries... -lpthread -ldl  -lutil
+checking whether the Boost::Python headers are available... yes
+checking for boost::python shared library... -lboost_python
+checking /usr/include/python2.7/Python.h usability... yes
+checking /usr/include/python2.7/Python.h presence... yes
+checking for /usr/include/python2.7/Python.h... yes
+checking for site-package location... /usr/lib/python2.7/dist-packages
+checking GL/gl.h usability... yes
+checking GL/gl.h presence... yes
+checking for GL/gl.h... yes
+checking GL/glu.h usability... yes
+checking GL/glu.h presence... yes
+checking for GL/glu.h... yes
+checking for glBegin in -lGL... yes
+checking for working GLU quadrics... yes
+checking for Xmu headers... checking X11/Xmu/Xmu.h usability... yes
+checking X11/Xmu/Xmu.h presence... yes
+checking for X11/Xmu/Xmu.h... yes
+configure: creating ./config.status
+config.status: creating ../scripts/rtapi.conf
+config.status: creating ../scripts/linuxcnc
+config.status: creating ../scripts/linuxcnc-python
+config.status: creating ../scripts/linuxcnc_info
+config.status: creating ../scripts/halrun
+config.status: creating ../scripts/rip-environment
+config.status: creating ../scripts/haltcl
+config.status: creating ../scripts/halcmd_twopass
+config.status: creating ../scripts/realtime
+config.status: creating ../scripts/runtests
+config.status: creating ../scripts/linuxcnc_var
+config.status: creating ../scripts/linuxcnc-checklink
+config.status: creating Makefile.inc
+config.status: creating Makefile.modinc
+config.status: creating ../tcl/linuxcnc.tcl
+config.status: creating ../lib/python/nf.py
+config.status: creating ../scripts/linuxcncmkdesktop
+config.status: creating ../share/applications/linuxcnc-latency.desktop
+config.status: creating ../share/applications/linuxcnc.desktop
+config.status: creating ../share/desktop-directories/linuxcnc-cnc.directory
+config.status: creating ../share/desktop-directories/linuxcnc-ref.directory
+config.status: creating ../share/desktop-directories/linuxcnc-doc.directory
+config.status: creating ../share/menus/CNC.menu
+config.status: creating config.h
+
+
+######################################################################
+#                LinuxCNC - Enhanced Machine Controller              #
+######################################################################
+#                                                                    #
+#   LinuxCNC is a software system for computer control of machine    #
+#   tools such as milling machines. LinuxCNC is released under the   #
+#   GPL.  Check out http://www.linuxcnc.org/ for more details.       #
+#                                                                    #
+#                                                                    #
+#   It seems that ./configure completed successfully.                #
+#   This means that RT is properly installed                         #
+#   If things don't work check config.log for errors & warnings      #
+#                                                                    #
+#   Next compile by typing                                           #
+#         make                                                       #
+#         sudo make setuid                                           #
+#          (if realtime behavior and hardware access are required)   #
+#                                                                    #
+#   Before running the software, set the environment:                #
+#         . (top dir)/scripts/rip-environment                        #
+#                                                                    #
+#   To run the software type                                         #
+#         linuxcnc                                                   #
+#                                                                    #
+######################################################################
+
+
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+MAKE
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ make
+Reading 0/202 dependency files
+Done reading dependencies
+Reading 0/105 realtime dependency files
+Done reading realtime dependencies
+Creating mesa_7i65.mak
+Creating serport.mak
+Creating xor2.mak
+Creating xhc_hb04_util.mak
+Creating wcomp.mak
+Creating userkins.mak
+Creating updown.mak
+Creating tristate_float.mak
+Creating tristate_bit.mak
+Creating toggle2nist.mak
+Creating toggle.mak
+Creating timedelta.mak
+Creating timedelay.mak
+Creating time.mak
+Creating threadtest.mak
+Creating thcud.mak
+Creating thc.mak
+Creating sum2.mak
+Creating steptest.mak
+Creating spindle_monitor.mak
+Creating spindle.mak
+Creating sphereprobe.mak
+Creating simple_tp.mak
+Creating sim_spindle.mak
+Creating sim_parport.mak
+Creating sim_matrix_kb.mak
+Creating sim_home_switch.mak
+Creating sim_axis_hardware.mak
+Creating select8.mak
+Creating scale.mak
+Creating sample_hold.mak
+Creating plasmac.mak
+Creating orient.mak
+Creating or2.mak
+Creating oneshot.mak
+Creating ohmic.mak
+Creating offset.mak
+Creating not.mak
+Creating near.mak
+Creating mux8.mak
+Creating mux4.mak
+Creating mux2.mak
+Creating mux16.mak
+Creating multiswitch.mak
+Creating multiclick.mak
+Creating mult2.mak
+Creating moveoff.mak
+Creating minmax.mak
+Creating message.mak
+Creating mesa_pktgyro_test.mak
+Creating max31855.mak
+Creating match8.mak
+Creating maj3.mak
+Creating lut5.mak
+Creating lowpass.mak
+Creating logic.mak
+Creating lincurve.mak
+Creating limit3.mak
+Creating limit2.mak
+Creating limit1.mak
+Creating latencybins.mak
+Creating knob2float.mak
+Creating joyhandle.mak
+Creating invert.mak
+Creating integ.mak
+Creating ilowpass.mak
+Creating hypot.mak
+Creating histobins.mak
+Creating gray2bin.mak
+Creating gearchange.mak
+Creating gantry.mak
+Creating flipflop.mak
+Creating filter_kalman.mak
+Creating feedcomp.mak
+Creating estop_latch.mak
+Creating eoffset_per_angle.mak
+Creating edge.mak
+Creating differential.mak
+Creating demux.mak
+Creating deadzone.mak
+Creating ddt.mak
+Creating dbounce.mak
+Creating corexy_by_hal.mak
+converting conv for conv_u32_s32.comp
+Creating conv_u32_s32.mak
+converting conv for conv_u32_float.comp
+Creating conv_u32_float.mak
+converting conv for conv_u32_bit.comp
+Creating conv_u32_bit.mak
+converting conv for conv_s32_u32.comp
+Creating conv_s32_u32.mak
+converting conv for conv_s32_float.comp
+Creating conv_s32_float.mak
+converting conv for conv_s32_bit.comp
+Creating conv_s32_bit.mak
+converting conv for conv_float_u32.comp
+Creating conv_float_u32.mak
+converting conv for conv_float_s32.comp
+Creating conv_float_s32.mak
+converting conv for conv_bit_u32.comp
+Creating conv_bit_u32.mak
+converting conv for conv_bit_s32.comp
+Creating conv_bit_s32.mak
+converting conv for conv_bit_float.comp
+Creating conv_bit_float.mak
+Creating constant.mak
+Creating comp.mak
+Creating clarkeinv.mak
+Creating clarke3.mak
+Creating clarke2.mak
+Creating charge_pump.mak
+Creating carousel.mak
+Creating blend.mak
+Creating bldc.mak
+Creating bitwise.mak
+Creating bitslice.mak
+Creating biquad.mak
+Creating bin2gray.mak
+Creating axistest.mak
+Creating and2.mak
+Creating abs_s32.mak
+Creating abs.mak
+Reading 0/202 dependency files
+Done reading dependencies
+Reading 0/216 realtime dependency files
+Done reading realtime dependencies
+Copying test input hal/components/lincurve.comp
+Copying test input hal/components/logic.comp
+Copying test input hal/components/bitslice.comp
+sed hal/drivers/mesa_uart.comp -e "1 s/mesa_uart/mesa_uart_test/" > ../tests/halcompile/serial-out-of-tree/mesa_uart_test.comp
+sed ../docs/src/hal/rand.comp -e "1 s/rand/rand_test/" > ../tests/halcompile/userspace/rand_test.comp
+cp ../scripts/rtapi.conf ../tests/uspace/spawnv-root/rtapi.conf
+Compiling libnml/inifile/inifile.cc
+Creating shared library liblinuxcncini.so.0
+ln -sf liblinuxcncini.so.0 ../lib/liblinuxcncini.so
+Compiling libnml/inifile/inivar.cc
+Linking inivar
+Compiling libnml/posemath/_posemath.c
+Compiling libnml/posemath/posemath.cc
+Compiling libnml/posemath/gomath.c
+Compiling libnml/posemath/sincos.c
+Creating shared library libposemath.so.0
+ln -sf libposemath.so.0 ../lib/libposemath.so
+Compiling libnml/rcs/rcs_print.cc
+Compiling libnml/rcs/rcs_exit.cc
+Compiling libnml/os_intf/_sem.c
+Compiling libnml/os_intf/_shm.c
+Compiling libnml/os_intf/_timer.c
+Compiling libnml/os_intf/sem.cc
+Compiling libnml/os_intf/shm.cc
+Compiling libnml/os_intf/timer.cc
+Compiling libnml/buffer/locmem.cc
+Compiling libnml/buffer/memsem.cc
+Compiling libnml/buffer/phantom.cc
+Compiling libnml/buffer/physmem.cc
+Compiling libnml/buffer/recvn.c
+Compiling libnml/buffer/sendn.c
+Compiling libnml/buffer/shmem.cc
+Compiling libnml/buffer/tcpmem.cc
+Compiling libnml/cms/cms.cc
+Compiling libnml/cms/cms_aup.cc
+Compiling libnml/cms/cms_cfg.cc
+Compiling libnml/cms/cms_in.cc
+Compiling libnml/cms/cms_dup.cc
+Compiling libnml/cms/cms_pm.cc
+Compiling libnml/cms/cms_srv.cc
+Compiling libnml/cms/cms_up.cc
+Compiling libnml/cms/cms_xup.cc
+Compiling libnml/cms/cmsdiag.cc
+Compiling libnml/cms/tcp_opts.cc
+Compiling libnml/cms/tcp_srv.cc
+Compiling libnml/nml/cmd_msg.cc
+Compiling libnml/nml/nml_mod.cc
+Compiling libnml/nml/nml_oi.cc
+Compiling libnml/nml/nml_srv.cc
+Compiling libnml/nml/nml.cc
+Compiling libnml/nml/nmldiag.cc
+Compiling libnml/nml/nmlmsg.cc
+Compiling libnml/nml/stat_msg.cc
+Compiling libnml/linklist/linklist.cc
+Compiling hal/hal_lib.c
+Compiling rtapi/uspace_ulapi.c
+Creating shared library liblinuxcnchal.so.0
+ln -sf liblinuxcnchal.so.0 ../lib/liblinuxcnchal.so
+Creating shared library libnml.so.0
+ln -sf libnml.so.0 ../lib/libnml.so
+Compiling rtapi/uspace_rtapi_app.cc
+rtapi/uspace_rtapi_app.cc: In function ‘int main(int, char**)’:
+rtapi/uspace_rtapi_app.cc:512:17: warning: ignoring return value of ‘int setreuid(__uid_t, __uid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+         setreuid(fallback_uid, 0);
+         ~~~~~~~~^~~~~~~~~~~~~~~~~
+rtapi/uspace_rtapi_app.cc:519:14: warning: ignoring return value of ‘int setresuid(__uid_t, __uid_t, __uid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+     setresuid(euid, euid, ruid);
+     ~~~~~~~~~^~~~~~~~~~~~~~~~~~
+Compiling rtapi/uspace_rtapi_parport.cc
+Compiling rtapi/uspace_rtapi_string.c
+Compiling rtapi/rtapi_pci.cc
+Linking rtapi_app
+Compiling rtapi/uspace_xenomai.cc
+Linking libuspace-xenomai.so.0
+ln -sf libuspace-xenomai.so.0 ../lib/libuspace-xenomai.so
+Compiling hal/components/streamer_usr.c
+Linking halstreamer
+Compiling hal/components/sampler_usr.c
+Linking halsampler
+Compiling hal/components/panelui.c
+Linking panelui
+Compiling hal/user_comps/mb2hal/mb2hal.c
+Compiling hal/user_comps/mb2hal/mb2hal_init.c
+Compiling hal/user_comps/mb2hal/mb2hal_modbus.c
+Compiling hal/user_comps/mb2hal/mb2hal_hal.c
+Linking mb2hal
+Compiling hal/user_comps/gs2_vfd.c
+Linking gs2_vfd
+Compiling hal/user_comps/hy_gt_vfd.c
+Linking hy_gt_vfd
+Compiling hal/user_comps/svd-ps_vfd.c
+Linking svd-ps_vfd
+Compiling hal/user_comps/shuttle.c
+Linking shuttle
+Compiling hal/user_comps/xhc-hb04.cc
+Linking xhc-hb04
+Compiling hal/user_comps/sendkeys.c
+hal/user_comps/sendkeys.c: In function ‘emit’:
+hal/user_comps/sendkeys.c:65:4: warning: ignoring return value of ‘write’, declared with attribute warn_unused_result [-Wunused-result]
+    write(fd, &ie, sizeof(ie));
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~
+hal/user_comps/sendkeys.c: In function ‘main’:
+hal/user_comps/sendkeys.c:241:17: warning: ignoring return value of ‘write’, declared with attribute warn_unused_result [-Wunused-result]
+                 write(param->fd, &uidev, sizeof(uidev));
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linking sendkeys
+Syntax checking python script halcompile
+Copying python script halcompile
+Preprocessing thermistor.comp
+Compiling objects/hal/user_comps/thermistor.c
+Linking thermistor
+Compiling hal/user_comps/vfs11_vfd/vfs11_vfd.c
+Linking vfs11_vfd
+Compiling hal/classicladder/arithm_eval.c
+Compiling hal/classicladder/arrays.c
+Compiling hal/classicladder/calc.c
+Compiling hal/classicladder/calc_sequential.c
+Compiling hal/classicladder/classicladder.c
+Compiling hal/classicladder/classicladder_gtk.c
+Compiling hal/classicladder/config.c
+Compiling hal/classicladder/config_gtk.c
+Compiling hal/classicladder/drawing.c
+Compiling hal/classicladder/drawing_sequential.c
+Compiling hal/classicladder/edit.c
+Compiling hal/classicladder/edit_gtk.c
+Compiling hal/classicladder/edit_sequential.c
+Compiling hal/classicladder/editproperties_gtk.c
+Compiling hal/classicladder/emc_mods.c
+Compiling hal/classicladder/files.c
+Compiling hal/classicladder/files_project.c
+Compiling hal/classicladder/files_sequential.c
+Compiling hal/classicladder/manager.c
+Compiling hal/classicladder/manager_gtk.c
+Compiling hal/classicladder/protocol_modbus_master.c
+Compiling hal/classicladder/protocol_modbus_slave.c
+Compiling hal/classicladder/serial_linux.c
+Compiling hal/classicladder/socket_modbus_master.c
+Compiling hal/classicladder/socket_server.c
+Compiling hal/classicladder/spy_vars_gtk.c
+Compiling hal/classicladder/symbols.c
+Compiling hal/classicladder/symbols_gtk.c
+Compiling hal/classicladder/vars_names.c
+Compiling hal/classicladder/vars_access.c
+Compiling hal/utils/miscgtk.c
+Linking classicladder
+Compiling hal/utils/halcmd.c
+Compiling hal/utils/halcmd_commands.c
+Compiling hal/utils/halsh.c
+Linking hal.so
+Compiling hal/utils/halcmd_main.c
+Compiling hal/utils/halcmd_completion.c
+Linking halcmd
+Compiling hal/utils/halrmt.c
+Linking halrmt
+Compiling hal/utils/meter.c
+Linking halmeter
+Compiling hal/utils/scope.c
+Compiling hal/utils/scope_horiz.c
+Compiling hal/utils/scope_vert.c
+Compiling hal/utils/scope_trig.c
+Compiling hal/utils/scope_disp.c
+Compiling hal/utils/scope_files.c
+Linking halscope
+Syntax checking python script elbpcom
+Copying python script elbpcom
+Compiling hal/user_comps/vfdb_vfd/vfdb_vfd.c
+Linking vfdb_vfd
+Preprocessing wj200_vfd.comp
+Compiling hal/user_comps/wj200_vfd/wj200_vfd.c
+Linking wj200_vfd
+Compiling hal/user_comps/huanyang-vfd/hy_vfd.c
+Compiling hal/user_comps/huanyang-vfd/hy_comm.c
+Linking hy_vfd
+Compiling hal/user_comps/xhc-whb04b-6/hal.cc
+Compiling hal/user_comps/xhc-whb04b-6/usb.cc
+Compiling hal/user_comps/xhc-whb04b-6/pendant-types.cc
+Compiling hal/user_comps/xhc-whb04b-6/pendant.cc
+Compiling hal/user_comps/xhc-whb04b-6/xhc-whb04b6.cc
+Compiling hal/user_comps/xhc-whb04b-6/main.cc
+Linking xhc-whb04b-6
+Compiling emc/usr_intf/emcsh.cc
+Compiling emc/usr_intf/shcom.cc
+Compiling emc/nml_intf/emcglb.c
+Compiling emc/rs274ngc/modal_state.cc
+Compiling emc/nml_intf/emc.cc
+Compiling emc/nml_intf/emcpose.c
+Compiling emc/nml_intf/emcargs.cc
+Compiling emc/nml_intf/emcops.cc
+Compiling emc/nml_intf/canon_position.cc
+Compiling emc/ini/emcIniFile.cc
+Compiling emc/ini/iniaxis.cc
+Compiling emc/ini/inijoint.cc
+Compiling emc/ini/initraj.cc
+Compiling emc/ini/inihal.cc
+Compiling emc/nml_intf/interpl.cc
+Linking liblinuxcnc.a
+Linking linuxcnc.so
+Compiling emc/usr_intf/emcrsh.cc
+Linking linuxcncrsh
+Compiling emc/usr_intf/schedrmt.cc
+Compiling emc/usr_intf/emcsched.cc
+Linking schedrmt
+Compiling emc/usr_intf/emclcd.cc
+Compiling emc/usr_intf/sockets.c
+Linking linuxcnclcd
+Compiling emc/usr_intf/halui.cc
+Compiling emc/tooldata/tooldata_mmap.cc
+Compiling emc/tooldata/tooldata_common.cc
+Compiling emc/tooldata/tooldata_db.cc
+emc/tooldata/tooldata_db.cc: In function ‘int tooldata_db_init(char*, int)’:
+emc/tooldata/tooldata_db.cc:247:56: warning: format not a string literal and no format arguments [-Wformat-security]
+     snprintf(db_childname,sizeof(db_childname),progname);
+                                                        ^
+tooldata: depends: objects/emc/tooldata/tooldata_mmap.o objects/emc/tooldata/tooldata_common.o objects/emc/tooldata/tooldata_db.o
+tooldata: Linking: libtooldata.so.0
+Linking halui
+Compiling emc/task/emcsvr.cc
+Linking linuxcncsvr
+Compiling emc/motion/emcmotglb.c
+Compiling emc/task/emctask.cc
+Compiling emc/task/emccanon.cc
+Compiling emc/task/emctaskmain.cc
+Compiling emc/motion/usrmotintf.cc
+Compiling emc/motion/emcmotutil.c
+Compiling emc/task/taskintf.cc
+Compiling emc/motion/dbuf.c
+Compiling emc/motion/stashf.c
+Compiling emc/task/taskmodule.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from emc/rs274ngc/array1.hh:12,
+                 from emc/task/taskmodule.cc:37:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:25,
+                 from emc/rs274ngc/array1.hh:12,
+                 from emc/task/taskmodule.cc:37:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+Compiling emc/task/taskclass.cc
+Compiling emc/task/backtrace.cc
+Compiling emc/rs274ngc/interp_arc.cc
+Compiling emc/rs274ngc/interp_array.cc
+Compiling emc/rs274ngc/interp_base.cc
+Compiling emc/rs274ngc/interp_check.cc
+Compiling emc/rs274ngc/interp_convert.cc
+Compiling emc/rs274ngc/interp_queue.cc
+Compiling emc/rs274ngc/interp_cycles.cc
+Compiling emc/rs274ngc/interp_execute.cc
+Compiling emc/rs274ngc/interp_find.cc
+Compiling emc/rs274ngc/interp_internal.cc
+Compiling emc/rs274ngc/interp_inverse.cc
+Compiling emc/rs274ngc/interp_read.cc
+Compiling emc/rs274ngc/interp_write.cc
+Compiling emc/rs274ngc/interp_o_word.cc
+Compiling emc/rs274ngc/interp_g7x.cc
+Compiling emc/rs274ngc/nurbs_additional_functions.cc
+Compiling emc/rs274ngc/interp_namedparams.cc
+Compiling emc/rs274ngc/interp_python.cc
+Compiling emc/rs274ngc/interp_remap.cc
+Compiling emc/rs274ngc/interp_setup.cc
+Compiling emc/rs274ngc/canonmodule.cc
+Compiling emc/rs274ngc/pyparamclass.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyparamclass.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:25,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyparamclass.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+Compiling emc/rs274ngc/pyemctypes.cc
+Compiling emc/rs274ngc/pyinterp1.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyinterp1.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:25,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyinterp1.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+Compiling emc/rs274ngc/pyblock.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyblock.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:25,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/pyblock.cc:24:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+Compiling emc/rs274ngc/pyarrays.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from emc/rs274ngc/array1.hh:12,
+                 from emc/rs274ngc/pyarrays.cc:31:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:25,
+                 from emc/rs274ngc/array1.hh:12,
+                 from emc/rs274ngc/pyarrays.cc:31:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+Compiling emc/rs274ngc/interpmodule.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/exception_translator.hpp:10,
+                 from emc/rs274ngc/interpmodule.cc:32:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/indexing_suite.hpp:14,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/suite/indexing/map_indexing_suite.hpp:9,
+                 from emc/rs274ngc/interpmodule.cc:34:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+Compiling emc/rs274ngc/rs274ngc_pre.cc
+Compiling emc/rs274ngc/interp_inspection.cc
+Compiling emc/pythonplugin/python_plugin.cc
+Linking libpyplugin.so.0
+g++ -g -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -Wl,-soname,libpyplugin.so.0 -shared -o ../lib/libpyplugin.so.0 objects/emc/pythonplugin/python_plugin.o ../lib/liblinuxcncini.so -lstdc++ -lboost_python -lpython2.7
+ln -sf libpyplugin.so.0 ../lib/libpyplugin.so
+Linking librs274.so.0
+g++ -g -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -Wl,-soname,librs274.so.0 -shared -o ../lib/librs274.so.0 objects/emc/rs274ngc/interp_arc.o objects/emc/rs274ngc/interp_array.o objects/emc/rs274ngc/interp_base.o objects/emc/rs274ngc/interp_check.o objects/emc/rs274ngc/interp_convert.o objects/emc/rs274ngc/interp_queue.o objects/emc/rs274ngc/interp_cycles.o objects/emc/rs274ngc/interp_execute.o objects/emc/rs274ngc/interp_find.o objects/emc/rs274ngc/interp_internal.o objects/emc/rs274ngc/interp_inverse.o objects/emc/rs274ngc/interp_read.o objects/emc/rs274ngc/interp_write.o objects/emc/rs274ngc/interp_o_word.o objects/emc/rs274ngc/interp_g7x.o objects/emc/rs274ngc/modal_state.o objects/emc/rs274ngc/nurbs_additional_functions.o objects/emc/rs274ngc/interp_namedparams.o objects/emc/rs274ngc/interp_python.o objects/emc/rs274ngc/interp_remap.o objects/emc/rs274ngc/interp_setup.o objects/emc/rs274ngc/canonmodule.o objects/emc/rs274ngc/pyparamclass.o objects/emc/rs274ngc/pyemctypes.o objects/emc/rs274ngc/pyinterp1.o objects/emc/rs274ngc/pyblock.o objects/emc/rs274ngc/pyarrays.o objects/emc/rs274ngc/interpmodule.o objects/emc/rs274ngc/rs274ngc_pre.o objects/emc/rs274ngc/interp_inspection.o ../lib/liblinuxcncini.so ../lib/libpyplugin.so ../lib/liblinuxcnchal.so.0 ../lib/libtooldata.so.0 -lstdc++ -lboost_python -lpython2.7 -ldl 
+Linking milltask
+g++ -o ../bin/milltask objects/emc/motion/emcmotglb.o objects/emc/task/emctask.o objects/emc/task/emccanon.o objects/emc/task/emctaskmain.o objects/emc/motion/usrmotintf.o objects/emc/motion/emcmotutil.o objects/emc/task/taskintf.o objects/emc/motion/dbuf.o objects/emc/motion/stashf.o objects/emc/task/taskmodule.o objects/emc/task/taskclass.o objects/emc/task/backtrace.o ../lib/librs274.so.0 ../lib/liblinuxcnc.a ../lib/libnml.so.0 ../lib/liblinuxcncini.so.0 ../lib/libposemath.so.0 ../lib/liblinuxcnchal.so.0 ../lib/libpyplugin.so.0 ../lib/libtooldata.so.0 -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -lboost_python -lpython2.7
+Compiling emc/iotask/ioControl.cc
+Linking io
+Compiling emc/iotask/ioControl_v2.cc
+Linking iov2
+Compiling emc/kinematics/genserkins.c
+Linking genserkins
+Compiling emc/canterp/canterp.cc
+ln -sf librs274.so.0 ../lib/librs274.so
+Linking libcanterp.so.0
+ln -sf libcanterp.so.0 ../lib/libcanterp.so
+Compiling emc/sai/saicanon.cc
+Compiling emc/sai/driver.cc
+Compiling emc/sai/dummyemcstat.cc
+Linking rs274
+Compiling emc/motion-logger/motion-logger.c
+Linking motion-logger
+ln -sf libtooldata.so.0 ../lib/libtooldata.so
+Compiling module_helper/module_helper.c
+Linking linuxcnc_module_helper
+Compiling localized message catalog ../share/locale/de/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/sr/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/sv/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/ro/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/es/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/pl/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/fr/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/hu/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/it/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/ja/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/pt_BR/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/fi/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/ru/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/zh_CN/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/zh_HK/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/sk/LC_MESSAGES/linuxcnc.mo
+Compiling localized message catalog ../share/locale/zh_TW/LC_MESSAGES/linuxcnc.mo
+Compiling localized gmoccapy message catalog ../share/locale/de/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/sr/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/hu/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/es/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/fr/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/pl/LC_MESSAGES/gmoccapy.mo
+Compiling localized gmoccapy message catalog ../share/locale/zh_CN/LC_MESSAGES/gmoccapy.mo
+Localizing linuxcnc.pot
+intltool-extract --type=gettext/glade emc/usr_intf/gmoccapy/gmoccapy.glade
+Generating C format header file for translation.
+Wrote emc/usr_intf/gmoccapy/gmoccapy.glade.h
+intltool-extract --type=gettext/glade ../lib/python/gladevcp/offsetpage.glade
+Generating C format header file for translation.
+Wrote ../lib/python/gladevcp/offsetpage.glade.h
+intltool-extract --type=gettext/glade ../lib/python/gladevcp/tooledit_gtk.glade
+Generating C format header file for translation.
+Wrote ../lib/python/gladevcp/tooledit_gtk.glade.h
+/usr/bin/xgettext --from-code=UTF-8 --language=Python \
+	--keyword=_ --keyword=N_ \
+	--output=po/gmoccapy/gmoccapy.pot emc/usr_intf/gmoccapy/gmoccapy.py emc/usr_intf/gmoccapy/dialogs.py emc/usr_intf/gmoccapy/getiniinfo.py emc/usr_intf/gmoccapy/notification.py emc/usr_intf/gmoccapy/player.py emc/usr_intf/gmoccapy/preferences.py emc/usr_intf/gmoccapy/widgets.py emc/usr_intf/gmoccapy/gmoccapy.glade.h ../lib/python/gladevcp/iconview.py ../lib/python/gladevcp/offsetpage_widget.py ../lib/python/gladevcp/tooledit_widget.py ../lib/python/gladevcp/offsetpage.glade.h ../lib/python/gladevcp/tooledit_gtk.glade.h
+cp emc/ini/emcIniFile.hh ../include/emcIniFile.hh
+cp emc/ini/iniaxis.hh ../include/iniaxis.hh
+cp emc/ini/inijoint.hh ../include/inijoint.hh
+cp emc/ini/initraj.hh ../include/initraj.hh
+cp emc/ini/inihal.hh ../include/inihal.hh
+cp emc/kinematics/cubic.h ../include/cubic.h
+cp emc/kinematics/kinematics.h ../include/kinematics.h
+cp emc/kinematics/genhexkins.h ../include/genhexkins.h
+cp emc/kinematics/genserkins.h ../include/genserkins.h
+cp emc/kinematics/pentakins.h ../include/pentakins.h
+cp emc/kinematics/pumakins.h ../include/pumakins.h
+cp emc/tp/tc.h ../include/tc.h
+cp emc/tp/tc_types.h ../include/tc_types.h
+cp emc/tp/tcq.h ../include/tcq.h
+cp emc/tp/tp.h ../include/tp.h
+cp emc/tp/tp_types.h ../include/tp_types.h
+cp emc/tp/spherical_arc.h ../include/spherical_arc.h
+cp emc/tp/blendmath.h ../include/blendmath.h
+cp emc/motion/emcmotcfg.h ../include/emcmotcfg.h
+cp emc/motion/motion.h ../include/motion.h
+cp emc/motion/simple_tp.h ../include/simple_tp.h
+cp emc/motion/state_tag.h ../include/state_tag.h
+cp emc/motion/usrmotintf.h ../include/usrmotintf.h
+cp emc/nml_intf/canon.hh ../include/canon.hh
+cp emc/nml_intf/canon_position.hh ../include/canon_position.hh
+cp emc/nml_intf/emctool.h ../include/emctool.h
+cp emc/nml_intf/emc.hh ../include/emc.hh
+cp emc/nml_intf/emc_nml.hh ../include/emc_nml.hh
+cp emc/nml_intf/emccfg.h ../include/emccfg.h
+cp emc/nml_intf/emcglb.h ../include/emcglb.h
+cp emc/nml_intf/emcpos.h ../include/emcpos.h
+cp emc/nml_intf/interp_return.hh ../include/interp_return.hh
+cp emc/nml_intf/interpl.hh ../include/interpl.hh
+cp emc/nml_intf/motion_types.h ../include/motion_types.h
+cp emc/nml_intf/debugflags.h ../include/debugflags.h
+cp emc/rs274ngc/interp_internal.hh ../include/interp_internal.hh
+cp emc/rs274ngc/interp_fwd.hh ../include/interp_fwd.hh
+cp emc/rs274ngc/interp_base.hh ../include/interp_base.hh
+cp emc/rs274ngc/modal_state.hh ../include/modal_state.hh
+cp emc/rs274ngc/rs274ngc.hh ../include/rs274ngc.hh
+cp emc/sai/saicanon.hh ../include/saicanon.hh
+cp hal/hal.h ../include/hal.h
+cp hal/hal_parport.h ../include/hal_parport.h
+cp hal/drivers/mesa-hostmot2/hostmot2-serial.h ../include/hostmot2-serial.h
+cp libnml/buffer/locmem.hh ../include/locmem.hh
+cp libnml/buffer/memsem.hh ../include/memsem.hh
+cp libnml/buffer/phantom.hh ../include/phantom.hh
+cp libnml/buffer/physmem.hh ../include/physmem.hh
+cp libnml/buffer/recvn.h ../include/recvn.h
+cp libnml/buffer/rem_msg.hh ../include/rem_msg.hh
+cp libnml/buffer/sendn.h ../include/sendn.h
+cp libnml/buffer/shmem.hh ../include/shmem.hh
+cp libnml/buffer/tcpmem.hh ../include/tcpmem.hh
+cp libnml/cms/cms.hh ../include/cms.hh
+cp libnml/cms/cms_aup.hh ../include/cms_aup.hh
+cp libnml/cms/cms_cfg.hh ../include/cms_cfg.hh
+cp libnml/cms/cms_dup.hh ../include/cms_dup.hh
+cp libnml/cms/cms_srv.hh ../include/cms_srv.hh
+cp libnml/cms/cms_up.hh ../include/cms_up.hh
+cp libnml/cms/cms_user.hh ../include/cms_user.hh
+cp libnml/cms/cms_xup.hh ../include/cms_xup.hh
+cp libnml/cms/cmsdiag.hh ../include/cmsdiag.hh
+cp libnml/cms/tcp_opts.hh ../include/tcp_opts.hh
+cp libnml/cms/tcp_srv.hh ../include/tcp_srv.hh
+cp libnml/inifile/inifile.h ../include/inifile.h
+cp libnml/inifile/inifile.hh ../include/inifile.hh
+cp libnml/linklist/linklist.hh ../include/linklist.hh
+cp libnml/nml/cmd_msg.hh ../include/cmd_msg.hh
+cp libnml/nml/nml.hh ../include/nml.hh
+cp libnml/nml/nml_mod.hh ../include/nml_mod.hh
+cp libnml/nml/nml_oi.hh ../include/nml_oi.hh
+cp libnml/nml/nml_srv.hh ../include/nml_srv.hh
+cp libnml/nml/nml_type.hh ../include/nml_type.hh
+cp libnml/nml/nmldiag.hh ../include/nmldiag.hh
+cp libnml/nml/nmlmsg.hh ../include/nmlmsg.hh
+cp libnml/nml/stat_msg.hh ../include/stat_msg.hh
+cp libnml/os_intf/_sem.h ../include/_sem.h
+cp libnml/os_intf/sem.hh ../include/sem.hh
+cp libnml/os_intf/_shm.h ../include/_shm.h
+cp libnml/os_intf/shm.hh ../include/shm.hh
+cp libnml/os_intf/_timer.h ../include/_timer.h
+cp libnml/os_intf/timer.hh ../include/timer.hh
+cp libnml/posemath/posemath.h ../include/posemath.h
+cp libnml/posemath/gotypes.h ../include/gotypes.h
+cp libnml/posemath/gomath.h ../include/gomath.h
+cp libnml/posemath/sincos.h ../include/sincos.h
+cp libnml/rcs/rcs.hh ../include/rcs.hh
+cp libnml/rcs/rcs_exit.hh ../include/rcs_exit.hh
+cp libnml/rcs/rcs_print.hh ../include/rcs_print.hh
+cp libnml/rcs/rcsversion.h ../include/rcsversion.h
+cp rtapi/rtapi.h ../include/rtapi.h
+cp rtapi/rtapi_app.h ../include/rtapi_app.h
+cp rtapi/rtapi_atomic.h ../include/rtapi_atomic.h
+cp rtapi/rtapi_bitops.h ../include/rtapi_bitops.h
+cp rtapi/rtapi_bool.h ../include/rtapi_bool.h
+cp rtapi/rtapi_byteorder.h ../include/rtapi_byteorder.h
+cp rtapi/rtapi_device.h ../include/rtapi_device.h
+cp rtapi/rtapi_firmware.h ../include/rtapi_firmware.h
+cp rtapi/rtapi_gfp.h ../include/rtapi_gfp.h
+cp rtapi/rtapi_io.h ../include/rtapi_io.h
+cp rtapi/rtapi_limits.h ../include/rtapi_limits.h
+cp rtapi/rtapi_list.h ../include/rtapi_list.h
+cp rtapi/rtapi_math.h ../include/rtapi_math.h
+cp rtapi/rtapi_math_i386.h ../include/rtapi_math_i386.h
+cp rtapi/rtapi_math64.h ../include/rtapi_math64.h
+cp rtapi/rtapi_mutex.h ../include/rtapi_mutex.h
+cp rtapi/rtapi_parport.h ../include/rtapi_parport.h
+cp rtapi/rtapi_pci.h ../include/rtapi_pci.h
+cp rtapi/rtapi_slab.h ../include/rtapi_slab.h
+cp rtapi/rtapi_stdint.h ../include/rtapi_stdint.h
+cp rtapi/rtapi_ctype.h ../include/rtapi_ctype.h
+cp rtapi/rtapi_errno.h ../include/rtapi_errno.h
+cp rtapi/rtapi_string.h ../include/rtapi_string.h
+cp rtapi/rtapi_vsnprintf.h ../include/rtapi_vsnprintf.h
+Compiling localized message catalog objects/de.msg
+Compiling localized message catalog objects/sr.msg
+Compiling localized message catalog objects/sv.msg
+Compiling localized message catalog objects/ro.msg
+Compiling localized message catalog objects/es.msg
+Compiling localized message catalog objects/pl.msg
+Compiling localized message catalog objects/fr.msg
+Compiling localized message catalog objects/hu.msg
+Compiling localized message catalog objects/it.msg
+Compiling localized message catalog objects/ja.msg
+Compiling localized message catalog objects/pt_BR.msg
+Compiling localized message catalog objects/fi.msg
+Compiling localized message catalog objects/ru.msg
+Compiling localized message catalog objects/zh_CN.msg
+Compiling localized message catalog objects/zh_HK.msg
+Compiling localized message catalog objects/sk.msg
+Compiling localized message catalog objects/zh_TW.msg
+Syntax checking python script pyvcp
+Copying python script pyvcp
+Syntax checking python script hal_input
+Copying python script hal_input
+Syntax checking python script gladevcp
+Copying python script gladevcp
+Syntax checking python script scorbot-er-3
+Copying python script scorbot-er-3
+Syntax checking python script mitsub_vfd
+Copying python script mitsub_vfd
+Syntax checking python script pmx485
+Copying python script pmx485
+Syntax checking python script pumagui
+Copying python script pumagui
+Syntax checking python script puma560gui
+Copying python script puma560gui
+Syntax checking python script lineardelta
+Copying python script lineardelta
+Syntax checking python script scaragui
+Copying python script scaragui
+Syntax checking python script hexagui
+Copying python script hexagui
+Syntax checking python script 5axisgui
+Copying python script 5axisgui
+Syntax checking python script max5gui
+Copying python script max5gui
+Syntax checking python script maho600gui
+Copying python script maho600gui
+Syntax checking python script hbmgui
+Copying python script hbmgui
+Syntax checking python script rotarydelta
+Copying python script rotarydelta
+Syntax checking python script xyzac-trt-gui
+Copying python script xyzac-trt-gui
+Syntax checking python script xyzbc-trt-gui
+Copying python script xyzbc-trt-gui
+Compiling hal/halmodule.cc
+Linking python module _hal.so
+Compiling emc/usr_intf/axis/extensions/emcmodule.cc
+Linking python module linuxcnc.so
+Compiling emc/usr_intf/axis/extensions/minigl.c
+Linking python module minigl.so
+Compiling emc/usr_intf/axis/extensions/_toglmodule.c
+Linking python module _togl.so
+Syntax checking python script axis
+Copying python script axis
+Syntax checking python script axis-remote
+Copying python script axis-remote
+Syntax checking python script linuxcnctop
+Copying python script linuxcnctop
+Syntax checking python script hal_manualtoolchange
+Copying python script hal_manualtoolchange
+Syntax checking python script mdi
+Copying python script mdi
+Syntax checking python script image-to-gcode
+Copying python script image-to-gcode
+Syntax checking python script lintini
+Copying python script lintini
+Syntax checking python script debuglevel
+Copying python script debuglevel
+Syntax checking python script teach-in
+Copying python script teach-in
+Syntax checking python script tracking-test
+Copying python script tracking-test
+Syntax checking python script touchy
+Copying python script touchy
+Syntax checking python script mdi.py
+Copying python script mdi.py
+Syntax checking python script emc_interface.py
+Copying python script emc_interface.py
+Syntax checking python script hal_interface.py
+Copying python script hal_interface.py
+Syntax checking python script filechooser.py
+Copying python script filechooser.py
+Syntax checking python script listing.py
+Copying python script listing.py
+Syntax checking python script preferences.py
+Copying python script preferences.py
+Copying glade file touchy.glade
+Syntax checking python script stepconf
+Copying python script stepconf
+building python init __init__.py
+Copying linuxcnc-wizard.gif
+Syntax checking python script pages.py
+Copying python script pages.py
+Syntax checking python script build_INI.py
+Copying python script build_INI.py
+Syntax checking python script build_HAL.py
+Copying python script build_HAL.py
+Syntax checking python script import_mach.py
+Copying python script import_mach.py
+Copying glade file main_page.glade
+Copying glade file base.glade
+Copying glade file start.glade
+Copying glade file pport1.glade
+Copying glade file pport2.glade
+Copying glade file spindle.glade
+Copying glade file options.glade
+Copying glade file halui_page.glade
+Copying glade file axisx.glade
+Copying glade file axisy.glade
+Copying glade file axisz.glade
+Copying glade file axisu.glade
+Copying glade file axisv.glade
+Copying glade file axisa.glade
+Copying glade file finished.glade
+Syntax checking python script pncconf
+Copying python script pncconf
+building python init __init__.py
+Syntax checking python script pages.py
+Copying python script pages.py
+Syntax checking python script build_INI.py
+Copying python script build_INI.py
+Syntax checking python script build_HAL.py
+Copying python script build_HAL.py
+Syntax checking python script private_data.py
+Copying python script private_data.py
+Syntax checking python script tests.py
+Copying python script tests.py
+Syntax checking python script data.py
+Copying python script data.py
+Copying glade file main_page.glade
+Copying glade file help.glade
+Copying glade file mesa0.glade
+Copying glade file mesa1.glade
+Copying glade file start.glade
+Copying glade file external.glade
+Copying glade file base.glade
+Copying glade file screen.glade
+Copying glade file vcp.glade
+Copying glade file x_axis.glade
+Copying glade file x_motor.glade
+Copying glade file y_axis.glade
+Copying glade file y_motor.glade
+Copying glade file z_axis.glade
+Copying glade file z_motor.glade
+Copying glade file a_axis.glade
+Copying glade file a_motor.glade
+Copying glade file s_motor.glade
+Copying glade file options.glade
+Copying glade file realtime.glade
+Copying glade file pport1.glade
+Copying glade file pport2.glade
+Copying glade file dialogs.glade
+Copying glade file finished.glade
+Syntax checking python script gremlin
+Copying python script gremlin
+Syntax checking python script gremlin.py
+Copying python script gremlin.py
+Syntax checking python script qt5_graphics.py
+Copying python script qt5_graphics.py
+Syntax checking python script gscreen
+Copying python script gscreen
+Syntax checking python script mdi.py
+Copying python script mdi.py
+Syntax checking python script emc_interface.py
+Copying python script emc_interface.py
+Syntax checking python script preferences.py
+Copying python script preferences.py
+Syntax checking python script keybindings.py
+Copying python script keybindings.py
+Copying glade file gscreen.glade
+Copying glade file gscreen2.glade
+Syntax checking python script pyui
+Copying python script pyui
+Syntax checking python script master.py
+Copying python script master.py
+Syntax checking python script widgets.py
+Copying python script widgets.py
+Syntax checking python script __init__.py
+Copying python script __init__.py
+Syntax checking python script commands.py
+Copying python script commands.py
+Syntax checking python script panelui_validate.py
+Copying python script panelui_validate.py
+Copying INI script panelui_spec.ini
+cp emc/usr_intf/pyui/panelui_spec.ini ../lib/python/pyui/panelui_spec.ini
+Copying INI script _panelui.ini
+cp emc/usr_intf/pyui/_panelui.ini ../lib/python/pyui/_panelui.ini
+Syntax checking python script gmoccapy
+Copying python script gmoccapy
+Syntax checking python script dialogs.py
+Copying python script dialogs.py
+Syntax checking python script getiniinfo.py
+Copying python script getiniinfo.py
+Syntax checking python script notification.py
+Copying python script notification.py
+Syntax checking python script player.py
+Copying python script player.py
+Syntax checking python script preferences.py
+Copying python script preferences.py
+Syntax checking python script widgets.py
+Copying python script widgets.py
+Copying glade file gmoccapy.glade
+Syntax checking python script qtvcp
+Copying python script qtvcp
+Syntax checking python script qtplasmac-setup
+Copying python script qtplasmac-setup
+Syntax checking python script qtplasmac-materials
+Copying python script qtplasmac-materials
+Syntax checking python script qtplasmac-plasmac2qt
+Copying python script qtplasmac-plasmac2qt
+Syntax checking python script qtplasmac-cfg2prefs
+Copying python script qtplasmac-cfg2prefs
+Syntax checking python script pmx485-test
+Copying python script pmx485-test
+Compiling emc/kinematics/lineardeltakins.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/exception_translator.hpp:10,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python.hpp:28,
+                 from emc/kinematics/lineardeltakins.cc:19:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python.hpp:37,
+                 from emc/kinematics/lineardeltakins.cc:19:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+Linking python module lineardeltakins.so
+g++ -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -shared -o ../lib/python/lineardeltakins.so objects/emc/kinematics/lineardeltakins.o -lboost_python
+Compiling emc/kinematics/rotarydeltakins.cc
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/exception_translator.hpp:10,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python.hpp:28,
+                 from emc/kinematics/rotarydeltakins.cc:20:
+/home/wruslan/opt/boost_1_74_0/boost/bind.hpp:41:1: note: #pragma message: The practice of declaring the Bind placeholders (_1, _2, ...) in the global namespace is deprecated. Please use <boost/bind/bind.hpp> + using namespace boost::placeholders, or define BOOST_BIND_GLOBAL_PLACEHOLDERS to retain the current behavior.
+ )
+ ^
+In file included from /home/wruslan/opt/boost_1_74_0/boost/python/object/iterator.hpp:28,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python/iterator.hpp:12,
+                 from /home/wruslan/opt/boost_1_74_0/boost/python.hpp:37,
+                 from emc/kinematics/rotarydeltakins.cc:20:
+/home/wruslan/opt/boost_1_74_0/boost/detail/iterator.hpp:13:37: note: #pragma message: This header is deprecated. Use <iterator> instead.
+ BOOST_HEADER_DEPRECATED("<iterator>")
+                                     ^
+Linking python module rotarydeltakins.so
+g++ -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -shared -o ../lib/python/rotarydeltakins.so objects/emc/kinematics/rotarydeltakins.o -lboost_python
+Syntax checking python script update_ini
+Copying python script update_ini
+Compiling emc/rs274ngc/gcodemodule.cc
+Linking python module gcode.so
+g++ -L/home/wruslan/opt/linuxcnc-new/lib -Wl,-rpath,/home/wruslan/opt/linuxcnc-new/lib   -shared -o ../lib/python/gcode.so objects/emc/rs274ngc/gcodemodule.o ../lib/librs274.so.0 -lstdc++
+Preprocessing abs.comp
+Preprocessing abs_s32.comp
+Preprocessing and2.comp
+Preprocessing axistest.comp
+Preprocessing bin2gray.comp
+Preprocessing biquad.comp
+Preprocessing bitslice.comp
+Preprocessing bitwise.comp
+Preprocessing bldc.comp
+Preprocessing blend.comp
+Preprocessing carousel.comp
+Preprocessing charge_pump.comp
+Preprocessing clarke2.comp
+Preprocessing clarke3.comp
+Preprocessing clarkeinv.comp
+Preprocessing comp.comp
+Preprocessing constant.comp
+Preprocessing conv_bit_float.comp
+Preprocessing conv_bit_s32.comp
+Preprocessing conv_bit_u32.comp
+Preprocessing conv_float_s32.comp
+Preprocessing conv_float_u32.comp
+Preprocessing conv_s32_bit.comp
+Preprocessing conv_s32_float.comp
+Preprocessing conv_s32_u32.comp
+Preprocessing conv_u32_bit.comp
+Preprocessing conv_u32_float.comp
+Preprocessing conv_u32_s32.comp
+Preprocessing corexy_by_hal.comp
+Preprocessing dbounce.comp
+Preprocessing ddt.comp
+Preprocessing deadzone.comp
+Preprocessing demux.comp
+Preprocessing differential.comp
+Preprocessing edge.comp
+Preprocessing eoffset_per_angle.comp
+Preprocessing estop_latch.comp
+Preprocessing feedcomp.comp
+Preprocessing filter_kalman.comp
+Preprocessing flipflop.comp
+Preprocessing gantry.comp
+Preprocessing gearchange.comp
+Preprocessing gray2bin.comp
+Preprocessing histobins.comp
+Preprocessing hypot.comp
+Preprocessing ilowpass.comp
+Preprocessing integ.comp
+Preprocessing invert.comp
+Preprocessing joyhandle.comp
+Preprocessing knob2float.comp
+Preprocessing latencybins.comp
+Preprocessing limit1.comp
+Preprocessing limit2.comp
+Preprocessing limit3.comp
+Preprocessing lincurve.comp
+Preprocessing logic.comp
+Preprocessing lowpass.comp
+Preprocessing lut5.comp
+Preprocessing maj3.comp
+Preprocessing match8.comp
+Preprocessing max31855.comp
+Preprocessing mesa_pktgyro_test.comp
+Preprocessing message.comp
+Preprocessing minmax.comp
+Preprocessing moveoff.comp
+Preprocessing mult2.comp
+Preprocessing multiclick.comp
+Preprocessing multiswitch.comp
+Preprocessing mux16.comp
+Preprocessing mux2.comp
+Preprocessing mux4.comp
+Preprocessing mux8.comp
+Preprocessing near.comp
+Preprocessing not.comp
+Preprocessing offset.comp
+Preprocessing ohmic.comp
+Preprocessing oneshot.comp
+Preprocessing or2.comp
+Preprocessing orient.comp
+Preprocessing plasmac.comp
+Preprocessing sample_hold.comp
+Preprocessing scale.comp
+Preprocessing select8.comp
+Preprocessing sim_axis_hardware.comp
+Preprocessing sim_home_switch.comp
+Preprocessing sim_matrix_kb.comp
+Preprocessing sim_parport.comp
+Preprocessing sim_spindle.comp
+Preprocessing simple_tp.comp
+Preprocessing sphereprobe.comp
+Preprocessing spindle.comp
+Preprocessing spindle_monitor.comp
+Preprocessing steptest.comp
+Preprocessing sum2.comp
+Preprocessing thc.comp
+Preprocessing thcud.comp
+Preprocessing threadtest.comp
+Preprocessing time.comp
+Preprocessing timedelay.comp
+Preprocessing timedelta.comp
+Preprocessing toggle.comp
+Preprocessing toggle2nist.comp
+Preprocessing tristate_bit.comp
+Preprocessing tristate_float.comp
+Preprocessing updown.comp
+Preprocessing userkins.comp
+Preprocessing wcomp.comp
+Preprocessing xhc_hb04_util.comp
+Preprocessing xor2.comp
+Preprocessing serport.comp
+Preprocessing mesa_7i65.comp
+Compiling realtime objects/hal/components/abs.c
+Linking ../rtlib/abs.so
+Compiling realtime objects/hal/components/abs_s32.c
+Linking ../rtlib/abs_s32.so
+Compiling realtime objects/hal/components/and2.c
+Linking ../rtlib/and2.so
+Compiling realtime objects/hal/components/axistest.c
+Linking ../rtlib/axistest.so
+Compiling realtime objects/hal/components/bin2gray.c
+Linking ../rtlib/bin2gray.so
+Compiling realtime objects/hal/components/biquad.c
+Linking ../rtlib/biquad.so
+Compiling realtime objects/hal/components/bitslice.c
+Linking ../rtlib/bitslice.so
+Compiling realtime objects/hal/components/bitwise.c
+Linking ../rtlib/bitwise.so
+Compiling realtime objects/hal/components/bldc.c
+Linking ../rtlib/bldc.so
+Compiling realtime objects/hal/components/blend.c
+Linking ../rtlib/blend.so
+Compiling realtime objects/hal/components/carousel.c
+Linking ../rtlib/carousel.so
+Compiling realtime objects/hal/components/charge_pump.c
+Linking ../rtlib/charge_pump.so
+Compiling realtime objects/hal/components/clarke2.c
+Linking ../rtlib/clarke2.so
+Compiling realtime objects/hal/components/clarke3.c
+Linking ../rtlib/clarke3.so
+Compiling realtime objects/hal/components/clarkeinv.c
+Linking ../rtlib/clarkeinv.so
+Compiling realtime objects/hal/components/comp.c
+Linking ../rtlib/comp.so
+Compiling realtime objects/hal/components/constant.c
+Linking ../rtlib/constant.so
+Compiling realtime objects/hal/components/conv_bit_float.c
+Linking ../rtlib/conv_bit_float.so
+Compiling realtime objects/hal/components/conv_bit_s32.c
+Linking ../rtlib/conv_bit_s32.so
+Compiling realtime objects/hal/components/conv_bit_u32.c
+Linking ../rtlib/conv_bit_u32.so
+Compiling realtime objects/hal/components/conv_float_s32.c
+Linking ../rtlib/conv_float_s32.so
+Compiling realtime objects/hal/components/conv_float_u32.c
+Linking ../rtlib/conv_float_u32.so
+Compiling realtime objects/hal/components/conv_s32_bit.c
+Linking ../rtlib/conv_s32_bit.so
+Compiling realtime objects/hal/components/conv_s32_float.c
+Linking ../rtlib/conv_s32_float.so
+Compiling realtime objects/hal/components/conv_s32_u32.c
+Linking ../rtlib/conv_s32_u32.so
+Compiling realtime objects/hal/components/conv_u32_bit.c
+Linking ../rtlib/conv_u32_bit.so
+Compiling realtime objects/hal/components/conv_u32_float.c
+Linking ../rtlib/conv_u32_float.so
+Compiling realtime objects/hal/components/conv_u32_s32.c
+Linking ../rtlib/conv_u32_s32.so
+Compiling realtime objects/hal/components/corexy_by_hal.c
+Linking ../rtlib/corexy_by_hal.so
+Compiling realtime objects/hal/components/dbounce.c
+Linking ../rtlib/dbounce.so
+Compiling realtime objects/hal/components/ddt.c
+Linking ../rtlib/ddt.so
+Compiling realtime objects/hal/components/deadzone.c
+Linking ../rtlib/deadzone.so
+Compiling realtime objects/hal/components/demux.c
+Linking ../rtlib/demux.so
+Compiling realtime objects/hal/components/differential.c
+Linking ../rtlib/differential.so
+Compiling realtime objects/hal/components/edge.c
+Linking ../rtlib/edge.so
+Compiling realtime objects/hal/components/eoffset_per_angle.c
+Linking ../rtlib/eoffset_per_angle.so
+Compiling realtime objects/hal/components/estop_latch.c
+Linking ../rtlib/estop_latch.so
+Compiling realtime objects/hal/components/feedcomp.c
+Linking ../rtlib/feedcomp.so
+Compiling realtime objects/hal/components/filter_kalman.c
+Linking ../rtlib/filter_kalman.so
+Compiling realtime objects/hal/components/flipflop.c
+Linking ../rtlib/flipflop.so
+Compiling realtime objects/hal/components/gantry.c
+Linking ../rtlib/gantry.so
+Compiling realtime objects/hal/components/gearchange.c
+Linking ../rtlib/gearchange.so
+Compiling realtime objects/hal/components/gray2bin.c
+Linking ../rtlib/gray2bin.so
+Compiling realtime objects/hal/components/histobins.c
+Linking ../rtlib/histobins.so
+Compiling realtime objects/hal/components/hypot.c
+Linking ../rtlib/hypot.so
+Compiling realtime objects/hal/components/ilowpass.c
+Linking ../rtlib/ilowpass.so
+Compiling realtime objects/hal/components/integ.c
+Linking ../rtlib/integ.so
+Compiling realtime objects/hal/components/invert.c
+Linking ../rtlib/invert.so
+Compiling realtime objects/hal/components/joyhandle.c
+Linking ../rtlib/joyhandle.so
+Compiling realtime objects/hal/components/knob2float.c
+Linking ../rtlib/knob2float.so
+Compiling realtime objects/hal/components/latencybins.c
+Linking ../rtlib/latencybins.so
+Compiling realtime objects/hal/components/limit1.c
+Linking ../rtlib/limit1.so
+Compiling realtime objects/hal/components/limit2.c
+Linking ../rtlib/limit2.so
+Compiling realtime objects/hal/components/limit3.c
+Linking ../rtlib/limit3.so
+Compiling realtime objects/hal/components/lincurve.c
+Linking ../rtlib/lincurve.so
+Compiling realtime objects/hal/components/logic.c
+Linking ../rtlib/logic.so
+Compiling realtime objects/hal/components/lowpass.c
+Linking ../rtlib/lowpass.so
+Compiling realtime objects/hal/components/lut5.c
+Linking ../rtlib/lut5.so
+Compiling realtime objects/hal/components/maj3.c
+Linking ../rtlib/maj3.so
+Compiling realtime objects/hal/components/match8.c
+Linking ../rtlib/match8.so
+Compiling realtime objects/hal/components/max31855.c
+Linking ../rtlib/max31855.so
+Compiling realtime objects/hal/components/mesa_pktgyro_test.c
+Linking ../rtlib/mesa_pktgyro_test.so
+Compiling realtime objects/hal/components/message.c
+Linking ../rtlib/message.so
+Compiling realtime objects/hal/components/minmax.c
+Linking ../rtlib/minmax.so
+Compiling realtime objects/hal/components/moveoff.c
+Linking ../rtlib/moveoff.so
+Compiling realtime objects/hal/components/mult2.c
+Linking ../rtlib/mult2.so
+Compiling realtime objects/hal/components/multiclick.c
+Linking ../rtlib/multiclick.so
+Compiling realtime objects/hal/components/multiswitch.c
+Linking ../rtlib/multiswitch.so
+Compiling realtime objects/hal/components/mux16.c
+Linking ../rtlib/mux16.so
+Compiling realtime objects/hal/components/mux2.c
+Linking ../rtlib/mux2.so
+Compiling realtime objects/hal/components/mux4.c
+Linking ../rtlib/mux4.so
+Compiling realtime objects/hal/components/mux8.c
+Linking ../rtlib/mux8.so
+Compiling realtime objects/hal/components/near.c
+Linking ../rtlib/near.so
+Compiling realtime objects/hal/components/not.c
+Linking ../rtlib/not.so
+Compiling realtime objects/hal/components/offset.c
+Linking ../rtlib/offset.so
+Compiling realtime objects/hal/components/ohmic.c
+Linking ../rtlib/ohmic.so
+Compiling realtime objects/hal/components/oneshot.c
+Linking ../rtlib/oneshot.so
+Compiling realtime objects/hal/components/or2.c
+Linking ../rtlib/or2.so
+Compiling realtime objects/hal/components/orient.c
+Linking ../rtlib/orient.so
+Compiling realtime objects/hal/components/plasmac.c
+Linking ../rtlib/plasmac.so
+Compiling realtime objects/hal/components/sample_hold.c
+Linking ../rtlib/sample_hold.so
+Compiling realtime objects/hal/components/scale.c
+Linking ../rtlib/scale.so
+Compiling realtime objects/hal/components/select8.c
+Linking ../rtlib/select8.so
+Compiling realtime objects/hal/components/sim_axis_hardware.c
+Linking ../rtlib/sim_axis_hardware.so
+Compiling realtime objects/hal/components/sim_home_switch.c
+Linking ../rtlib/sim_home_switch.so
+Compiling realtime objects/hal/components/sim_matrix_kb.c
+Linking ../rtlib/sim_matrix_kb.so
+Compiling realtime objects/hal/components/sim_parport.c
+Linking ../rtlib/sim_parport.so
+Compiling realtime objects/hal/components/sim_spindle.c
+Linking ../rtlib/sim_spindle.so
+Compiling realtime objects/hal/components/simple_tp.c
+Linking ../rtlib/simple_tp.so
+Compiling realtime objects/hal/components/sphereprobe.c
+Linking ../rtlib/sphereprobe.so
+Compiling realtime objects/hal/components/spindle.c
+Linking ../rtlib/spindle.so
+Compiling realtime objects/hal/components/spindle_monitor.c
+Linking ../rtlib/spindle_monitor.so
+Compiling realtime objects/hal/components/steptest.c
+Linking ../rtlib/steptest.so
+Compiling realtime objects/hal/components/sum2.c
+Linking ../rtlib/sum2.so
+Compiling realtime objects/hal/components/thc.c
+Linking ../rtlib/thc.so
+Compiling realtime objects/hal/components/thcud.c
+Linking ../rtlib/thcud.so
+Compiling realtime objects/hal/components/threadtest.c
+Linking ../rtlib/threadtest.so
+Compiling realtime objects/hal/components/time.c
+Linking ../rtlib/time.so
+Compiling realtime objects/hal/components/timedelay.c
+Linking ../rtlib/timedelay.so
+Compiling realtime objects/hal/components/timedelta.c
+Linking ../rtlib/timedelta.so
+Compiling realtime objects/hal/components/toggle.c
+Linking ../rtlib/toggle.so
+Compiling realtime objects/hal/components/toggle2nist.c
+Linking ../rtlib/toggle2nist.so
+Compiling realtime objects/hal/components/tristate_bit.c
+Linking ../rtlib/tristate_bit.so
+Compiling realtime objects/hal/components/tristate_float.c
+Linking ../rtlib/tristate_float.so
+Compiling realtime objects/hal/components/updown.c
+Linking ../rtlib/updown.so
+Compiling realtime objects/hal/components/userkins.c
+Linking ../rtlib/userkins.so
+Compiling realtime objects/hal/components/wcomp.c
+Linking ../rtlib/wcomp.so
+Compiling realtime objects/hal/components/xhc_hb04_util.c
+Linking ../rtlib/xhc_hb04_util.so
+Compiling realtime objects/hal/components/xor2.c
+Linking ../rtlib/xor2.so
+Compiling realtime objects/hal/drivers/serport.c
+Linking ../rtlib/serport.so
+Compiling realtime objects/hal/drivers/mesa_7i65.c
+Linking ../rtlib/mesa_7i65.so
+Compiling realtime hal/components/boss_plc.c
+Linking ../rtlib/boss_plc.so
+Compiling realtime hal/components/debounce.c
+Linking ../rtlib/debounce.so
+Compiling realtime hal/components/encoder.c
+Linking ../rtlib/encoder.so
+Compiling realtime hal/components/counter.c
+Linking ../rtlib/counter.so
+Compiling realtime hal/components/encoder_ratio.c
+Linking ../rtlib/encoder_ratio.so
+Compiling realtime hal/components/stepgen.c
+Linking ../rtlib/stepgen.so
+Compiling realtime hal/components/lcd.c
+Linking ../rtlib/lcd.so
+Compiling realtime hal/components/matrix_kb.c
+Linking ../rtlib/matrix_kb.so
+Compiling realtime hal/components/mux_generic.c
+Linking ../rtlib/mux_generic.so
+Compiling realtime hal/components/pwmgen.c
+Linking ../rtlib/pwmgen.so
+Compiling realtime hal/components/siggen.c
+Linking ../rtlib/siggen.so
+Compiling realtime hal/components/pid.c
+Linking ../rtlib/pid.so
+Compiling realtime hal/components/at_pid.c
+Linking ../rtlib/at_pid.so
+Compiling realtime hal/components/threads.c
+Linking ../rtlib/threads.so
+Compiling realtime hal/components/supply.c
+Linking ../rtlib/supply.so
+Compiling realtime hal/components/sim_encoder.c
+Linking ../rtlib/sim_encoder.so
+Compiling realtime hal/components/weighted_sum.c
+Linking ../rtlib/weighted_sum.so
+Compiling realtime hal/components/watchdog.c
+Linking ../rtlib/watchdog.so
+Compiling realtime hal/components/modmath.c
+Linking ../rtlib/modmath.so
+Compiling realtime hal/components/streamer.c
+Linking ../rtlib/streamer.so
+Compiling realtime hal/components/sampler.c
+Linking ../rtlib/sampler.so
+Compiling realtime hal/drivers/hal_parport.c
+Linking ../rtlib/hal_parport.so
+Compiling realtime hal/drivers/hal_gm.c
+Linking ../rtlib/hal_gm.so
+Compiling realtime hal/drivers/hal_ppmc.c
+Linking ../rtlib/hal_ppmc.so
+Compiling realtime hal/drivers/hal_bb_gpio.c
+Linking ../rtlib/hal_bb_gpio.so
+Compiling realtime hal/drivers/hal_pi_gpio.c
+Compiling realtime hal/drivers/cpuinfo.c
+hal/drivers/cpuinfo.c: In function ‘get_cpuinfo_revision’:
+hal/drivers/cpuinfo.c:39:5: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+     fgets(buffer, sizeof(buffer) , fp);
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linking ../rtlib/hal_pi_gpio.so
+Compiling realtime hal/drivers/mesa-hostmot2/hostmot2.c
+Compiling realtime hal/drivers/mesa-hostmot2/abs_encoder.c
+Compiling realtime hal/drivers/mesa-hostmot2/bitfile.c
+Compiling realtime hal/drivers/mesa-hostmot2/bspi.c
+Compiling realtime hal/drivers/mesa-hostmot2/dpll.c
+Compiling realtime hal/drivers/mesa-hostmot2/encoder.c
+Compiling realtime hal/drivers/mesa-hostmot2/inm.c
+Compiling realtime hal/drivers/mesa-hostmot2/inmux.c
+Compiling realtime hal/drivers/mesa-hostmot2/ioport.c
+Compiling realtime hal/drivers/mesa-hostmot2/led.c
+Compiling realtime hal/drivers/mesa-hostmot2/pins.c
+Compiling realtime hal/drivers/mesa-hostmot2/pktuart.c
+Compiling realtime hal/drivers/mesa-hostmot2/pwmgen.c
+Compiling realtime hal/drivers/mesa-hostmot2/raw.c
+Compiling realtime hal/drivers/mesa-hostmot2/rcpwmgen.c
+Compiling realtime hal/drivers/mesa-hostmot2/resolver.c
+Compiling realtime hal/drivers/mesa-hostmot2/sserial.c
+Compiling realtime hal/drivers/mesa-hostmot2/ssr.c
+Compiling realtime hal/drivers/mesa-hostmot2/stepgen.c
+Compiling realtime hal/drivers/mesa-hostmot2/tp_pwmgen.c
+Compiling realtime hal/drivers/mesa-hostmot2/tram.c
+Compiling realtime hal/drivers/mesa-hostmot2/uart.c
+Compiling realtime hal/drivers/mesa-hostmot2/watchdog.c
+Compiling realtime hal/drivers/mesa-hostmot2/xy2mod.c
+Linking ../rtlib/hostmot2.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_test.c
+Linking ../rtlib/hm2_test.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_pci.c
+Linking ../rtlib/hm2_pci.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_7i43.c
+Linking ../rtlib/hm2_7i43.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_7i90.c
+Linking ../rtlib/hm2_7i90.so
+Compiling realtime hal/drivers/mesa-hostmot2/setsserial.c
+Linking ../rtlib/setsserial.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_eth.c
+Linking ../rtlib/hm2_eth.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_spi.c
+Linking ../rtlib/hm2_spi.so
+Compiling realtime hal/drivers/mesa-hostmot2/hm2_rpspi.c
+Linking ../rtlib/hm2_rpspi.so
+Compiling realtime hal/classicladder/module_hal.c
+Compiling realtime hal/classicladder/arithm_eval.c
+Compiling realtime hal/classicladder/arrays.c
+Compiling realtime hal/classicladder/calc.c
+Compiling realtime hal/classicladder/calc_sequential.c
+Compiling realtime hal/classicladder/manager.c
+Compiling realtime hal/classicladder/symbols.c
+Compiling realtime hal/classicladder/vars_access.c
+Linking ../rtlib/classicladder_rt.so
+Compiling realtime hal/utils/scope_rt.c
+Linking ../rtlib/scope_rt.so
+Compiling realtime hal/hal_lib.c
+Linking ../rtlib/hal_lib.so
+Compiling realtime emc/kinematics/trivkins.c
+Compiling realtime emc/kinematics/kins_util.c
+Linking ../rtlib/trivkins.so
+Compiling realtime emc/kinematics/5axiskins.c
+Linking ../rtlib/5axiskins.so
+Compiling realtime emc/kinematics/maxkins.c
+Linking ../rtlib/maxkins.so
+Compiling realtime emc/kinematics/rotatekins.c
+Linking ../rtlib/rotatekins.so
+Compiling realtime emc/kinematics/tripodkins.c
+Linking ../rtlib/tripodkins.so
+Compiling realtime emc/kinematics/corexykins.c
+Linking ../rtlib/corexykins.so
+Compiling realtime emc/kinematics/lineardeltakins.c
+Linking ../rtlib/lineardeltakins.so
+Compiling realtime emc/kinematics/genhexkins.c
+Compiling realtime libnml/posemath/_posemath.c
+Compiling realtime libnml/posemath/sincos.c
+Linking ../rtlib/genhexkins.so
+Compiling realtime emc/kinematics/genserkins.c
+Compiling realtime libnml/posemath/gomath.c
+Linking ../rtlib/genserkins.so
+Compiling realtime emc/kinematics/pentakins.c
+Linking ../rtlib/pentakins.so
+Compiling realtime emc/kinematics/pumakins.c
+Linking ../rtlib/pumakins.so
+Compiling realtime emc/kinematics/scarakins.c
+Linking ../rtlib/scarakins.so
+Compiling realtime emc/kinematics/rotarydeltakins.c
+Linking ../rtlib/rotarydeltakins.so
+Compiling realtime emc/kinematics/xyzac-trt-kins.c
+Linking ../rtlib/xyzac-trt-kins.so
+Compiling realtime emc/kinematics/xyzbc-trt-kins.c
+Linking ../rtlib/xyzbc-trt-kins.so
+Compiling realtime emc/kinematics/rosekins.c
+Linking ../rtlib/rosekins.so
+Compiling realtime emc/kinematics/scorbot-kins.c
+Linking ../rtlib/scorbot-kins.so
+Compiling realtime emc/kinematics/cubic.c
+Compiling realtime emc/tp/tc.c
+Compiling realtime emc/tp/tcq.c
+Compiling realtime emc/tp/tp.c
+Compiling realtime emc/tp/spherical_arc.c
+Compiling realtime emc/tp/blendmath.c
+Compiling realtime emc/motion/motion.c
+Compiling realtime emc/motion/command.c
+Compiling realtime emc/motion/control.c
+Compiling realtime emc/motion/homing.c
+Compiling realtime emc/motion/simple_tp.c
+Compiling realtime emc/motion/emcmotutil.c
+Compiling realtime emc/motion/stashf.c
+Compiling realtime emc/motion/dbuf.c
+Compiling realtime emc/nml_intf/emcpose.c
+Linking ../rtlib/motmod.so
+./config.status --file=../docs/man/man1/linuxcnc.1:../docs/src/man/man1/linuxcnc.1.in
+config.status: creating ../docs/man/man1/linuxcnc.1
+Making halcompile manpage thermistor.1
+Making halcompile manpage abs.9
+Making halcompile manpage abs_s32.9
+Making halcompile manpage and2.9
+Making halcompile manpage axistest.9
+Making halcompile manpage bin2gray.9
+Making halcompile manpage biquad.9
+Making halcompile manpage bitslice.9
+Making halcompile manpage bitwise.9
+Making halcompile manpage bldc.9
+Making halcompile manpage blend.9
+Making halcompile manpage carousel.9
+Making halcompile manpage charge_pump.9
+Making halcompile manpage clarke2.9
+Making halcompile manpage clarke3.9
+Making halcompile manpage clarkeinv.9
+Making halcompile manpage comp.9
+Making halcompile manpage constant.9
+Making halcompile manpage conv_bit_float.9
+Making halcompile manpage conv_bit_s32.9
+Making halcompile manpage conv_bit_u32.9
+Making halcompile manpage conv_float_s32.9
+Making halcompile manpage conv_float_u32.9
+Making halcompile manpage conv_s32_bit.9
+Making halcompile manpage conv_s32_float.9
+Making halcompile manpage conv_s32_u32.9
+Making halcompile manpage conv_u32_bit.9
+Making halcompile manpage conv_u32_float.9
+Making halcompile manpage conv_u32_s32.9
+Making halcompile manpage corexy_by_hal.9
+Making halcompile manpage dbounce.9
+Making halcompile manpage ddt.9
+Making halcompile manpage deadzone.9
+Making halcompile manpage demux.9
+Making halcompile manpage differential.9
+Making halcompile manpage edge.9
+Making halcompile manpage eoffset_per_angle.9
+Making halcompile manpage estop_latch.9
+Making halcompile manpage feedcomp.9
+Making halcompile manpage filter_kalman.9
+Making halcompile manpage flipflop.9
+Making halcompile manpage gantry.9
+Making halcompile manpage gearchange.9
+Making halcompile manpage gray2bin.9
+Making halcompile manpage histobins.9
+Making halcompile manpage hypot.9
+Making halcompile manpage ilowpass.9
+Making halcompile manpage integ.9
+Making halcompile manpage invert.9
+Making halcompile manpage joyhandle.9
+Making halcompile manpage knob2float.9
+Making halcompile manpage latencybins.9
+Making halcompile manpage limit1.9
+Making halcompile manpage limit2.9
+Making halcompile manpage limit3.9
+Making halcompile manpage lincurve.9
+Making halcompile manpage logic.9
+Making halcompile manpage lowpass.9
+Making halcompile manpage lut5.9
+Making halcompile manpage maj3.9
+Making halcompile manpage match8.9
+Making halcompile manpage max31855.9
+Making halcompile manpage mesa_7i65.9
+Making halcompile manpage mesa_pktgyro_test.9
+Making halcompile manpage message.9
+Making halcompile manpage minmax.9
+Making halcompile manpage moveoff.9
+Making halcompile manpage mult2.9
+Making halcompile manpage multiclick.9
+Making halcompile manpage multiswitch.9
+Making halcompile manpage mux16.9
+Making halcompile manpage mux2.9
+Making halcompile manpage mux4.9
+Making halcompile manpage mux8.9
+Making halcompile manpage near.9
+Making halcompile manpage not.9
+Making halcompile manpage offset.9
+Making halcompile manpage ohmic.9
+Making halcompile manpage oneshot.9
+Making halcompile manpage or2.9
+Making halcompile manpage orient.9
+Making halcompile manpage plasmac.9
+Making halcompile manpage sample_hold.9
+Making halcompile manpage scale.9
+Making halcompile manpage select8.9
+Making halcompile manpage serport.9
+Making halcompile manpage sim_axis_hardware.9
+Making halcompile manpage sim_home_switch.9
+Making halcompile manpage sim_matrix_kb.9
+Making halcompile manpage sim_parport.9
+Making halcompile manpage sim_spindle.9
+Making halcompile manpage simple_tp.9
+Making halcompile manpage sphereprobe.9
+Making halcompile manpage spindle.9
+Making halcompile manpage spindle_monitor.9
+Making halcompile manpage steptest.9
+Making halcompile manpage sum2.9
+Making halcompile manpage thc.9
+Making halcompile manpage thcud.9
+Making halcompile manpage threadtest.9
+Making halcompile manpage time.9
+Making halcompile manpage timedelay.9
+Making halcompile manpage timedelta.9
+Making halcompile manpage toggle.9
+Making halcompile manpage toggle2nist.9
+Making halcompile manpage tristate_bit.9
+Making halcompile manpage tristate_float.9
+Making halcompile manpage updown.9
+Making halcompile manpage userkins.9
+Making halcompile manpage wcomp.9
+Making halcompile manpage xhc_hb04_util.9
+Making halcompile manpage xor2.9
+Updating 'whatis' database
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man...
+Updating index cache for path `/home/wruslan/opt/linuxcnc-new/src/../docs/man/man1'. Wait...done.
+Checking for stray cats under /home/wruslan/opt/linuxcnc-new/src/../docs/man...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/images...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat9...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/es...
+Updating index cache for path `/home/wruslan/opt/linuxcnc-new/src/../docs/man/es/man1'. Wait...done.
+Checking for stray cats under /home/wruslan/opt/linuxcnc-new/src/../docs/man/es...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat3...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat1...
+6 man subdirectories contained newer manual pages.
+672 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+You now need to run 'sudo make setuid' in order to run in place with access to hardware.
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+ENABLE RUN IN-PLACE
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ sudo make setuid
+[sudo] password for wruslan: 
+chown root ../bin/rtapi_app
+chmod 4750 ../bin/rtapi_app
+chown root ../bin/linuxcnc_module_helper
+chmod 4750 ../bin/linuxcnc_module_helper
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+TESTING
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ source ../scripts/rip-environment
+
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ runtests
+Running test: /home/wruslan/opt/linuxcnc-new/tests/abort/feed-rate
+Skipping test: /home/wruslan/opt/linuxcnc-new/tests/abort/g64
+Running test: /home/wruslan/opt/linuxcnc-new/tests/abort/on_abort_command-crazy-move
+Running test: /home/wruslan/opt/linuxcnc-new/tests/abort/stop-button-crazy-move
+Running test: /home/wruslan/opt/linuxcnc-new/tests/abs.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/alias.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/and-or-not-mux.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/basic
+Running test: /home/wruslan/opt/linuxcnc-new/tests/biquad
+Running test: /home/wruslan/opt/linuxcnc-new/tests/build/header-sanity
+*** /home/wruslan/opt/linuxcnc-new/tests/build/header-sanity: XFAIL: test run exited with 1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/build/ui
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ccomp/early-exit
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ccomp/lathe-comp
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ccomp/mill-g90g91g92
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ccomp/mill-line-arc-entry
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ccomp/mill-zchanges
+Running test: /home/wruslan/opt/linuxcnc-new/tests/counter-encoder.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/both-starting-high
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/both
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/falling-starting-high
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/falling
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/rising-starting-high
+Running test: /home/wruslan/opt/linuxcnc-new/tests/edge/rising
+Running test: /home/wruslan/opt/linuxcnc-new/tests/flipflop.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/hal-link-unlink
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/extralib
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/personalities_mod
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/relative-header
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/serial-out-of-tree
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/userspace-count-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halcompile/userspace
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halmodule.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halmodule.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halrun-getopt-reset
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halui/jogging
+Running test: /home/wruslan/opt/linuxcnc-new/tests/halui/mdi
+Running test: /home/wruslan/opt/linuxcnc-new/tests/hard-limits
+Running test: /home/wruslan/opt/linuxcnc-new/tests/hm2-idrom
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ilowpass/low-gain
+Running test: /home/wruslan/opt/linuxcnc-new/tests/ilowpass/wrap-around
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/abort-hot-comment
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/bad
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/cam-nisley
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/compile
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/crazy-paths
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/do-while-break
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/exists
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/flowsnake
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/fractional-linenumbers
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g10/g10-l1-l10
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g10/g10-l11
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g10/g10-l2-while-active
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g10/g10-l20-while-active
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g10/g10-with-g92
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g33.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g52/g52-g92-interaction
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g52/g92-offset-persistence
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g6164
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g76
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g17/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g17/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g18/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g18/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g19/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g81/g19/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g17/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g17/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g18/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g18/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g19/g98
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/g84/g19/g99
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/good
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/iniparam-failassign
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/iniparam
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/inside-corners
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/inverse-time-with-comp
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m19
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/01-basics
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/02-variables
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/03-error-M98-no-P-word
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/04-M98-but-no-sub
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/05-M98-loops
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/06-error-mixed-sub-styles
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/07-nested-subs
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/08-sub-follows-main
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/09-disable-fanuc-subs
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/10-M98-P001
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/11-main-program-oword
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/12-M99-endless-main-program
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/13-named-program
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/m98m99/14-o-expression-call
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/mdi-oword-m66
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/namedparam-bug424
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/oword-bug315-p2
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/oword-bug315
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/oword-mdi-sub-update
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/oword-unwind
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/plug
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/pymove
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/python-self
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/python/error
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/return-value
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/sequence-number
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/subroutine-return
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/subs-follow-main
+Running test: /home/wruslan/opt/linuxcnc-new/tests/interp/value-returned
+Running test: /home/wruslan/opt/linuxcnc-new/tests/io-startup/nonrandom/no-tool-in-P0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/io-startup/nonrandom/tool-in-P0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/io-startup/random/no-tool-in-P0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/io-startup/random/tool-in-P0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/lathe
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/constraints
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/limit-accel-and-max
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/limit-max-velocity
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/lock-on-input-and-limits
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/min-max-overshoot
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/runaway
+Running test: /home/wruslan/opt/linuxcnc-new/tests/limit3/sunny-day
+Running test: /home/wruslan/opt/linuxcnc-new/tests/linuxcncrsh-tcp
+Running test: /home/wruslan/opt/linuxcnc-new/tests/linuxcncrsh
+Running test: /home/wruslan/opt/linuxcnc-new/tests/loadrt.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/loadrt.2
+Running test: /home/wruslan/opt/linuxcnc-new/tests/lowlevel/mutex
+Running test: /home/wruslan/opt/linuxcnc-new/tests/m70-m73/m70m72-restore.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/m70-m73/m73-flood-mist-restore.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/m70-m73/m73autorestore.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/mdi-queue-length
+Running test: /home/wruslan/opt/linuxcnc-new/tests/mdi-queue/oword-queue-buster
+Running test: /home/wruslan/opt/linuxcnc-new/tests/mdi-queue/simple-queue-buster
+Running test: /home/wruslan/opt/linuxcnc-new/tests/mdi-while-queuebuster-waitflag
+Running test: /home/wruslan/opt/linuxcnc-new/tests/modparam.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/8-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/9-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/num_chan=0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/num_chan=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/num_chan=8
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder/num_chan=9
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/8-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/9-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/num_chan=0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/num_chan=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/num_chan=8
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/encoder_ratio/num_chan=9
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/0-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/16-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/count=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/count=16
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/or2/count=17
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/16-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/17-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/num_chan=0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/num_chan=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/num_chan=16
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/pid/num_chan=17
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/rtapi-app-main-fails
+loadrt found the test component, and it failed to load
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/16-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/17-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/num_chan=0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/num_chan=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/num_chan=16
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/siggen/num_chan=17
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/1-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/8-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/9-names
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/num_chan=0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/num_chan=1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/num_chan=8
+Running test: /home/wruslan/opt/linuxcnc-new/tests/module-loading/sim_encoder/num_chan=9
+Running test: /home/wruslan/opt/linuxcnc-new/tests/motion-logger/basic
+Running test: /home/wruslan/opt/linuxcnc-new/tests/motion-logger/mountaindew
+Skipping test: /home/wruslan/opt/linuxcnc-new/tests/motion-logger/startup-gcode-abort
+Skipping test: /home/wruslan/opt/linuxcnc-new/tests/motion/g0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/motion/jogwheel-axis
+Running test: /home/wruslan/opt/linuxcnc-new/tests/motion/jogwheel-joint
+Running test: /home/wruslan/opt/linuxcnc-new/tests/multiclick
+Running test: /home/wruslan/opt/linuxcnc-new/tests/mux
+Running test: /home/wruslan/opt/linuxcnc-new/tests/near.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/overrun
+Running test: /home/wruslan/opt/linuxcnc-new/tests/oword/sub.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/oword/while.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/pyhal
+Running test: /home/wruslan/opt/linuxcnc-new/tests/realtime-math
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/duplicate-o-word
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/args.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/args.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/args.2
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/body-ngc
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/body-py
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/canon_error
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/epilog
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/fail/prolog
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/introspect
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/m30-interaction
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/nested-remaps-oword
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/oword-pycall
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/posargs.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/predefined-named-params
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/remap-io
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/remap-reentry
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/sequencing
+Running test: /home/wruslan/opt/linuxcnc-new/tests/remap/variable-injection
+Running test: /home/wruslan/opt/linuxcnc-new/tests/rs274ngc-startup
+Running test: /home/wruslan/opt/linuxcnc-new/tests/rtapi_printf.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/save.0
+Skipping test: /home/wruslan/opt/linuxcnc-new/tests/save.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/single-step
+Running test: /home/wruslan/opt/linuxcnc-new/tests/source.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/startup-state
+Running test: /home/wruslan/opt/linuxcnc-new/tests/statbuffer-g5x-abort
+Running test: /home/wruslan/opt/linuxcnc-new/tests/stepgen.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/stepgen.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/stepgen.2
+Running test: /home/wruslan/opt/linuxcnc-new/tests/symbols.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/symbols.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/t0/nonrandom
+Running test: /home/wruslan/opt/linuxcnc-new/tests/t0/random-with-t0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/t0/random-without-t0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/tclsh-extensions
+Running test: /home/wruslan/opt/linuxcnc-new/tests/threads.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/threads.1
+Running test: /home/wruslan/opt/linuxcnc-new/tests/timedelay.0
+Running test: /home/wruslan/opt/linuxcnc-new/tests/tlo
+Running test: /home/wruslan/opt/linuxcnc-new/tests/tool-info/non-random
+Running test: /home/wruslan/opt/linuxcnc-new/tests/tool-info/random-no-startup-tool
+Running test: /home/wruslan/opt/linuxcnc-new/tests/tool-info/random-with-startup-tool
+Running test: /home/wruslan/opt/linuxcnc-new/tests/toolchanger/m61
+Running test: /home/wruslan/opt/linuxcnc-new/tests/toolchanger/reload-tool/non-random
+Running test: /home/wruslan/opt/linuxcnc-new/tests/toolchanger/reload-tool/random
+Running test: /home/wruslan/opt/linuxcnc-new/tests/toolchanger/toolno-pocket-differ/nonrandom
+Running test: /home/wruslan/opt/linuxcnc-new/tests/toolchanger/toolno-pocket-differ/random
+Running test: /home/wruslan/opt/linuxcnc-new/tests/twopass-personality
+Running test: /home/wruslan/opt/linuxcnc-new/tests/twopass
+Running test: /home/wruslan/opt/linuxcnc-new/tests/uspace/spawnv-root
+Runtest: 235 tests run, 234 successful, 1 failed + 0 expected
+Failed: 
+	/home/wruslan/opt/linuxcnc-new/tests/build/header-sanity
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+EXECUTION
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ . scripts/rip-environment
+This script only needs to be run once per shell session.
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ 
+
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ linuxcnc
+LINUXCNC - 2.9.0~pre0
+Machine configuration directory is '/home/wruslan/opt/linuxcnc-new/configs/sim/axis'
+Machine configuration file is 'axis.ini'
+Starting LinuxCNC...
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/core_sim.hal
+Note: Using POSIX realtime
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/axis_manualtoolchange.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/simulated_home.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/check_xyz_constraints.hal
+link (updating variable file): No such file or directory
+note: MAXV     max: 5.000 units/sec 300.000 units/min
+note: LJOG     max: 5.000 units/sec 300.000 units/min
+note: LJOG default: 0.250 units/sec 15.000 units/min
+note: jog_order='XYZ'
+note: jog_invert=set([])
+task: main loop took 0.045670 seconds
+task: main loop took 0.172026 seconds
+task: main loop took 0.035330 seconds
+task: main loop took 0.276605 seconds
+task: main loop took 0.034612 seconds
+task: main loop took 0.070316 seconds
+task: main loop took 0.033519 seconds
+task: main loop took 0.340872 seconds
+task: main loop took 0.034584 seconds
+task: main loop took 0.387354 seconds
+Shutting down and cleaning up LinuxCNC...
+task: 383720 cycles, min=0.000008, max=0.387354, avg=0.001064, 15 latency excursions (> 10x expected cycle time of 0.001000s)
+Note: Using POSIX realtime
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+
+RUN USING A BASH SCRIPT
+===========================================================
+#! /bin/bash
+
+## File: linuxcnc-start.sh
+## wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ 
+## Date: Wed Mar 24 01:46:00 +08 2021
+
+echo
+echo "Bismillah. Starting linuxcnc-new ..."
+cd /home/wruslan/opt/linuxcnc-new
+. scripts/rip-environment
+linuxcnc
+cd ~
+echo "Alhamdulillah. Exited linuxcnc-new successfully."
+echo
+
+## Create a system softlink (shortcut)
+## $ sudo ln -sf /home/wruslan/opt/linuxcnc-new/linuxcnc-start.sh /usr/bin/linuxcnc2.9
+## $ linuxcnc2.9
+
+===========================================================
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ ./linuxcnc-start.sh 
+
+Starting linuxcnc-new ...
+This script only needs to be run once per shell session.
+LINUXCNC - 2.9.0~pre0
+Machine configuration directory is '/home/wruslan/opt/linuxcnc-new/configs/sim/axis'
+Machine configuration file is 'axis.ini'
+Starting LinuxCNC...
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/core_sim.hal
+Note: Using POSIX realtime
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/axis_manualtoolchange.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/simulated_home.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/check_xyz_constraints.hal
+note: MAXV     max: 5.000 units/sec 300.000 units/min
+note: LJOG     max: 5.000 units/sec 300.000 units/min
+note: LJOG default: 0.250 units/sec 15.000 units/min
+waiting for s.joints<0>, s.kinematics_type<0>
+waiting for s.joints<0>, s.kinematics_type<0>
+waiting for s.joints<0>, s.kinematics_type<0>
+waiting for s.joints<0>, s.kinematics_type<0>
+note: jog_order='XYZ'
+note: jog_invert=set([])
+task: main loop took 0.536708 seconds
+Shutting down and cleaning up LinuxCNC...
+task: 25352 cycles, min=0.000009, max=0.536708, avg=0.001085, 1 latency excursions (> 10x expected cycle time of 0.001000s)
+Note: Using POSIX realtime
+Exited linuxcnc-new successfully.
+
+wruslan@hp-elitebook-ub1804-rt64:~/opt/linuxcnc-new$ 
+
+===========================================================

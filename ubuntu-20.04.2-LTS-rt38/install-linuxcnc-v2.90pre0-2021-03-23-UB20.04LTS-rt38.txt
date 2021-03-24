@@ -34,38 +34,6 @@ Resolving deltas: 100% (185464/185464), done.
 wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt$ 
 
 ===========================================================
-wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt$ ls -al
-total 116
-drwxrwxr-x 27 wruslan wruslan  4096 Mar 23 18:48 .
-drwxr-xr-x 73 wruslan wruslan  4096 Mar 23 18:45 ..
-drwxr-xr-x  8 wruslan wruslan  4096 Mar 22 20:35 apps
-drwxrwxr-x  6 wruslan wruslan  4096 Mar 22 16:42 apps-compiled
-drwxrwxr-x  6 wruslan wruslan  4096 Apr 24  2020 apps-hardware
-drwxrwxr-x 11 wruslan wruslan  4096 Mar 22 20:31 apps-installed
-drwxr-xr-x 10 wruslan wruslan  4096 Jun 16  2020 arduino-1.8.13
-drwxrwxr-x  2 wruslan wruslan  4096 Nov 16 18:43 bitscope-64bit
-drwxr-xr-x  2 wruslan wruslan 12288 May  3  2020 BLAS-3.8.0
-drwxr-xr-x 10 wruslan wruslan  4096 Nov 10 22:38 boost_1_74_0
-drwxrwxr-x  6 wruslan wruslan  4096 Nov 30 22:09 cyclic-rt-tests
-drwxr-xr-x  5 wruslan wruslan  4096 Oct 23 12:57 DotEditor
-drwxrwxr-x  5 wruslan wruslan  4096 Apr 12  2020 doxygen-1.8.16
-drwxrwxr-x  7 wruslan wruslan  4096 Oct 16 12:08 eclipse
-drwxrwsr-x  7 wruslan wruslan  4096 Mar 16  2020 eclipse-installer
-drwxr-xr-x  6 root    root     4096 Nov 29 23:40 geda
-drwxrwxr-x  4 wruslan wruslan  4096 Oct 19 16:24 GNAT
-drwx------  6 wruslan wruslan  4096 Mar 19 10:53 JuliaPro-1.5.3-1
-drwxrwxr-x 10 wruslan wruslan  4096 Nov 19 16:31 k8000
-drwxr-xr-x 11 wruslan wruslan  4096 Nov 17 14:37 k8055
-drwxrwxr-x 19 wruslan wruslan  4096 Mar 23 18:52 linuxcnc
-drwxrwxr-x 19 wruslan wruslan  4096 Oct 18 16:57 linuxcnc-dev
-drwxr-xr-x 19 wruslan wruslan  4096 Mar 23 18:45 linuxcnc-ub18.04
-drwxrwxr-x  8 wruslan wruslan  4096 Nov 26 14:14 openPLC
-drwxrwxr-x  8 wruslan wruslan  4096 Nov 27 08:44 Qt5.14.0
-drwxrwxr-x 18 wruslan wruslan  4096 Mar 22 20:42 wks01
-drwxrwxr-x  4 wruslan wruslan  4096 Mar 22 18:09 wks02
-wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt$ 
-
-===========================================================
 wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt$ cd linuxcnc
 wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt/linuxcnc$ 
 wruslan@HPEliteBook8470p-Ub2004-rt38:~/opt/linuxcnc$ cd src
