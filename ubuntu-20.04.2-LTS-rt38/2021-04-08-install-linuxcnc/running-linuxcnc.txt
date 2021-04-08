@@ -1,0 +1,50 @@
+wruslan@HPEliteBk8470p-ubstudio-20:~$ date
+Wed 07 Apr 2021 06:37:16 PM +08
+
+wruslan@HPEliteBk8470p-ubstudio-20:~$ uname -a
+Linux HPEliteBk8470p-ubstudio-20 5.10.25-rt35 #3 SMP PREEMPT_RT
+Wed Apr 7 12:33:26 +08 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBk8470p-ubstudio-20:~$ lsb_release -a
+LSB Version: core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID: Ubuntu
+Description: Ubuntu 20.04.2 LTS
+Release: 20.04
+Codename: focal
+wruslan@HPEliteBk8470p-ubstudio-20:~$
+==========================================================
+Machine configuration directory is '/home/wruslan/opt/linuxcnc-new/configs/sim/axis'
+Machine configuration file is 'axis_mm.ini'   <== THIS SELECTION IS IMPORTANT
+Starting LinuxCNC...
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/core_sim.hal
+Note: Using POSIX realtime  <== THIS IS IMPORTANT
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/axis_manualtoolchange.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/simulated_home.hal
+link (updating variable file): No such file or directory
+note: MAXV     max: 53.340 units/sec 3200.400 units/min
+note: LJOG     max: 53.340 units/sec 3200.400 units/min
+note: LJOG default: 30.480 units/sec 1828.800 units/min
+note: jog_order='XYZ'
+note: jog_invert=set([])
+task: main loop took 0.116740 seconds
+task: main loop took 0.022383 seconds
+task: main loop took 0.012362 seconds
+task: main loop took 0.011148 seconds
+task: main loop took 0.012136 seconds
+task: main loop took 0.012201 seconds
+task: main loop took 0.012329 seconds
+task: main loop took 0.012383 seconds
+task: main loop took 0.012595 seconds
+task: main loop took 0.010134 seconds
+Shutting down and cleaning up LinuxCNC...
+task: 409832 cycles, min=0.000010, max=0.116740, avg=0.001075, 10 latency excursions (> 10x expected cycle time of 0.001000s)
+Note: Using POSIX realtime
+Alhamdulillah 3 times WRY. Exited linuxcnc2.9.0-pre successfully.
+
+==============================================================
+SEE ATTACHED
+(1) prerequisites
+(2) full-install instructions
+(3) screenshots
+

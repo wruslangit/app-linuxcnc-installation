@@ -1,0 +1,1421 @@
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ date
+Sun 04 Apr 2021 02:47:35 PM +08
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ uname -a
+Linux HPEliteBk8470p-ubstudio-20 5.8.0-48-lowlatency #54~20.04.1-Ubuntu SMP PREEMPT 
+Sat Mar 20 23:24:50 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ cd opt
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ ls -al
+total 64
+drwxrwxr-x 16 wruslan wruslan 4096 Apr  3 21:53 .
+drwxr-xr-x 47 wruslan wruslan 4096 Apr  4 10:12 ..
+drwx------ 10 wruslan wruslan 4096 Apr  3 22:10 apps
+drwxrwxr-x  6 wruslan wruslan 4096 Mar 22 16:42 apps-compiled
+drwxrwxr-x  7 wruslan wruslan 4096 Mar 29 19:02 apps-hardware
+drwxrwxr-x 14 wruslan wruslan 4096 Mar 31 17:20 apps-installed
+drwxrwxr-x 10 wruslan wruslan 4096 Mar 29 07:50 boost_1_74_0
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 29 07:24 eclipse
+drwxrwxr-x  7 wruslan wruslan 4096 Mar 29 07:22 eclipse-installer
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 29 06:22 GNAT
+drwx------  6 wruslan wruslan 4096 Mar 31 18:36 JuliaPro-1.5.4-1
+drwxrwxr-x  4 wruslan wruslan 4096 Mar 29 07:28 wks-eclipse
+drwxrwxr-x  2 wruslan wruslan 4096 Mar 29 06:43 wks-gnatstudio
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  3 21:53 wks-julia1.6
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  1 11:48 wks-juliapro
+drwxrwxr-x  2 wruslan wruslan 4096 Mar 29 08:41 wks-projectlibre
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ git clone https://github.com/LinuxCNC/linuxcnc.git
+Cloning into 'linuxcnc'...
+remote: Enumerating objects: 436, done.
+remote: Counting objects: 100% (436/436), done.
+remote: Compressing objects: 100% (262/262), done.
+remote: Total 244048 (delta 245), reused 304 (delta 173), pack-reused 243612
+Receiving objects: 100% (244048/244048), 186.76 MiB | 833.00 KiB/s, done.
+Resolving deltas: 100% (185716/185716), done.
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ 
+
+===========================================================
+SUMMARY INSTALLATION OF PREREQUISITES
+===========================================================
+(1) sudo apt install -y debhelper dh-python libudev-dev libxenomai-dev tclx
+(2) sudo apt install -y tcl8.6-dev tk8.6-dev libreadline-gplv2-dev flex bison
+(3) sudo apt install -y asciidoc  dvipng graphviz groff imagemagick asciidoc-dblatex libglu1-mesa-dev libgl1-mesa-dev
+(4) sudo apt install -y inkscape python-lxml source-highlight libtk-img 
+(5) sudo apt install -y texlive-font-utils w3c-linkchecker python-dev python-tk  libxmu-dev python3-dev python3-tk
+(6) sudo apt install -y libgtk2.0-dev intltool autoconf libboost-python-dev
+(7) sudo apt install -y libmodbus-dev libusb-1.0-0-dev yapps2 bwidget
+(8) sudo apt update
+
+checking for python pango and cairo modules... Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: No module named pango
+no
+configure: error: Python pango and cairo modules not found!\ninstall with "sudo apt-get install python-gtk2"
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc/src$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/Downloads/pango-1.48.4/build$ meson --prefix=/usr .. &&
+> ninja
+The Meson build system
+Version: 0.53.2
+Source dir: /home/wruslan/Downloads/pango-1.48.4
+Build dir: /home/wruslan/Downloads/pango-1.48.4/build
+Build type: native build
+
+meson.build:1:0: ERROR: Meson version is 0.53.2 but project requires >= 0.55.3
+
+A full log can be found at /home/wruslan/Downloads/pango-1.48.4/build/meson-logs/meson-log.txt
+wruslan@HPEliteBk8470p-ubstudio-20:~/Downloads/pango-1.48.4/build$ 
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/Downloads/pango-1.48.4/build$ sudo -H  pip3 install meson
+[sudo] password for wruslan: 
+Requirement already satisfied: meson in /usr/lib/python3/dist-packages (0.53.2)
+wruslan@HPEliteBk8470p-ubstudio-20:~/Downloads/pango-1.48.4/build$ 
+
+===========================================================
+INSTALL MESON FROM SOURCE
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ git clone https://github.com/mesonbuild/meson.git
+Cloning into 'meson'...
+remote: Enumerating objects: 301, done.
+remote: Counting objects: 100% (301/301), done.
+remote: Compressing objects: 100% (112/112), done.
+remote: Total 75518 (delta 193), reused 281 (delta 188), pack-reused 75217
+Receiving objects: 100% (75518/75518), 36.16 MiB | 628.00 KiB/s, done.
+Resolving deltas: 100% (53479/53479), done.
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$
+
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/meson$ sudo python2 setup.py install
+ERROR: Tried to install Meson with an unsupported Python version: 
+2.7.18 (default, Mar  8 2021, 13:02:45) 
+[GCC 9.3.0]
+Meson requires Python 3.6.0 or greater
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/meson$ sudo python3 setup.py install
+running install
+running bdist_egg
+running egg_info
+creating meson.egg-info
+writing meson.egg-info/PKG-INFO
+
+mesonbuild.__pycache__.mdevenv.cpython-38: module references __file__
+mesonbuild.__pycache__.minstall.cpython-38: module references __file__
+creating dist
+creating 'dist/meson-0.57.999-py3.8.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing meson-0.57.999-py3.8.egg
+creating /usr/local/lib/python3.8/dist-packages/meson-0.57.999-py3.8.egg
+Extracting meson-0.57.999-py3.8.egg to /usr/local/lib/python3.8/dist-packages
+Adding meson 0.57.999 to easy-install.pth file
+Installing meson script to /usr/local/bin
+
+Installed /usr/local/lib/python3.8/dist-packages/meson-0.57.999-py3.8.egg
+Processing dependencies for meson==0.57.999
+Finished processing dependencies for meson==0.57.999
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/meson$ 
+
+===========================================================
+INSTALL PANGO FROM SOURCE
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ cd pango-1.48.4/
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4$ ls -al
+total 252
+drwxr-xr-x 11 wruslan wruslan   4096 Apr  5 21:54 .
+drwx------ 12 wruslan wruslan   4096 Apr  5 22:08 ..
+drwxrwxr-x  5 wruslan wruslan   4096 Apr  5 21:56 build
+drwxr-xr-x  3 wruslan wruslan   4096 Mar 27 09:55 build-aux
+-rw-r--r--  1 wruslan wruslan   2647 Mar 27 09:55 CODING_STYLE.md
+-rw-r--r--  1 wruslan wruslan  25292 Mar 27 09:55 COPYING
+drwxr-xr-x  8 wruslan wruslan   4096 Mar 27 09:55 docs
+drwxr-xr-x  2 wruslan wruslan   4096 Mar 27 09:55 examples
+-rw-r--r--  1 wruslan wruslan    127 Mar 27 09:55 lsan.supp
+-rwxr-xr-x  1 wruslan wruslan    708 Mar 27 09:55 make-release.sh
+-rw-r--r--  1 wruslan wruslan  19710 Mar 27 09:55 meson.build
+-rw-r--r--  1 wruslan wruslan   1292 Mar 27 09:55 meson_options.txt
+-rw-r--r--  1 wruslan wruslan 123884 Mar 27 09:55 NEWS
+drwxr-xr-x  2 wruslan wruslan   4096 Mar 27 09:55 pango
+-rw-r--r--  1 wruslan wruslan   1953 Mar 27 09:55 pango.doap
+-rw-r--r--  1 wruslan wruslan   1453 Mar 27 09:55 pango.supp
+-rw-r--r--  1 wruslan wruslan   2624 Mar 27 09:55 README.md
+-rw-r--r--  1 wruslan wruslan   3874 Mar 27 09:55 README.win32
+drwxr-xr-x  3 wruslan wruslan   4096 Mar 27 09:55 subprojects
+drwxr-xr-x  6 wruslan wruslan   4096 Mar 27 09:55 tests
+-rw-r--r--  1 wruslan wruslan    403 Mar 27 09:55 THANKS
+drwxr-xr-x  2 wruslan wruslan   4096 Mar 27 09:55 tools
+drwxr-xr-x  2 wruslan wruslan   4096 Mar 27 09:55 utils
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4$ cd build
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ ls -al
+total 20
+drwxrwxr-x  5 wruslan wruslan 4096 Apr  5 21:56 .
+drwxr-xr-x 11 wruslan wruslan 4096 Apr  5 21:54 ..
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  5 21:56 meson-info
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  5 21:56 meson-logs
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  5 21:56 meson-private
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+==========================================================
+REFERENCE: http://www.linuxfromscratch.org/blfs/view/svn/x/pango.html
+
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr .. &&
+ninja
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ meson --prefix=/usr .. &&
+> ninja
+The Meson build system
+Version: 0.57.999
+Source dir: /home/wruslan/opt/apps/pango-1.48.4
+Build dir: /home/wruslan/opt/apps/pango-1.48.4/build
+Build type: native build
+Project name: pango
+Project version: 1.48.4
+C compiler for the host machine: cc (gcc 9.3.0 "cc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0")
+C linker for the host machine: cc ld.bfd 2.34
+C++ compiler for the host machine: c++ (gcc 9.3.0 "c++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0")
+C++ linker for the host machine: c++ ld.bfd 2.34
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Compiler for C supports arguments -Wimplicit-function-declaration: YES 
+Compiler for C supports arguments -Wstrict-prototypes: YES 
+Compiler for C supports arguments -Wmissing-prototypes: YES 
+Compiler for C supports arguments -Wnested-externs: YES 
+Compiler for C supports arguments -Wold-style-definition: YES 
+Compiler for C supports arguments -Wno-int-conversion: YES 
+Compiler for C supports arguments -Wno-discarded-qualifiers: YES 
+Compiler for C supports arguments -Werror=implicit: YES 
+Compiler for C supports arguments -Werror=pointer-to-int-cast: YES 
+Compiler for C supports arguments -fno-strict-aliasing: YES 
+Compiler for C supports arguments -Wpointer-arith: YES 
+Compiler for C supports arguments -Wmissing-declarations: YES 
+Compiler for C supports arguments -Wformat=2: YES 
+Compiler for C supports arguments -Wformat-nonliteral: YES 
+Compiler for C supports arguments -Wformat-security: YES 
+Compiler for C supports arguments -Wunused: YES 
+Compiler for C supports arguments -Wcast-align: YES 
+Compiler for C supports arguments -Wmissing-noreturn: YES 
+Compiler for C supports arguments -Wmissing-format-attribute: YES 
+Compiler for C supports arguments -Wmissing-include-dirs: YES 
+Compiler for C supports arguments -Wlogical-op: YES 
+Compiler for C supports arguments -Wno-uninitialized: YES 
+Compiler for C supports arguments -Wno-shadow: YES 
+Compiler for C supports arguments -Werror=implicit-fallthrough: YES 
+Compiler for C supports arguments -Werror=nonnull: YES 
+Compiler for C supports arguments -Werror=init-self: YES 
+Compiler for C supports arguments -Werror=main: YES 
+Compiler for C supports arguments -Werror=missing-braces: YES 
+Compiler for C supports arguments -Werror=sequence-point: YES 
+Compiler for C supports arguments -Werror=return-type: YES 
+Compiler for C supports arguments -Werror=trigraphs: YES 
+Compiler for C supports arguments -Werror=array-bounds: YES 
+Compiler for C supports arguments -Werror=write-strings: YES 
+Compiler for C supports arguments -Werror=address: YES 
+Compiler for C supports arguments -Werror=int-to-pointer-cast: YES 
+Compiler for C supports arguments -Werror=empty-body: YES 
+Compiler for C supports arguments -Werror=write-strings: YES (cached)
+Compiler for C supports arguments -Werror=unused-but-set-variable: YES 
+Compiler for C supports arguments -Wundef: YES 
+Compiler for C supports arguments -Werror=redundant-decls: YES 
+Compiler for C supports arguments -fvisibility=hidden: YES 
+Compiler for C supports link arguments -Wl,-Bsymbolic: YES 
+Compiler for C supports link arguments -Wl,-z,relro: YES 
+Compiler for C supports link arguments -Wl,-z,now: YES 
+Checking for function "sysconf" : YES 
+Checking for function "getpagesize" : YES 
+Checking for function "flockfile" : YES 
+Checking for function "strtok_r" : YES 
+Has header "unistd.h" : YES 
+Has header "sys/mman.h" : YES 
+Has header "dirent.h" : YES 
+Message: Enabling various debug infrastructure
+Library m found: YES
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Run-time dependency glib-2.0 found: YES 2.64.6
+Run-time dependency gobject-2.0 found: YES 2.64.6
+Run-time dependency gio-2.0 found: YES 2.64.6
+Run-time dependency fribidi found: YES 1.0.8
+Run-time dependency libthai found: YES 0.1.28
+Checking for function "th_brk_find_breaks" with dependency libthai: YES 
+Run-time dependency harfbuzz found: YES 2.6.4
+Run-time dependency fontconfig found: YES 2.13.1
+Message: fontconfig has FcWeightFromOpenTypeDouble: YES
+Run-time dependency freetype2 found: YES 23.1.17
+Run-time dependency xft found: YES 2.3.3
+Run-time dependency xrender found: YES 0.9.10
+Run-time dependency cairo found: YES 1.16.0
+Run-time dependency cairo-ft found: YES 1.16.0
+Found CMake: /usr/bin/cmake (3.16.3)
+Run-time dependency cairo-win32 found: NO (tried pkgconfig and cmake)
+Run-time dependency cairo-quartz found: NO (tried pkgconfig and cmake)
+Run-time dependency cairo-png found: YES 1.16.0
+Run-time dependency cairo-ps found: YES 1.16.0
+Run-time dependency cairo-pdf found: YES 1.16.0
+Run-time dependency cairo-xlib found: YES 1.16.0
+Dependency sysprof-capture-4 skipped: feature sysprof disabled
+Run-time dependency gi-docgen found: NO (tried pkgconfig and cmake)
+Looking for a fallback subproject for the dependency gi-docgen
+
+Executing subproject gi-docgen 
+
+gi-docgen| Project name: gi-docgen
+gi-docgen| Project version: 2021.1
+gi-docgen| Program python3 (jinja2, markdown, markupsafe, pygments, toml, typogrify) found: NO modules: jinja2, markdown, markupsafe, pygments
+
+gi-docgen| ../subprojects/gi-docgen/meson.build:10:0: Exception: python3 is missing modules: toml, typogrify
+
+Subproject subprojects/gi-docgen is buildable: NO (disabling)
+Dependency gi-docgen from subproject subprojects/gi-docgen found: NO (subproject failed to configure)
+Configuring config.h using configuration
+Configuring pango-features.h using configuration
+Program glib-mkenums found: YES (/usr/bin/glib-mkenums)
+Program g-ir-scanner found: YES (/usr/bin/g-ir-scanner)
+Run-time dependency harfbuzz-gobject found: YES 2.6.4
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Build-time dependency gobject-introspection-1.0 found: YES 1.64.1
+Dependency gobject-introspection-1.0 found: YES 1.64.1 (cached)
+Program g-ir-scanner found: YES (/usr/bin/g-ir-scanner)
+Dependency gobject-introspection-1.0 found: YES 1.64.1 (cached)
+Program g-ir-compiler found: YES (/usr/bin/g-ir-compiler)
+Program help2man found: NO
+Program build-aux/meson/dist-docs.py found: YES (/home/wruslan/opt/apps/pango-1.48.4/build-aux/meson/dist-docs.py)
+Build targets in project: 63
+
+pango 1.48.4
+
+  Subprojects
+    gi-docgen: NO python3 is missing modules: toml, typogrify
+
+Found ninja-1.10.0 at /usr/bin/ninja
+[132/134] Generating PangoXft-1.0.gir with a custom command
+Package pangofc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `pangofc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'pangofc' found
+
+[134/134] Generating PangoXft-1.0.typelib with a custom command
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+SOLUTION 1
+===========================================================
+sudo -H pip3 install jinja2 markdown markupsafe pygments toml typogrify
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo -H pip3 install jinja2 markdown markupsafe pygments toml typogrify
+Requirement already satisfied: jinja2 in /usr/lib/python3/dist-packages (2.10.1)
+Requirement already satisfied: markdown in /usr/lib/python3/dist-packages (3.1.1)
+Requirement already satisfied: markupsafe in /usr/lib/python3/dist-packages (1.1.0)
+Requirement already satisfied: pygments in /usr/lib/python3/dist-packages (2.3.1)
+Collecting toml
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting typogrify
+  Downloading typogrify-2.0.7.tar.gz (12 kB)
+Collecting smartypants>=1.8.3
+  Downloading smartypants-2.0.1-py2.py3-none-any.whl (9.9 kB)
+Building wheels for collected packages: typogrify
+  Building wheel for typogrify (setup.py) ... done
+  Created wheel for typogrify: filename=typogrify-2.0.7-py2.py3-none-any.whl size=13434 sha256=fde58aae4bfbb7e97fa299e9747feaf327dd94daa9b5459c487dbd80bb045f2b
+  Stored in directory: /root/.cache/pip/wheels/0b/e9/98/c888501e8dd2166da059e4f8418694de9b50b48a7192712be9
+Successfully built typogrify
+Installing collected packages: smartypants, typogrify, toml
+Successfully installed smartypants-2.0.1 toml-0.10.2 typogrify-2.0.7
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+SOLUTION 2:
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo apt install  help2man
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  help2man
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 173 kB of archives.
+After this operation, 509 kB of additional disk space will be used.
+Get:1 http://ubuntu.tuxuri.com/ubuntu focal/universe amd64 help2man amd64 1.47.13 [173 kB]
+Fetched 173 kB in 0s (361 kB/s)  
+Selecting previously unselected package help2man.
+(Reading database ... 802049 files and directories currently installed.)
+Preparing to unpack .../help2man_1.47.13_amd64.deb ...
+Unpacking help2man (1.47.13) ...
+Setting up help2man (1.47.13) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+RERUN:
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ meson --prefix=/usr .. && ninja       
+Directory already configured.
+
+Just run your build command (e.g. ninja) and Meson will regenerate as necessary.
+If ninja fails, run "ninja reconfigure" or "meson --reconfigure"
+to force Meson to regenerate.
+
+If build failures persist, run "meson setup --wipe" to rebuild from scratch
+using the same options as passed when configuring the build.
+To change option values, run "meson configure" instead.
+[133/135] Generating PangoXft-1.0.gir with a custom command
+Package pangofc was not found in the pkg-config search path.
+Perhaps you should add the directory containing `pangofc.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'pangofc' found
+
+[135/135] Generating PangoXft-1.0.typelib with a custom command
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo updatedb
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo ldconfig
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo depmod -a
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ locate pangofc
+/home/wruslan/.julia/artifacts/079e2f87254bb2465a44de255cd5dde50d4d0b62/include/pango-1.0/pango/pangofc-decoder.h
+/home/wruslan/.julia/artifacts/079e2f87254bb2465a44de255cd5dde50d4d0b62/include/pango-1.0/pango/pangofc-font.h
+/home/wruslan/.julia/artifacts/079e2f87254bb2465a44de255cd5dde50d4d0b62/include/pango-1.0/pango/pangofc-fontmap.h
+/home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangofc.pc
+/home/wruslan/opt/apps/pango-1.48.4/build/meson-uninstalled/pangofc-uninstalled.pc
+/home/wruslan/opt/apps/pango-1.48.4/build/pango/libpango-1.0.so.0.4800.4.p/pangofc-shape.c.o
+/home/wruslan/opt/apps/pango-1.48.4/build/pango/libpangoft2-1.0.so.0.4800.4.p/pangofc-decoder.c.o
+/home/wruslan/opt/apps/pango-1.48.4/build/pango/libpangoft2-1.0.so.0.4800.4.p/pangofc-font.c.o
+/home/wruslan/opt/apps/pango-1.48.4/build/pango/libpangoft2-1.0.so.0.4800.4.p/pangofc-fontmap.c.o
+/home/wruslan/opt/apps/pango-1.48.4/docs/pangofc.toml.in
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-decoder.c
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-decoder.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-font-private.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-font.c
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-font.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-fontmap-private.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-fontmap.c
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-fontmap.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-private.h
+/home/wruslan/opt/apps/pango-1.48.4/pango/pangofc-shape.c
+/usr/include/pango-1.0/pango/pangofc-decoder.h
+/usr/include/pango-1.0/pango/pangofc-font.h
+/usr/include/pango-1.0/pango/pangofc-fontmap.h
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo cp /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangofc.pc  /usr/lib/x86_64-linux-gnu/pkgconfig/
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo updatedb
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo ldconfig
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo depmod -a
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+INSTALLATION OF PANGO
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo ninja install
+[sudo] password for wruslan: 
+[0/1] Installing files.
+Installing subdir /home/wruslan/opt/apps/pango-1.48.4/subprojects/gi-docgen/gidocgen to /usr/lib/python3.8/site-packages/gidocgen
+Installing /home/wruslan/opt/apps/pango-1.48.4/subprojects/gi-docgen/gidocgen/utils.py to /usr/lib/python3.8/site-packages/gidocgen
+Installing /home/wruslan/opt/apps/pango-1.48.4/subprojects/gi-docgen/gidocgen/mdext.py to /usr/lib/python3.8/site-packages/gidocgen
+....
+....
+Installing /home/wruslan/opt/apps/pango-1.48.4/pango/pango-ot.h to /usr/include/pango-1.0/pango
+Installing /home/wruslan/opt/apps/pango-1.48.4/pango/pangoxft.h to /usr/include/pango-1.0/pango
+Installing /home/wruslan/opt/apps/pango-1.48.4/pango/pangoxft-render.h to /usr/include/pango-1.0/pango
+Installing /home/wruslan/opt/apps/pango-1.48.4/pango/pangocairo.h to /usr/include/pango-1.0/pango
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/subprojects/gi-docgen/gi-docgen to /usr/bin
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/pango/pango-features.h to /usr/include/pango-1.0/pango
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pango.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangoft2.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangoot.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangofc.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangoxft.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+Installing /home/wruslan/opt/apps/pango-1.48.4/build/meson-private/pangocairo.pc to /usr/lib/x86_64-linux-gnu/pkgconfig
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$
+
+=========================================================== 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo updatedb
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo ldconfig
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ sudo depmod -a
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/pango-1.48.4/build$ 
+
+===========================================================
+INSTALL python-gtk2_2.24.0-5
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ wget -c http://archive.ubuntu.com/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-5.1ubuntu2_amd64.deb
+--2021-04-05 23:27:30--  http://archive.ubuntu.com/ubuntu/pool/universe/p/pygtk/python-gtk2_2.24.0-5.1ubuntu2_amd64.deb
+Resolving archive.ubuntu.com (archive.ubuntu.com)... 2001:67c:1360:8001::24, 2001:67c:1360:8001::23, 91.189.88.142, ...
+Connecting to archive.ubuntu.com (archive.ubuntu.com)|2001:67c:1360:8001::24|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 619344 (605K) [application/x-debian-package]
+Saving to: ‘python-gtk2_2.24.0-5.1ubuntu2_amd64.deb’
+
+python-gtk2_2.24.0-5.1ubuntu2_amd64.deb    100%[========>] 604.83K   414KB/s    in 1.5s    
+
+2021-04-05 23:27:32 (414 KB/s) - ‘python-gtk2_2.24.0-5.1ubuntu2_amd64.deb’ saved [619344/619344]
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ ls -al
+total 656
+drwx------ 12 wruslan wruslan   4096 Apr  5 23:27 .
+drwxrwxr-x 18 wruslan wruslan   4096 Apr  5 09:53 ..
+drwxrwxr-x  3 wruslan wruslan   4096 Mar 31 05:32 atom-scilab
+drwxrwxr-x  6 wruslan wruslan   4096 Mar 31 05:31 cyclic_rt-tests
+drwxrwxr-x  3 wruslan wruslan   4096 Apr  3 23:00 DOCS
+drwxr-xr-x  8 wruslan wruslan   4096 Apr  3 22:33 julia-1.6.0
+drwxrwxr-x 18 wruslan wruslan   4096 Apr  5 22:04 meson
+drwxrwxr-x  7 wruslan wruslan   4096 Mar 31 05:32 octave-5.2.0
+drwxrwxr-x  7 wruslan wruslan   4096 Mar 31 05:32 octave-6.2.0
+drwxr-xr-x 11 wruslan wruslan   4096 Apr  5 21:54 pango-1.48.4
+-rw-rw-r--  1 wruslan wruslan 619344 Nov 23  2017 python-gtk2_2.24.0-5.1ubuntu2_amd64.deb
+drwxrwxr-x  7 wruslan wruslan   4096 Mar 31 05:31 scilab-5.5.2
+drwxrwxr-x  7 wruslan wruslan   4096 Mar 31 05:32 scilab-6.1.0
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ sudo gdebi python-gtk2_2.24.0-5.1ubuntu2_amd64.deb 
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Reading state information... Done
+
+Python bindings for the GTK+ widget set
+ This archive contains modules that allow you to use GTK+ in Python
+ programs.
+ .
+ This package is deprecated, you should migrate to using
+ gobject-introspection (GIR) based python bindings instead (PyGObject).
+ https://wiki.gnome.org/Projects/PyGObject/IntrospectionPorting
+Do you want to install the software package? [y/N]:y
+/usr/bin/gdebi:113: FutureWarning: Possible nested set at position 1
+  c = findall("[[(](\S+)/\S+[])]", msg)[0].lower()
+(Reading database ... 802167 files and directories currently installed.)
+Preparing to unpack python-gtk2_2.24.0-5.1ubuntu2_amd64.deb ...
+Unpacking python-gtk2 (2.24.0-5.1ubuntu2) over (2.24.0-5.1ubuntu2) ...
+Setting up python-gtk2 (2.24.0-5.1ubuntu2) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc/src$ sudo apt install libreadline-gplv2-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  guile-2.2 libgc-dev
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  guile-2.2-dev guile-cairo-dev libreadline-dev
+The following NEW packages will be installed:
+  libreadline-gplv2-dev
+0 upgraded, 1 newly installed, 3 to remove and 0 not upgraded.
+Need to get 125 kB of archives.
+After this operation, 3,562 kB disk space will be freed.
+Do you want to continue? [Y/n] y
+Get:1 http://ubuntu.tuxuri.com/ubuntu focal/main amd64 libreadline-gplv2-dev amd64 5.2+dfsg-3build3 [125 kB]
+Fetched 125 kB in 0s (317 kB/s)               
+(Reading database ... 802167 files and directories currently installed.)
+Removing guile-cairo-dev (1.10.0-5) ...
+Removing guile-2.2-dev (2.2.7+1-4) ...
+dpkg: libreadline-dev:amd64: dependency problems, but removing anyway as you requested:
+ liboctave-dev depends on libreadline-dev | libreadline-gplv2-dev; however:
+  Package libreadline-dev:amd64 is to be removed.
+  Package libreadline-gplv2-dev is not installed.
+
+Removing libreadline-dev:amd64 (8.0-4) ...
+Selecting previously unselected package libreadline-gplv2-dev:amd64.
+(Reading database ... 801932 files and directories currently installed.)
+Preparing to unpack .../libreadline-gplv2-dev_5.2+dfsg-3build3_amd64.deb ...
+Unpacking libreadline-gplv2-dev:amd64 (5.2+dfsg-3build3) ...
+Setting up libreadline-gplv2-dev:amd64 (5.2+dfsg-3build3) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc/src$ 
+===========================================================
+
+checking for boost::python shared library... 
+configure: error: boost::python is required to build LinuxCNC
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ sudo -H pip install boost
+Collecting boost
+  Downloading boost-0.1.tar.gz (6.3 kB)
+Collecting Mastodon.py
+  Downloading Mastodon.py-1.5.1-py2.py3-none-any.whl (36 kB)
+Collecting sqlalchemy
+  Downloading SQLAlchemy-1.4.5-cp38-cp38-manylinux2014_x86_64.whl (1.5 MB)
+     |======================>| 1.5 MB 936 kB/s 
+Requirement already satisfied: decorator>=4.0.0 in /usr/local/lib/python3.8/dist-packages (from Mastodon.py->boost) (4.4.2)
+Requirement already satisfied: six in /usr/local/lib/python3.8/dist-packages (from Mastodon.py->boost) (1.15.0)
+Requirement already satisfied: python-dateutil in /usr/lib/python3/dist-packages (from Mastodon.py->boost) (2.7.3)
+Requirement already satisfied: requests>=2.4.2 in /usr/lib/python3/dist-packages (from Mastodon.py->boost) (2.22.0)
+Collecting python-magic
+  Downloading python_magic-0.4.22-py2.py3-none-any.whl (12 kB)
+Requirement already satisfied: pytz in /usr/lib/python3/dist-packages (from Mastodon.py->boost) (2019.3)
+Collecting blurhash>=1.1.4
+  Downloading blurhash-1.1.4-py2.py3-none-any.whl (5.3 kB)
+Collecting greenlet!=0.4.17
+  Downloading greenlet-1.0.0-cp38-cp38-manylinux2010_x86_64.whl (165 kB)
+     |======================>| 165 kB 672 kB/s 
+Building wheels for collected packages: boost
+  Building wheel for boost (setup.py) ... done
+  Created wheel for boost: filename=boost-0.1-py3-none-any.whl size=12460 sha256=2866d7f1701dfc7c8e94470c36b35c9a44c9d8d1324160ef21ae4bd9a3260b69
+  Stored in directory: /root/.cache/pip/wheels/cf/0e/9b/591d2c638d78dea35769db51d8d6fc221cbb1b4c08af979b7c
+Successfully built boost
+Installing collected packages: python-magic, greenlet, blurhash, sqlalchemy, Mastodon.py, boost
+Successfully installed Mastodon.py-1.5.1 blurhash-1.1.4 boost-0.1 greenlet-1.0.0 python-magic-0.4.22 sqlalchemy-1.4.5
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ wget -c http://archive.ubuntu.com/ubuntu/pool/universe/p/pygtk/python-glade2_2.24.0-5.1ubuntu2_amd64.deb
+--2021-04-05 23:37:40--  http://archive.ubuntu.com/ubuntu/pool/universe/p/pygtk/python-glade2_2.24.0-5.1ubuntu2_amd64.deb
+Resolving archive.ubuntu.com (archive.ubuntu.com)... 2001:67c:1360:8001::23, 2001:67c:1360:8001::24, 91.189.88.152, ...
+Connecting to archive.ubuntu.com (archive.ubuntu.com)|2001:67c:1360:8001::23|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8872 (8.7K) [application/x-debian-package]
+Saving to: ‘python-glade2_2.24.0-5.1ubuntu2_amd64.deb’
+
+python-glade2_2.24.0-5.1ubuntu2_amd64.deb  100%[============>]   8.66K  --.-KB/s    in 0.007s  
+
+2021-04-05 23:37:40 (1.15 MB/s) - ‘python-glade2_2.24.0-5.1ubuntu2_amd64.deb’ saved [8872/8872]
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ 
+
+==========================================================
+sudo apt install libboost-python-dev libboost-serialization-dev libboost-thread-dev libncurses5-dev
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc$ sudo apt install libboost-python-dev libboost-serialization-dev libboost-thread-dev libncurses5-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libboost-thread-dev is already the newest version (1.71.0.0ubuntu2).
+libncurses5-dev is already the newest version (6.2-0ubuntu2).
+libboost-python-dev is already the newest version (1.71.0.0ubuntu2).
+libboost-serialization-dev is already the newest version (1.71.0.0ubuntu2).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ sudo gdebi python-glade2_2.24.0-5.1ubuntu2_amd64.deb 
+Reading package lists... Done
+Building dependency tree        
+Reading state information... Done
+Reading state information... Done
+
+GTK+ bindings: Glade support
+ Contains bindings for the glade library from use within Python. Glade
+ makes it very easy to create a user interface. In the target
+ application you just need to load the interface description from
+ the .glade file instead of constructing the GUI at runtime.
+ .
+ This package is deprecated, you should migrate to using
+ gobject-introspection (GIR) based python bindings instead (PyGObject).
+ https://wiki.gnome.org/Projects/PyGObject/IntrospectionPorting
+Do you want to install the software package? [y/N]:y
+/usr/bin/gdebi:113: FutureWarning: Possible nested set at position 1
+  c = findall("[[(](\S+)/\S+[])]", msg)[0].lower()
+Selecting previously unselected package python-glade2.
+(Reading database ... 801957 files and directories currently installed.)
+Preparing to unpack python-glade2_2.24.0-5.1ubuntu2_amd64.deb ...
+Unpacking python-glade2 (2.24.0-5.1ubuntu2) ...
+Setting up python-glade2 (2.24.0-5.1ubuntu2) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ 
+
+
+===========================================================
+(1) 
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y debhelper dh-python libudev-dev libxenomai-dev tclx
+[sudo] password for wruslan: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'tclx8.4' instead of 'tclx'
+debhelper is already the newest version (12.10ubuntu1).
+debhelper set to manually installed.
+libudev-dev is already the newest version (245.4-4ubuntu3.5).
+libudev-dev set to manually installed.
+The following additional packages will be installed:
+  libxenomai1
+Suggested packages:
+  linux-patch-xenomai xenomai-doc xenomai-system-tools tclx8.4-doc
+The following NEW packages will be installed:
+  dh-python libxenomai-dev libxenomai1 tclx8.4
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 497 kB of archives.
+After this operation, 2,948 kB of additional disk space will be used.
+....
+....
+Fetched 497 kB in 2s (272 kB/s)         
+Selecting previously unselected package dh-python.
+(Reading database ... 781342 files and directories currently installed.)
+....
+....
+Setting up dh-python (4.20191017ubuntu7) ...
+Setting up libxenomai1:amd64 (2.6.4+dfsg-1) ...
+Setting up libxenomai-dev (2.6.4+dfsg-1) ...
+Setting up tclx8.4 (8.4.1-4) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(2)
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y tcl8.6-dev tk8.6-dev libreadline-gplv2-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libfontconfig1-dev libfreetype-dev libfreetype6-dev libice-dev libsm-dev libxft-dev libxrender-dev libxss-dev libxt-dev x11proto-scrnsaver-dev
+Suggested packages:
+  freetype2-doc libice-doc libsm-doc libxt-doc tcl8.6-doc tk8.6-doc
+The following packages will be REMOVED:
+  libreadline-dev
+The following NEW packages will be installed:
+  libfontconfig1-dev libfreetype-dev libfreetype6-dev libice-dev libreadline-gplv2-dev libsm-dev libxft-dev libxrender-dev libxss-dev libxt-dev tcl8.6-dev tk8.6-dev
+  x11proto-scrnsaver-dev
+0 upgraded, 13 newly installed, 1 to remove and 0 not upgraded.
+Need to get 3,523 kB of archives.
+After this operation, 14.2 MB of additional disk space will be used.
+....
+....
+Fetched 3,523 kB in 4s (948 kB/s)   
+(Reading database ... 781842 files and directories currently installed.)
+....
+....
+Setting up libice-dev:amd64 (2:1.0.10-0ubuntu1) ...
+Setting up libsm-dev:amd64 (2:1.2.3-1) ...
+Setting up tcl8.6-dev:amd64 (8.6.10+dfsg-1) ...
+Setting up libfreetype-dev:amd64 (2.10.1-2ubuntu0.1) ...
+Setting up libreadline-gplv2-dev:amd64 (5.2+dfsg-3build3) ...
+Setting up libxt-dev:amd64 (1:1.1.5-1) ...
+Setting up x11proto-scrnsaver-dev (2019.2-1ubuntu1) ...
+Setting up libxrender-dev:amd64 (1:0.9.10-1) ...
+Setting up libxss-dev:amd64 (1:1.2.3-1) ...
+Setting up libfreetype6-dev:amd64 (2.10.1-2ubuntu0.1) ...
+Setting up libfontconfig1-dev:amd64 (2.13.1-2ubuntu3) ...
+Setting up libxft-dev:amd64 (2.3.3-0ubuntu1) ...
+Setting up tk8.6-dev:amd64 (8.6.10-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 1 added doc-base file...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(3) 
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y asciidoc  dvipng graphviz groff imagemagick asciidoc-dblatex libglu1-mesa-dev libgl1-mesa-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libglu1-mesa-dev is already the newest version (9.0.1-1build1).
+libglu1-mesa-dev set to manually installed.
+graphviz is already the newest version (2.42.2-3build2).
+libgl1-mesa-dev is already the newest version (20.2.6-0ubuntu0.20.04.1).
+libgl1-mesa-dev set to manually installed.
+imagemagick is already the newest version (8:6.9.10.23+dfsg-2.1ubuntu11.2).
+imagemagick set to manually installed.
+The following additional packages will be installed:
+  asciidoc-base asciidoc-common asciidoc-doc dblatex dblatex-doc docbook-dsssl docbook-utils libsgmls-perl lynx lynx-common opensp psutils sgmlspl vim
+  vim-addon-manager vim-asciidoc vim-runtime xmlto xsltproc
+Suggested packages:
+  source-highlight epubcheck docbook latex-cjk-all texlive-lang-all texlive-lang-cyrillic xindy docbook-dsssl-doc sgmls-doc ctags vim-doc vim-scripts w3m | lynx-cur
+  | links texlive-htmlxml
+The following NEW packages will be installed:
+  asciidoc asciidoc-base asciidoc-common asciidoc-dblatex asciidoc-doc dblatex dblatex-doc docbook-dsssl docbook-utils dvipng groff libsgmls-perl lynx lynx-common
+  opensp psutils sgmlspl vim vim-addon-manager vim-asciidoc vim-runtime xmlto xsltproc
+0 upgraded, 23 newly installed, 0 to remove and 0 not upgraded.
+Need to get 15.4 MB of archives.
+After this operation, 66.7 MB of additional disk space will be used.
+....
+....               
+Fetched 15.4 MB in 18s (843 kB/s) 
+....
+....
+Setting up docbook-dsssl (1.79-9.1) ...
+Setting up libsgmls-perl (1.03ii-36) ...
+Setting up sgmlspl (1.03ii-36) ...
+Setting up dblatex-doc (0.3.11py3-1) ...
+Setting up dvipng (1.15-1.1) ...
+Setting up xsltproc (1.1.34-4) ...
+Setting up opensp (1.5.2-13ubuntu3) ...
+Setting up dblatex (0.3.11py3-1) ...
+Setting up xmlto (0.0.28-2.1) ...
+Setting up groff (1.22.4-4build1) ...
+Setting up asciidoc-common (9.0.0~rc1-1) ...
+Setting up asciidoc-base (9.0.0~rc1-1) ...
+Setting up vim-addon-manager (0.5.10) ...
+Setting up lynx-common (2.9.0dev.5-1) ...
+Setting up asciidoc-doc (9.0.0~rc1-1) ...
+Setting up lynx (2.9.0dev.5-1) ...
+update-alternatives: using /usr/bin/lynx to provide /usr/bin/www-browser (www-browser) in auto mode
+Setting up vim-asciidoc (9.0.0~rc1-1) ...
+Setting up vim-runtime (2:8.1.2269-1ubuntu5) ...
+Setting up psutils (1.17.dfsg-4) ...
+Setting up vim (2:8.1.2269-1ubuntu5) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+Setting up asciidoc (9.0.0~rc1-1) ...
+Processing triggers for tex-common (6.13) ...
+Running mktexlsr. This may take some time... done.
+Processing triggers for sgml-base (1.29.1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 6 added doc-base files...
+Processing triggers for man-db (2.9.1-1) ...
+Setting up docbook-utils (0.6.14-3.3) ...
+Setting up asciidoc-dblatex (9.0.0~rc1-1) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(4)
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y inkscape python-lxml source-highlight libtk-img 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+inkscape is already the newest version (0.92.5-1ubuntu1.1).
+inkscape set to manually installed.
+python-lxml is already the newest version (4.5.0-1ubuntu0.3).
+python-lxml set to manually installed.
+Suggested packages:
+  libtk-img-doc
+The following NEW packages will be installed:
+  libsource-highlight-common libsource-highlight4v5 libtk-img source-highlight
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 673 kB of archives.
+After this operation, 3,808 kB of additional disk space will be used.
+....
+....
+Fetched 673 kB in 1s (591 kB/s)         
+Selecting previously unselected package libsource-highlight-common.
+(Reading database ... 787026 files and directories currently installed.)
+....
+....
+Setting up libsource-highlight-common (3.1.8-1.2build5) ...
+Setting up libtk-img:amd64 (1:1.4.9+dfsg-1) ...
+Setting up libsource-highlight4v5 (3.1.8-1.2build5) ...
+Setting up source-highlight (3.1.8-1.2build5) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 1 added doc-base file...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(5) 
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y texlive-font-utils w3c-linkchecker python-dev python-tk  libxmu-dev python3-dev python3-tk
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'python-dev-is-python2' instead of 'python-dev'
+python3-dev is already the newest version (3.8.2-0ubuntu2).
+python-tk is already the newest version (2.7.18-1).
+python-tk set to manually installed.
+texlive-font-utils is already the newest version (2019.202000218-1).
+python3-tk is already the newest version (3.8.5-1~20.04.1).
+python3-tk set to manually installed.
+The following additional packages will be installed:
+  libclass-accessor-perl libconfig-general-perl libcss-dom-perl libencode-hanextra-perl libencode-jis2k-perl libhtml-encoding-perl libhtml-template-perl
+  libhtml-tidy-perl liblocale-codes-perl libset-intspan-perl libsgml-parser-opensp-perl libtidy5deb1 libxmu-headers python-is-python2 w3c-markup-validator w3c-sgml-lib
+Suggested packages:
+  libipc-sharedcache-perl libwebservice-validator-html-w3c-perl libtest-html-w3c-perl
+The following NEW packages will be installed:
+  libclass-accessor-perl libconfig-general-perl libcss-dom-perl libencode-hanextra-perl libencode-jis2k-perl libhtml-encoding-perl libhtml-template-perl
+  libhtml-tidy-perl liblocale-codes-perl libset-intspan-perl libsgml-parser-opensp-perl libtidy5deb1 libxmu-dev libxmu-headers python-dev-is-python2 python-is-python2
+  w3c-linkchecker w3c-markup-validator w3c-sgml-lib
+0 upgraded, 19 newly installed, 0 to remove and 0 not upgraded.
+Need to get 4,829 kB of archives.
+After this operation, 27.2 MB of additional disk space will be used.
+....
+....
+Fetched 4,829 kB in 5s (909 kB/s)                   
+....
+....
+Setting up libencode-jis2k-perl (0.03-1build5) ...
+Setting up libcss-dom-perl (0.17-1) ...
+Setting up w3c-sgml-lib (1.3-2) ...
+Setting up libxmu-headers (2:1.1.3-0ubuntu1) ...
+Setting up libconfig-general-perl (2.63-1) ...
+Setting up libset-intspan-perl (1.19-1) ...
+Setting up libxmu-dev:amd64 (2:1.1.3-0ubuntu1) ...
+Setting up libhtml-template-perl (2.97-1) ...
+Setting up libhtml-encoding-perl (0.61-2) ...
+Setting up liblocale-codes-perl (3.62-1) ...
+Setting up libencode-hanextra-perl (0.23-5build2) ...
+Setting up libclass-accessor-perl (0.51-1) ...
+Setting up libtidy5deb1:amd64 (2:5.6.0-11) ...
+Setting up python-is-python2 (2.7.17-4) ...
+Setting up w3c-linkchecker (4.81-10) ...
+
+Creating config file /etc/w3c/checklink.conf with new version
+apache2_invoke: Enable configuration w3c-linkchecker
+Setting up libhtml-tidy-perl (1.60-4build1) ...
+Setting up python-dev-is-python2 (2.7.17-4) ...
+Setting up libsgml-parser-opensp-perl (0.994-3build7) ...
+Processing triggers for sgml-base (1.29.1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+Setting up w3c-markup-validator (1.3+dfsg-4) ...
+apache2_invoke: Enable module include
+apache2_invoke: Enable module rewrite
+apache2_invoke: Enable module cgi
+apache2_invoke: Enable configuration w3c-markup-validator
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(6)
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y libgtk2.0-dev intltool autoconf libboost-python-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+autoconf is already the newest version (2.69-11.1).
+autoconf set to manually installed.
+libboost-python-dev is already the newest version (1.71.0.0ubuntu2).
+libboost-python-dev set to manually installed.
+The following additional packages will be installed:
+  gir1.2-gtk-2.0 gir1.2-harfbuzz-0.0 libatk1.0-dev libblkid-dev libcairo-script-interpreter2 libcairo2-dev libdatrie-dev libfribidi-dev libgdk-pixbuf2.0-dev
+  libglib2.0-dev libglib2.0-dev-bin libgraphite2-dev libharfbuzz-dev libharfbuzz-gobject0 libmount-dev libpango1.0-dev libpixman-1-dev libselinux1-dev libsepol1-dev
+  libthai-dev libxcb-render0-dev libxcb-shm0-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxrandr-dev pango1.0-tools
+  x11proto-input-dev x11proto-randr-dev x11proto-xinerama-dev
+Suggested packages:
+  libcairo2-doc libdatrie-doc libgirepository1.0-dev libglib2.0-doc libgraphite2-utils libgtk2.0-doc libpango1.0-doc libthai-doc
+The following NEW packages will be installed:
+  gir1.2-gtk-2.0 gir1.2-harfbuzz-0.0 intltool libatk1.0-dev libblkid-dev libcairo-script-interpreter2 libcairo2-dev libdatrie-dev libfribidi-dev libgdk-pixbuf2.0-dev
+  libglib2.0-dev libglib2.0-dev-bin libgraphite2-dev libgtk2.0-dev libharfbuzz-dev libharfbuzz-gobject0 libmount-dev libpango1.0-dev libpixman-1-dev libselinux1-dev
+  libsepol1-dev libthai-dev libxcb-render0-dev libxcb-shm0-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxfixes-dev libxi-dev libxinerama-dev libxrandr-dev
+  pango1.0-tools x11proto-input-dev x11proto-randr-dev x11proto-xinerama-dev
+0 upgraded, 35 newly installed, 0 to remove and 0 not upgraded.
+Need to get 5,652 kB of archives.
+After this operation, 39.7 MB of additional disk space will be used.
+....
+....
+Fetched 5,652 kB in 6s (974 kB/s)       
+Extracting templates from packages: 100%
+
+....
+....
+Setting up libcairo-script-interpreter2:amd64 (1.16.0-4ubuntu1) ...
+Setting up libglib2.0-dev-bin (2.64.6-1~ubuntu20.04.3) ...
+Setting up libblkid-dev:amd64 (2.34-0.1ubuntu9.1) ...
+Setting up libpixman-1-dev:amd64 (0.38.4-0ubuntu1) ...
+Setting up x11proto-randr-dev (2019.2-1ubuntu1) ...
+Setting up libfribidi-dev:amd64 (1.0.8-2) ...
+Setting up pango1.0-tools (1.44.7-2ubuntu4) ...
+Setting up libsepol1-dev:amd64 (3.0-1) ...
+Setting up libharfbuzz-gobject0:amd64 (2.6.4-1ubuntu4) ...
+Setting up gir1.2-harfbuzz-0.0:amd64 (2.6.4-1ubuntu4) ...
+Setting up x11proto-xinerama-dev (2019.2-1ubuntu1) ...
+Setting up libxfixes-dev:amd64 (1:5.0.3-2) ...
+Setting up libxcb-shm0-dev:amd64 (1.14-2) ...
+Setting up libgraphite2-dev:amd64 (1.3.13-11build1) ...
+Setting up libxrandr-dev:amd64 (2:1.5.2-0ubuntu1) ...
+Setting up gir1.2-gtk-2.0:amd64 (2.24.32-4ubuntu4) ...
+Setting up x11proto-input-dev (2019.2-1ubuntu1) ...
+Setting up intltool (0.51.0-5ubuntu1) ...
+Setting up libxinerama-dev:amd64 (2:1.1.4-2) ...
+Setting up libxcb-render0-dev:amd64 (1.14-2) ...
+Setting up libdatrie-dev:amd64 (0.2.12-3) ...
+Setting up libxi-dev:amd64 (2:1.7.10-0ubuntu1) ...
+Setting up libmount-dev:amd64 (2.34-0.1ubuntu9.1) ...
+Setting up libxdamage-dev:amd64 (1:1.1.5-2) ...
+Setting up libselinux1-dev:amd64 (3.0-1build2) ...
+Setting up libxcomposite-dev:amd64 (1:0.4.5-1) ...
+Setting up libxcursor-dev:amd64 (1:1.2.0-2) ...
+Setting up libglib2.0-dev:amd64 (2.64.6-1~ubuntu20.04.3) ...
+Setting up libthai-dev:amd64 (0.1.28-3) ...
+Processing triggers for libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.3) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+Setting up libgdk-pixbuf2.0-dev:amd64 (2.40.0+dfsg-3ubuntu0.2) ...
+Setting up libcairo2-dev:amd64 (1.16.0-4ubuntu1) ...
+Setting up libatk1.0-dev:amd64 (2.35.1-1ubuntu2) ...
+Setting up libharfbuzz-dev:amd64 (2.6.4-1ubuntu4) ...
+Setting up libpango1.0-dev:amd64 (1.44.7-2ubuntu4) ...
+Setting up libgtk2.0-dev:amd64 (2.24.32-4ubuntu4) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(7)
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y libmodbus-dev libusb-1.0-0-dev yapps2
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libusb-1.0-0-dev is already the newest version (2:1.0.23-2build1).
+The following additional packages will be installed:
+  libmodbus5 python3-yapps
+The following NEW packages will be installed:
+  libmodbus-dev libmodbus5 python3-yapps yapps2
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 168 kB of archives.
+After this operation, 498 kB of additional disk space will be used.
+....
+....
+Fetched 168 kB in 1s (276 kB/s)         
+....
+....
+Setting up libmodbus5:amd64 (3.1.6-2) ...
+Setting up python3-yapps (2.2.1-3.1) ...
+Setting up libmodbus-dev:amd64 (3.1.6-2) ...
+Setting up yapps2 (2.2.1-3.1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 1 added doc-base file...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+
+TEST ALL PREREQUISITES:
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install -y debhelper dh-python libudev-dev libxenomai-dev tclx tcl8.6-dev tk8.6-dev libreadline-gplv2-dev asciidoc  dvipng graphviz groff imagemagick asciidoc-dblatex libglu1-mesa-dev libgl1-mesa-dev inkscape python-lxml source-highlight libtk-img texlive-font-utils w3c-linkchecker python-dev python-tk  libxmu-dev python3-dev python3-tk libgtk2.0-dev intltool autoconf libboost-python-dev libmodbus-dev libusb-1.0-0-dev yapps2 bison flex 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'tclx8.4' instead of 'tclx'
+Note, selecting 'python-dev-is-python2' instead of 'python-dev'
+autoconf is already the newest version (2.69-11.1).
+bison is already the newest version (2:3.5.1+dfsg-1).
+debhelper is already the newest version (12.10ubuntu1).
+flex is already the newest version (2.6.4-6.2).
+libglu1-mesa-dev is already the newest version (9.0.1-1build1).
+libreadline-gplv2-dev is already the newest version (5.2+dfsg-3build3).
+libusb-1.0-0-dev is already the newest version (2:1.0.23-2build1).
+libxmu-dev is already the newest version (2:1.1.3-0ubuntu1).
+python3-dev is already the newest version (3.8.2-0ubuntu2).
+tcl8.6-dev is already the newest version (8.6.10+dfsg-1).
+tk8.6-dev is already the newest version (8.6.10-1).
+asciidoc is already the newest version (9.0.0~rc1-1).
+asciidoc-dblatex is already the newest version (9.0.0~rc1-1).
+dh-python is already the newest version (4.20191017ubuntu7).
+dvipng is already the newest version (1.15-1.1).
+graphviz is already the newest version (2.42.2-3build2).
+groff is already the newest version (1.22.4-4build1).
+intltool is already the newest version (0.51.0-5ubuntu1).
+libboost-python-dev is already the newest version (1.71.0.0ubuntu2).
+libgtk2.0-dev is already the newest version (2.24.32-4ubuntu4).
+libmodbus-dev is already the newest version (3.1.6-2).
+libtk-img is already the newest version (1:1.4.9+dfsg-1).
+libxenomai-dev is already the newest version (2.6.4+dfsg-1).
+python-dev-is-python2 is already the newest version (2.7.17-4).
+python-tk is already the newest version (2.7.18-1).
+source-highlight is already the newest version (3.1.8-1.2build5).
+tclx8.4 is already the newest version (8.4.1-4).
+texlive-font-utils is already the newest version (2019.202000218-1).
+w3c-linkchecker is already the newest version (4.81-10).
+yapps2 is already the newest version (2.2.1-3.1).
+libgl1-mesa-dev is already the newest version (20.2.6-0ubuntu0.20.04.1).
+libudev-dev is already the newest version (245.4-4ubuntu3.5).
+python3-tk is already the newest version (3.8.5-1~20.04.1).
+imagemagick is already the newest version (8:6.9.10.23+dfsg-2.1ubuntu11.2).
+inkscape is already the newest version (0.92.5-1ubuntu1.1).
+python-lxml is already the newest version (4.5.0-1ubuntu0.3).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(Part 1) INSTALL Suggested packages:
+===========================================================
+
+sudo apt install tclx8.4-doc freetype2-doc libice-doc libsm-doc libxt-doc tcl8.6-doc tk8.6-doc source-highlight epubcheck docbook xindy docbook-dsssl-doc sgmls-doc ctags vim-doc vim-scripts w3m libtk-img-doc libipc-sharedcache-perl libwebservice-validator-html-w3c-perl libtest-html-w3c-perl libcairo2-doc libdatrie-doc libgirepository1.0-dev libglib2.0-doc libgraphite2-utils libgtk2.0-doc libpango1.0-doc 
+  
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install tclx8.4-doc freetype2-doc libice-doc libsm-doc libxt-doc tcl8.6-doc tk8.6-doc source-highlight epubcheck docbook xindy docbook-dsssl-doc sgmls-doc ctags vim-doc vim-scripts w3m libtk-img-doc libipc-sharedcache-perl libwebservice-validator-html-w3c-perl libtest-html-w3c-perl libcairo2-doc libdatrie-doc libgirepository1.0-dev libglib2.0-doc libgraphite2-utils libgtk2.0-doc libpango1.0-doc 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'exuberant-ctags' instead of 'ctags'
+source-highlight is already the newest version (3.1.8-1.2build5).
+The following additional packages will be installed:
+  fastjar gobject-introspection jarwrapper libatk1.0-doc libipc-sharelite-perl libisorelax-java libjackson-json-java libjaxp1.3-java libjaxrs-api-java libjing-java
+  libjoda-time-java libsac-java libsaxon-java libxalan2-java python3-mako xindy-rules
+Suggested packages:
+  docbook-defguide psgml libgtk-3-doc devhelp libgirepository1.0-doc libjackson-json-java-doc libjoda-convert-java libjoda-time-java-doc libsac-java-doc
+  libsaxon-java-doc libxalan2-java-doc libbsf-java libxsltc-java python3-beaker python-mako-doc perlsgml libtemplate-perl cmigemo dict dict-wn dictd libsixel-bin mpv
+  w3m-el w3m-img xsel
+The following NEW packages will be installed:
+  docbook docbook-dsssl-doc epubcheck exuberant-ctags fastjar freetype2-doc gobject-introspection jarwrapper libatk1.0-doc libcairo2-doc libdatrie-doc
+  libgirepository1.0-dev libglib2.0-doc libgraphite2-utils libgtk2.0-doc libice-doc libipc-sharedcache-perl libipc-sharelite-perl libisorelax-java libjackson-json-java
+  libjaxp1.3-java libjaxrs-api-java libjing-java libjoda-time-java libpango1.0-doc libsac-java libsaxon-java libsm-doc libtest-html-w3c-perl libtk-img-doc
+  libwebservice-validator-html-w3c-perl libxalan2-java libxt-doc python3-mako sgmls-doc tcl8.6-doc tclx8.4-doc tk8.6-doc vim-doc vim-scripts w3m xindy xindy-rules
+0 upgraded, 43 newly installed, 0 to remove and 0 not upgraded.
+Need to get 24.0 MB of archives.
+After this operation, 113 MB of additional disk space will be used.
+....
+....
+Fetched 24.0 MB in 31s (778 kB/s)    
+....
+....
+Setting up libsm-doc (2:1.2.3-1) ...
+Setting up fastjar (2:0.98-6build1) ...
+Setting up tcl8.6-doc (8.6.10+dfsg-1) ...
+Setting up libjaxrs-api-java (2.1.2-2) ...
+Setting up vim-scripts (20180807ubuntu1) ...
+Setting up sgmls-doc (1.03ii-36) ...
+Setting up libtk-img-doc (1:1.4.9+dfsg-1) ...
+Setting up libatk1.0-doc (2.35.1-1ubuntu2) ...
+Setting up jarwrapper (0.72.10) ...
+Setting up libsaxon-java (1:6.5.5-12) ...
+Setting up exuberant-ctags (1:5.9~svn20110310-12) ...
+update-alternatives: using /usr/bin/ctags-exuberant to provide /usr/bin/ctags (ctags) in auto mode
+Setting up xindy-rules (2.5.1.20160104-8) ...
+Setting up xindy (2.5.1.20160104-8) ...
+Setting up libipc-sharelite-perl (0.17-4build3) ...
+Setting up libwebservice-validator-html-w3c-perl (0.28-2) ...
+Setting up libpango1.0-doc (1.44.7-2ubuntu4) ...
+Setting up libglib2.0-doc (2.64.6-1~ubuntu20.04.3) ...
+Setting up vim-doc (2:8.1.2269-1ubuntu5) ...
+Setting up libxt-doc (1:1.1.5-1) ...
+Setting up freetype2-doc (2.10.1-2ubuntu0.1) ...
+Setting up libgraphite2-utils (1.3.13-11build1) ...
+Setting up w3m (0.5.3-37) ...
+Setting up libcairo2-doc (1.16.0-4ubuntu1) ...
+Setting up libgtk2.0-doc (2.24.32-4ubuntu4) ...
+Setting up libisorelax-java (20041111-12) ...
+Setting up libjoda-time-java (2.10.5-1) ...
+Setting up docbook (4.5-6) ...
+Setting up libipc-sharedcache-perl (1.3-9) ...
+Setting up libice-doc (2:1.0.10-0ubuntu1) ...
+Setting up tclx8.4-doc (8.4.1-4) ...
+Setting up libsac-java (1.3+dfsg-5) ...
+Setting up libtest-html-w3c-perl (0.04-1) ...
+Setting up libjaxp1.3-java (1.3.05-5) ...
+Setting up docbook-dsssl-doc (1.79-6) ...
+Setting up tk8.6-doc (8.6.10-1) ...
+Setting up libdatrie-doc (0.2.12-3) ...
+Setting up python3-mako (1.1.0+ds1-1ubuntu2) ...
+Setting up gobject-introspection (1.64.1-1~ubuntu20.04.1) ...
+Setting up libjackson-json-java (1.9.13-1) ...
+Setting up libgirepository1.0-dev:amd64 (1.64.1-1~ubuntu20.04.1) ...
+Setting up libxalan2-java (2.7.2-2) ...
+Setting up libjing-java (20181222+dfsg2-3) ...
+Setting up epubcheck (4.2.2-1) ...
+Processing triggers for sgml-base (1.29.1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 19 added doc-base files...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(Part 2) INSTALL Suggested packages:
+===========================================================
+
+sudo apt install docbook-defguide psgml libgtk-3-doc devhelp libgirepository1.0-doc python3-beaker python-mako-doc libtemplate-perl cmigemo dict dict-wn dictd libsixel-bin mpv w3m-el w3m-img xsel gprolog clisp
+
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt install docbook-defguide psgml libgtk-3-doc devhelp libgirepository1.0-doc python3-beaker python-mako-doc libtemplate-perl cmigemo dict dict-wn dictd libsixel-bin mpv w3m-el w3m-img xsel gprolog clisp
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+clisp is already the newest version (1:2.49.20180218+really2.49.92-3build3).
+gprolog is already the newest version (1.4.5.0-3).
+The following additional packages will be installed:
+  apel cmigemo-common devhelp-common dictzip flim libappconfig-perl libdevhelp-3-6 libmaa4 libmigemo1 librecode0 libsixel1 nkf python3-pyxattr recode rtmpdump skkdic
+  youtube-dl
+Suggested packages:
+  vim-migemo dict-gcide dict-foldoc dict-jargon xemacs21-bin semi wl | wl-beta libtemplate-plugin-gd-perl libtemplate-plugin-xml-perl debiandoc-sgml linuxdoc-sgml
+  w3c-dtd-xhtml w3-dtd-mathml python3-sqlalchemy python3-pycryptopp | python3-crypto python3-pylibmc | python3-memcache python3-pymongo python3-redis
+  python3-pyxattr-dbg python-pyxattr-doc skktools skkdic-cdb skkdic-extra mule-ucs wv xlhtml ppthtml libmoe1.5 namazu2 discount | libtext-markdown-perl | markdown
+  libfribidi-bin | bidiv phantomjs
+The following NEW packages will be installed:
+  apel cmigemo cmigemo-common devhelp devhelp-common dict dict-wn dictd dictzip docbook-defguide flim libappconfig-perl libdevhelp-3-6 libgirepository1.0-doc
+  libgtk-3-doc libmaa4 libmigemo1 librecode0 libsixel-bin libsixel1 libtemplate-perl mpv nkf psgml python-mako-doc python3-beaker python3-pyxattr recode rtmpdump
+  skkdic w3m-el w3m-img xsel youtube-dl
+0 upgraded, 34 newly installed, 0 to remove and 0 not upgraded.
+Need to get 21.6 MB of archives.
+After this operation, 78.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+....
+....
+Fetched 21.6 MB in 21s (1,043 kB/s)
+Extracting templates from packages: 100%
+....
+....
+Setting up w3m-el (1.4.632+0.20181112-2) ...
+Install emacsen-common for emacs
+emacsen-common: Handling install of emacsen flavor emacs
+Install w3m-el for emacs
+install/w3m-el: byte-compiling for emacs, logged in /tmp/elc.LJPszfmppnWY
+install/w3m-el: deleting /tmp/elc.LJPszfmppnWY
+install/w3m-el: byte-compiling for reverse dependency
+Setting up xsel (1.2.0+git9bfc13d.20180109-3) ...
+Setting up librecode0:amd64 (3.6-24) ...
+Setting up youtube-dl (2020.03.24-1) ...
+Setting up docbook-defguide (2.0.17+svn9912-2) ...
+Setting up python-mako-doc (1.1.0+ds1-1ubuntu2) ...
+Setting up libmigemo1:amd64 (1:1.2+gh0.20150404-7) ...
+Setting up libgirepository1.0-doc (1.64.1-1~ubuntu20.04.1) ...
+Setting up libgtk-3-doc (3.24.20-0ubuntu1) ...
+Setting up devhelp-common (3.36.1-1) ...
+Setting up python3-beaker (1.10.0-2) ...
+Setting up recode (3.6-24) ...
+Setting up libsixel1:amd64 (1.8.2-2.1) ...
+Setting up dict-wn (1:3.0-36) ...
+Setting up psgml (1.4.0-7.1) ...
+Install psgml for emacs
+install/psgml: Ignoring emacsen flavor emacs.
+Install psgml for emacs
+install/psgml: Ignoring emacsen flavor emacs.
+Setting up mpv (0.32.0-1ubuntu1) ...
+Setting up rtmpdump (2.4+20151223.gitfa8646d.1-2build1) ...
+Setting up w3m-img (0.5.3-37) ...
+Setting up libmaa4:amd64 (1.4.4-1) ...
+Setting up nkf (1:2.1.5-1build1) ...
+Setting up apel (10.8+0.20120427-21) ...
+Install emacsen-common for emacs
+emacsen-common: Handling install of emacsen flavor emacs
+Install apel for emacs
+install/apel: byte-compiling for emacs, logged in /tmp/elc.R9fWkhubmp0J
+install/apel: deleting /tmp/elc.R9fWkhubmp0J
+install/apel: byte-compiling for reverse dependency
+install/w3m-el: byte-compiling for emacs, logged in /tmp/elc.rLynDqm5pdS8
+install/w3m-el: deleting /tmp/elc.rLynDqm5pdS8
+install/w3m-el: byte-compiling for reverse dependency
+Setting up flim (1:1.14.9+0.20120428-23) ...
+tsort: -: input contains a loop:
+tsort: apel
+tsort: emacsen-common
+Install apel for emacs
+install/apel: already byte-compiled for emacs, skipped
+Install emacsen-common for emacs
+emacsen-common: Handling install of emacsen flavor emacs
+Install flim for emacs
+install/flim: byte-compiling for emacs, logged in /tmp/elc.oePkyLPJGcAE
+install/flim: deleting /tmp/elc.oePkyLPJGcAE
+install/flim: byte-compiling for reverse dependency
+install/w3m-el: byte-compiling for emacs, logged in /tmp/elc.bVwy8Bca1vmz
+install/w3m-el: deleting /tmp/elc.bVwy8Bca1vmz
+install/w3m-el: byte-compiling for reverse dependency
+Setting up libappconfig-perl (1.71-2) ...
+Setting up python3-pyxattr (0.6.1-2) ...
+Setting up dict (1.12.1+dfsg-8) ...
+Setting up cmigemo-common (1:1.2+gh0.20150404-7) ...
+create cp932 dictionary ...done
+create euc-jp dictionary ...done
+create utf-8 dictionary ...done
+Setting up libsixel-bin (1.8.2-2.1) ...
+Setting up cmigemo (1:1.2+gh0.20150404-7) ...
+Setting up dictzip (1.12.1+dfsg-8) ...
+Setting up libtemplate-perl (2.27-1build2) ...
+Setting up dictd (1.12.1+dfsg-8) ...
+
+Creating config file /etc/default/dictd with new version
+Processing triggers for sgml-base (1.29.1) ...
+Processing triggers for install-info (6.7.0.dfsg.2-5) ...
+Processing triggers for desktop-file-utils (0.24-1ubuntu3) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for doc-base (0.10.9) ...
+Processing 5 added doc-base files...
+Processing triggers for gnome-menus (3.36.0-1ubuntu1) ...
+Processing triggers for libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.3) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for systemd (245.4-4ubuntu3.5) ...
+Processing triggers for man-db (2.9.1-1) ...
+Setting up libdevhelp-3-6:amd64 (3.36.1-1) ...
+Setting up devhelp (3.36.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+UPDATE SYSTEM
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt update
+Hit:1 http://ubuntu.tuxuri.com/ubuntu focal InRelease
+Get:2 http://ubuntu.tuxuri.com/ubuntu focal-updates InRelease [114 kB]
+Get:3 http://ubuntu.tuxuri.com/ubuntu focal-backports InRelease [101 kB]
+Get:4 http://ubuntu.tuxuri.com/ubuntu focal-security InRelease [109 kB]
+Get:5 http://ubuntu.tuxuri.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [264 kB]
+Get:6 http://ubuntu.tuxuri.com/ubuntu focal-updates/main DEP-11 48x48 Icons [51.9 kB]
+Get:7 http://ubuntu.tuxuri.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [303 kB]
+Get:8 http://ubuntu.tuxuri.com/ubuntu focal-updates/universe DEP-11 48x48 Icons [196 kB]
+Get:9 http://ubuntu.tuxuri.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [2,468 B]
+Get:10 http://ubuntu.tuxuri.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [1,768 B]
+Get:11 http://ubuntu.tuxuri.com/ubuntu focal-security/main amd64 DEP-11 Metadata [24.3 kB]
+Get:12 http://ubuntu.tuxuri.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [58.2 kB]
+Fetched 1,225 kB in 3s (442 kB/s)                                         
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+All packages are up to date.
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo updatedb
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo ldconfig
+wruslan@HPEliteBk8470p-ubstudio-20:~$ sudo depmod -a
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+====================================================
+YAPPS FOR PYTHON 3.8.5
+====================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ sudo -H pip install yapps
+
+====================================================
+YAPPS FOR PYTHON 2.7.18
+====================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ tar -xf Yapps-2.2.0.tar.gz 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps$ cd Yapps-2.2.0/
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ ls -al
+total 28
+drwxr-xr-x  4 wruslan wruslan 4096 Jun  4  2014 .
+drwx------ 13 wruslan wruslan 4096 Apr  6 00:57 ..
+-rw-r--r--  1 wruslan wruslan  246 Jun  4  2014 PKG-INFO
+-rw-r--r--  1 wruslan wruslan   59 Jun  4  2014 setup.cfg
+-rw-r--r--  1 wruslan wruslan  964 Jun  4  2014 setup.py
+drwxr-xr-x  2 wruslan wruslan 4096 Jun  4  2014 yapps
+drwxr-xr-x  2 wruslan wruslan 4096 Jun  4  2014 Yapps.egg-info
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$
+
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ python
+Python 2.7.18 (default, Mar  8 2021, 13:02:45) 
+[GCC 9.3.0] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+[1]+  Stopped                 python
+
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ sudo -H python setup.py install
+[sudo] password for wruslan: 
+Traceback (most recent call last):
+  File "setup.py", line 3, in <module>
+    from setuptools import setup, find_packages
+ImportError: No module named setuptools
+
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ sudo apt install python-setuptools
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Suggested packages:
+  python-setuptools-doc
+The following NEW packages will be installed:
+  python-setuptools
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 330 kB of archives.
+After this operation, 1,467 kB of additional disk space will be used.
+Get:1 http://ubuntu.tuxuri.com/ubuntu focal/universe amd64 python-setuptools all 44.0.0-2 [330 kB]
+Fetched 330 kB in 1s (394 kB/s)           
+Selecting previously unselected package python-setuptools.
+(Reading database ... 810417 files and directories currently installed.)
+Preparing to unpack .../python-setuptools_44.0.0-2_all.deb ...
+Unpacking python-setuptools (44.0.0-2) ...
+Setting up python-setuptools (44.0.0-2) ...
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ 
+
+=======================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ sudo -H python setup.py install
+running install
+running bdist_egg
+running egg_info
+writing Yapps.egg-info/PKG-INFO
+writing top-level names to Yapps.egg-info/top_level.txt
+writing dependency_links to Yapps.egg-info/dependency_links.txt
+writing entry points to Yapps.egg-info/entry_points.txt
+reading manifest file 'Yapps.egg-info/SOURCES.txt'
+writing manifest file 'Yapps.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib.linux-x86_64-2.7
+creating build/lib.linux-x86_64-2.7/yapps
+copying yapps/grammar.py -> build/lib.linux-x86_64-2.7/yapps
+copying yapps/cli_tool.py -> build/lib.linux-x86_64-2.7/yapps
+copying yapps/parsetree.py -> build/lib.linux-x86_64-2.7/yapps
+copying yapps/__init__.py -> build/lib.linux-x86_64-2.7/yapps
+copying yapps/runtime.py -> build/lib.linux-x86_64-2.7/yapps
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/yapps
+copying build/lib.linux-x86_64-2.7/yapps/grammar.py -> build/bdist.linux-x86_64/egg/yapps
+copying build/lib.linux-x86_64-2.7/yapps/cli_tool.py -> build/bdist.linux-x86_64/egg/yapps
+copying build/lib.linux-x86_64-2.7/yapps/parsetree.py -> build/bdist.linux-x86_64/egg/yapps
+copying build/lib.linux-x86_64-2.7/yapps/__init__.py -> build/bdist.linux-x86_64/egg/yapps
+copying build/lib.linux-x86_64-2.7/yapps/runtime.py -> build/bdist.linux-x86_64/egg/yapps
+byte-compiling build/bdist.linux-x86_64/egg/yapps/grammar.py to grammar.pyc
+byte-compiling build/bdist.linux-x86_64/egg/yapps/cli_tool.py to cli_tool.pyc
+byte-compiling build/bdist.linux-x86_64/egg/yapps/parsetree.py to parsetree.pyc
+byte-compiling build/bdist.linux-x86_64/egg/yapps/__init__.py to __init__.pyc
+byte-compiling build/bdist.linux-x86_64/egg/yapps/runtime.py to runtime.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying Yapps.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying Yapps.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying Yapps.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying Yapps.egg-info/entry_points.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying Yapps.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating dist
+creating 'dist/Yapps-2.2.0-py2.7.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing Yapps-2.2.0-py2.7.egg
+Copying Yapps-2.2.0-py2.7.egg to /usr/local/lib/python2.7/dist-packages
+Adding Yapps 2.2.0 to easy-install.pth file
+Installing yapps2 script to /usr/local/bin
+
+Installed /usr/local/lib/python2.7/dist-packages/Yapps-2.2.0-py2.7.egg
+Processing dependencies for Yapps==2.2.0
+Finished processing dependencies for Yapps==2.2.0
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ 
+
+====================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/apps/Yapps-2.2.0$ 
+
+
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ date
+Mon 05 Apr 2021 09:05:10 PM +08
+
+wruslan@HPEliteBk8470p-ubstudio-20:~$ uname -a
+Linux HPEliteBk8470p-ubstudio-20 5.8.0-48-lowlatency #54~20.04.1-Ubuntu SMP PREEMPT 
+Sat Mar 20 23:24:50 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBk8470p-ubstudio-20:~$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+Ready to install linuxcnc.
+

@@ -1,0 +1,533 @@
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ date
+Tue 06 Apr 2021 01:14:27 AM +08
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ uname -a
+Linux HPEliteBk8470p-ubstudio-20 5.8.0-48-lowlatency #54~20.04.1-Ubuntu SMP PREEMPT 
+Sat Mar 20 23:24:50 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ lsb_release -a
+LSB Version:	core-11.1.0ubuntu2-noarch:security-11.1.0ubuntu2-noarch
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.2 LTS
+Release:	20.04
+Codename:	focal
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ 
+
+===========================================================
+(1) CHECK SYSTEM ENVIRONMENT
+===========================================================
+## GNATSTUDIO 2020-08 SETTINGS
+export PATH=$PATH:/home/wruslan/opt/GNAT/2020/bin 
+export PATH=$PATH:/home/wruslan/opt/GNAT/2020/libexec/gcc/x86_64-pc-linux-gnu/9.3.1 
+export PATH=$PATH:/home/wruslan/opt/GNAT/2020/libexec/spark/libexec/gcc/x86_64-pc-linux-gnu/9.3.1 
+
+## BOOST C++ LIBRARY SETTINGS
+## MUST HARDCOPY: sudo cp -R /home/wruslan/opt/boost_1_74_0/stage/lib/*   /usr/lib/
+
+export LD_LIBRARY_PATH=/home/wruslan/opt/boost_1_74_0/stage/lib
+export CPLUS_INCLUDE_PATH=/home/wruslan/opt/boost_1_74_0 
+
+## JAVA SDK SETTINGS
+export PATH=/usr/lib/jvm/jdk-16/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/jdk-16
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ which gcc
+/usr/bin/gcc
+wruslan@HPEliteBk8470p-ubstudio-20:~$ gcc --version
+gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ which g++
+/usr/bin/g++
+wruslan@HPEliteBk8470p-ubstudio-20:~$ g++ --version
+g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ which java
+/usr/lib/jvm/jdk-16/bin/java
+wruslan@HPEliteBk8470p-ubstudio-20:~$ java -version
+java version "16" 2021-03-16
+Java(TM) SE Runtime Environment (build 16+36-2231)
+Java HotSpot(TM) 64-Bit Server VM (build 16+36-2231, mixed mode, sharing)
+wruslan@HPEliteBk8470p-ubstudio-20:~$ 
+
+===========================================================
+(2) Download linuxcnc source code
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~$ cd opt
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ git clone https://github.com/LinuxCNC/linuxcnc.git  linuxcnc-new
+Cloning into 'linuxcnc'...
+remote: Enumerating objects: 436, done.
+remote: Counting objects: 100% (436/436), done.
+remote: Compressing objects: 100% (262/262), done.
+remote: Total 244048 (delta 245), reused 304 (delta 173), pack-reused 243612
+Receiving objects: 100% (244048/244048), 186.76 MiB | 833.00 KiB/s, done.
+Resolving deltas: 100% (185716/185716), done.
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ ls -al
+total 72
+drwxrwxr-x 18 wruslan wruslan 4096 Apr  5 09:53 .
+drwxr-xr-x 47 wruslan wruslan 4096 Apr  5 21:13 ..
+drwx------ 10 wruslan wruslan 4096 Apr  3 22:10 apps
+drwxrwxr-x  6 wruslan wruslan 4096 Mar 22 16:42 apps-compiled
+drwxrwxr-x  7 wruslan wruslan 4096 Mar 29 19:02 apps-hardware
+drwxrwxr-x 14 wruslan wruslan 4096 Mar 31 17:20 apps-installed
+drwxrwxr-x 10 wruslan wruslan 4096 Mar 29 07:50 boost_1_74_0
+drwxr-xr-x  5 wruslan wruslan 4096 Apr  5 09:56 DotEditor
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 29 07:24 eclipse
+drwxrwxr-x  7 wruslan wruslan 4096 Mar 29 07:22 eclipse-installer
+drwxrwxr-x  3 wruslan wruslan 4096 Mar 29 06:22 GNAT
+drwx------  6 wruslan wruslan 4096 Mar 31 18:36 JuliaPro-1.5.4-1
+drwxrwxr-x 19 wruslan wruslan 4096 Apr  4 14:45 linuxcnc-new    <==== THIS ONE
+drwxrwxr-x  4 wruslan wruslan 4096 Mar 29 07:28 wks-eclipse
+drwxrwxr-x  2 wruslan wruslan 4096 Mar 29 06:43 wks-gnatstudio
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  3 21:53 wks-julia1.6
+drwxrwxr-x  2 wruslan wruslan 4096 Apr  1 11:48 wks-juliapro
+drwxrwxr-x  2 wruslan wruslan 4096 Mar 29 08:41 wks-projectlibre
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ cd linuxcnc/
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ ls -al
+total 256
+drwxrwxr-x 19 wruslan wruslan  4096 Apr  4 14:45 .
+drwxrwxr-x 18 wruslan wruslan  4096 Apr  5 09:53 ..
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 bin
+drwxrwxr-x  8 wruslan wruslan  4096 Apr  4 14:45 configs
+-rw-rw-r--  1 wruslan wruslan 18092 Apr  4 14:45 COPYING
+-rw-rw-r--  1 wruslan wruslan 43090 Apr  4 14:45 COPYING.more
+drwxrwxr-x  5 wruslan wruslan  4096 Apr  4 14:45 debian
+drwxrwxr-x  7 wruslan wruslan  4096 Apr  4 14:45 docs
+drwxrwxr-x  8 wruslan wruslan  4096 Apr  4 14:45 .git
+-rw-rw-r--  1 wruslan wruslan    37 Apr  4 14:45 .gitattributes
+drwxrwxr-x  3 wruslan wruslan  4096 Apr  4 14:45 .github
+-rw-rw-r--  1 wruslan wruslan   836 Apr  4 14:45 .gitignore
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 gnupg
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 include
+-rw-rw-r--  1 wruslan wruslan  1374 Apr  4 14:45 ISSUE_TEMPLATE.md
+drwxrwxr-x  4 wruslan wruslan  4096 Apr  4 14:45 lib
+-rw-rw-r--  1 wruslan wruslan  8718 Apr  4 14:45 linuxcnc.gif
+-rw-rw-r--  1 wruslan wruslan  4198 Apr  4 14:45 linuxcncicon.png
+-rw-rw-r--  1 wruslan wruslan  6971 Apr  4 14:45 linuxcnc-wizard.gif
+-rw-rw-r--  1 wruslan wruslan 45094 Apr  4 14:45 linuxcnc.xcf
+-rw-rw-r--  1 wruslan wruslan  7250 Apr  4 14:45 meson.build
+drwxrwxr-x 11 wruslan wruslan  4096 Apr  4 14:45 nc_files
+-rw-rw-r--  1 wruslan wruslan  1352 Apr  4 14:45 README_es.md
+-rw-rw-r--  1 wruslan wruslan  1044 Apr  4 14:45 README.md
+-rw-rw-r--  1 wruslan wruslan  2779 Apr  4 14:45 reportar-bugs-como_es.md
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 rtlib
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 scripts
+drwxrwxr-x 11 wruslan wruslan  4096 Apr  4 14:45 share
+drwxrwxr-x 12 wruslan wruslan  4096 Apr  4 14:45 src
+drwxrwxr-x  4 wruslan wruslan  4096 Apr  4 14:45 tcl
+drwxrwxr-x 72 wruslan wruslan  4096 Apr  4 14:45 tests
+-rw-rw-r--  1 wruslan wruslan   722 Apr  4 14:45 TODO
+drwxrwxr-x  4 wruslan wruslan  4096 Apr  4 14:45 unit_tests
+-rw-rw-r--  1 wruslan wruslan    11 Apr  4 14:45 VERSION
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ cat README.md
+# LinuxCNC
+
+LinuxCNC controls CNC machines. It can drive milling machines, lathes, 3D printers, 
+laser cutters, plasma cutters, robot arms, hexapods, and more. https://linuxcnc.org/
+
+# DISCLAIMER
+
+**THE AUTHORS OF THIS SOFTWARE ACCEPT ABSOLUTELY NO LIABILITY FOR ANY
+HARM OR LOSS RESULTING FROM ITS USE.**
+
+**IT IS _EXTREMELY_ UNWISE TO RELY ON SOFTWARE ALONE FOR SAFETY.**
+
+**Any machinery capable of harming persons must have provisions for
+completely removing power from all motors, etc, before persons enter
+any danger area.**
+
+**All machinery must be designed to comply with local and national
+safety codes, and the authors of this software can not, and do not,
+take any responsibility for such compliance.**
+
+
+This software is released under the GPLv2, with some parts under the LGPL.
+See the file COPYING for more details.
+
+
+# The Build Process
+
+Refer to the file 'docs/src/code/building-linuxcnc.txt' for information
+about building and running the software, or look here:
+
+http://linuxcnc.org/docs/devel/html/code/building-linuxcnc.html
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ cd src/
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ ls -al
+total 224
+drwxrwxr-x 12 wruslan wruslan  4096 Apr  4 14:45 .
+drwxrwxr-x 19 wruslan wruslan  4096 Apr  4 14:45 ..
+-rwxrwxr-x  1 wruslan wruslan   250 Apr  4 14:45 autogen.sh  <==== THIS ONE
+-rw-rw-r--  1 wruslan wruslan 11082 Apr  4 14:45 CodingStyle
+-rw-rw-r--  1 wruslan wruslan 59943 Apr  4 14:45 configure.ac
+-rw-rw-r--  1 wruslan wruslan  7937 Apr  4 14:45 doxconfig
+drwxrwxr-x 16 wruslan wruslan  4096 Apr  4 14:45 emc
+drwxrwxr-x  3 wruslan wruslan  4096 Apr  4 14:45 external
+-rw-rw-r--  1 wruslan wruslan   258 Apr  4 14:45 .gitignore
+drwxrwxr-x  7 wruslan wruslan  4096 Apr  4 14:45 hal
+drwxrwxr-x 10 wruslan wruslan  4096 Apr  4 14:45 libnml
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 m4
+-rw-rw-r--  1 wruslan wruslan 51256 Apr  4 14:45 Makefile
+-rw-rw-r--  1 wruslan wruslan  5363 Apr  4 14:45 Makefile.inc.in
+-rw-rw-r--  1 wruslan wruslan  3582 Apr  4 14:45 Makefile.modinc.in
+-rw-rw-r--  1 wruslan wruslan    38 Apr  4 14:45 meson.build
+-rw-rw-r--  1 wruslan wruslan   486 Apr  4 14:45 modsilent.py
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 module_helper
+-rw-rw-r--  1 wruslan wruslan   883 Apr  4 14:45 move-if-change
+drwxrwxr-x  3 wruslan wruslan  4096 Apr  4 14:45 po
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 py3c
+drwxrwxr-x  3 wruslan wruslan  4096 Apr  4 14:45 rtapi
+-rw-rw-r--  1 wruslan wruslan   907 Apr  4 14:45 Submakefile.skel
+-rw-rw-r--  1 wruslan wruslan  1573 Apr  4 14:45 .swish_config
+drwxrwxr-x  2 wruslan wruslan  4096 Apr  4 14:45 tests
+-rw-rw-r--  1 wruslan wruslan   934 Apr  4 14:45 .vimrc
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+RUN AUTOGEN INSIDE linuxcnc/src
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ ./autogen.sh 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ ls -al
+total 556
+drwxrwxr-x 13 wruslan wruslan   4096 Apr  5 21:27 .                 <==== THIS ONE
+drwxrwxr-x 19 wruslan wruslan   4096 Apr  4 14:45 ..
+-rwxrwxr-x  1 wruslan wruslan    250 Apr  4 14:45 autogen.sh
+drwxr-xr-x  2 wruslan wruslan   4096 Apr  5 21:27 autom4te.cache    <==== THIS ONE
+-rw-rw-r--  1 wruslan wruslan  11082 Apr  4 14:45 CodingStyle
+-rw-rw-r--  1 wruslan wruslan   5851 Apr  5 21:27 config.h.in       <==== THIS ONE
+-rwxrwxr-x  1 wruslan wruslan 325320 Apr  5 21:27 configure         <==== THIS ONE
+-rw-rw-r--  1 wruslan wruslan  59943 Apr  4 14:45 configure.ac
+-rw-rw-r--  1 wruslan wruslan   7937 Apr  4 14:45 doxconfig
+drwxrwxr-x 16 wruslan wruslan   4096 Apr  4 14:45 emc
+drwxrwxr-x  3 wruslan wruslan   4096 Apr  4 14:45 external
+-rw-rw-r--  1 wruslan wruslan    258 Apr  4 14:45 .gitignore
+drwxrwxr-x  7 wruslan wruslan   4096 Apr  4 14:45 hal
+drwxrwxr-x 10 wruslan wruslan   4096 Apr  4 14:45 libnml
+drwxrwxr-x  2 wruslan wruslan   4096 Apr  4 14:45 m4
+-rw-rw-r--  1 wruslan wruslan  51256 Apr  4 14:45 Makefile
+-rw-rw-r--  1 wruslan wruslan   5363 Apr  4 14:45 Makefile.inc.in
+-rw-rw-r--  1 wruslan wruslan   3582 Apr  4 14:45 Makefile.modinc.in
+-rw-rw-r--  1 wruslan wruslan     38 Apr  4 14:45 meson.build
+-rw-rw-r--  1 wruslan wruslan    486 Apr  4 14:45 modsilent.py
+drwxrwxr-x  2 wruslan wruslan   4096 Apr  4 14:45 module_helper
+-rw-rw-r--  1 wruslan wruslan    883 Apr  4 14:45 move-if-change
+drwxrwxr-x  3 wruslan wruslan   4096 Apr  4 14:45 po
+drwxrwxr-x  2 wruslan wruslan   4096 Apr  4 14:45 py3c
+drwxrwxr-x  3 wruslan wruslan   4096 Apr  4 14:45 rtapi
+-rw-rw-r--  1 wruslan wruslan    907 Apr  4 14:45 Submakefile.skel
+-rw-rw-r--  1 wruslan wruslan   1573 Apr  4 14:45 .swish_config
+drwxrwxr-x  2 wruslan wruslan   4096 Apr  4 14:45 tests
+-rw-rw-r--  1 wruslan wruslan    934 Apr  4 14:45 .vimrc
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc/src$ 
+
+===========================================================
+CONFIGURE
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt$ cd linuxcnc-new/
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ cd src
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ 
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ ./configure --with-realtime=uspace
+checking for g++... g++
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking boost/lockfree/queue.hpp usability... yes
+checking boost/lockfree/queue.hpp presence... yes
+checking for boost/lockfree/queue.hpp... yes
+checking whether g++ supports C++11 features by default... yes
+checking build toplevel... /home/wruslan/opt/linuxcnc-new
+checking installation prefix... run in place
+checking for grep... (cached) /usr/bin/grep
+checking for egrep... (cached) /usr/bin/grep -E
+checking for pkg-config... /usr/bin/pkg-config
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking rpc/rpc.h usability... yes
+checking rpc/rpc.h presence... yes
+checking for rpc/rpc.h... yes
+checking for rtai-config... none
+checking for xeno-config... /usr/bin/xeno-config
+checking for realtime API(s) to use... uspace+xenomai
+checking whether to enable userspace PCI access... yes
+checking for libudev... yes - version 245
+checking for cc version... not specified
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking how to run the C preprocessor... gcc -E
+checking for usability of linux/hidraw.h... yes
+checking for usability of rpc/rpc.h... yes
+checking for libmodbus3... yes - version 3.1.6
+checking for libusb-1.0... yes
+checking for module installation directory... configuring for run-in-place
+/home/wruslan/opt/linuxcnc-new/rtlib
+checking for glib... yes - 2.64.6
+checking for GTK 2.4.0 or above... yes - 2.24.32
+checking for libgnomeprintui-2.2... no -- printing from classicladder will not be possible
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for install... /usr/bin/install
+checking for sed... /usr/bin/sed
+checking for ps... /usr/bin/ps
+checking for kill... /usr/bin/kill
+checking for whoami... /usr/bin/whoami
+checking for awk... /usr/bin/awk
+checking for pidof... /usr/bin/pidof
+checking for ipcs... /usr/bin/ipcs
+checking for fuser... /usr/bin/fuser
+checking for yapps... no
+checking for yapps2... /usr/local/bin/yapps2
+checking for mandb... /usr/bin/mandb
+checking for intltool-extract... /usr/bin/intltool-extract
+checking for yapps... (cached) /usr/local/bin/yapps2
+checking for python2... /usr/bin/python2
+checking whether to build documentation... no
+checking sys/io.h usability... yes
+checking sys/io.h presence... yes
+checking for sys/io.h... yes
+checking for ANSI C header files... (cached) yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for semtimedop... yes
+checking for optreset... no
+checking for library containing dlopen... -ldl
+checking for library containing clock_nanosleep... none required
+checking for tcl... /usr/lib/tcl8.6/tclConfig.sh found
+checking for tk... /usr/lib/tk8.6/tkConfig.sh found
+checking whether to check for runtime dependencies... yes
+checking for BWidget using /usr/bin/tclsh8.6... found
+checking for BLT using tclsh8.5... not found
+checking for img::png using /usr/bin/tclsh8.6... found
+checking for tclX using /usr/bin/tclsh8.6... found
+checking for python pango and cairo modules... found
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking X11/extensions/Xinerama.h usability... yes
+checking X11/extensions/Xinerama.h presence... yes
+checking for X11/extensions/Xinerama.h... yes
+checking for XineramaQueryExtension in -lXinerama... yes
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+Trying readline without -ltermcap
+checking for readline in -lreadline... yes
+Trying readline with -ltermcap
+checking for readline in -lreadline... yes
+Readline does not require -ltermcap
+checking whether readline license is compatible with GPL-2... yes
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for setlocale... yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking for gettext in -lintl... no
+checking for xgettext... /usr/bin/xgettext
+checking for msgfmt... /usr/bin/msgfmt
+checking python version... OK
+checking version of python libraries... python2.7
+checking match between tk and Tkinter versions... 8.6
+checking location of Python header files... /usr/include/python2.7
+checking for Python headers... -I/usr/include/python2.7
+checking for Python libraries... -lpthread -ldl  -lutil
+checking whether the Boost::Python headers are available... yes
+checking for boost::python shared library... -lboost_python27
+checking /usr/include/python2.7/Python.h usability... yes
+checking /usr/include/python2.7/Python.h presence... yes
+checking for /usr/include/python2.7/Python.h... yes
+checking for site-package location... /usr/lib/python2.7/dist-packages
+checking GL/gl.h usability... yes
+checking GL/gl.h presence... yes
+checking for GL/gl.h... yes
+checking GL/glu.h usability... yes
+checking GL/glu.h presence... yes
+checking for GL/glu.h... yes
+checking for glBegin in -lGL... yes
+checking for working GLU quadrics... yes
+checking for Xmu headers... checking X11/Xmu/Xmu.h usability... yes
+checking X11/Xmu/Xmu.h presence... yes
+checking for X11/Xmu/Xmu.h... yes
+configure: creating ./config.status
+config.status: creating ../scripts/rtapi.conf
+config.status: creating ../scripts/linuxcnc
+config.status: creating ../scripts/linuxcnc-python
+config.status: creating ../scripts/linuxcnc_info
+config.status: creating ../scripts/halrun
+config.status: creating ../scripts/rip-environment
+config.status: creating ../scripts/haltcl
+config.status: creating ../scripts/halcmd_twopass
+config.status: creating ../scripts/realtime
+config.status: creating ../scripts/runtests
+config.status: creating ../scripts/linuxcnc_var
+config.status: creating ../scripts/linuxcnc-checklink
+config.status: creating Makefile.inc
+config.status: creating Makefile.modinc
+config.status: creating ../tcl/linuxcnc.tcl
+config.status: creating ../lib/python/nf.py
+config.status: creating ../scripts/linuxcncmkdesktop
+config.status: creating ../share/applications/linuxcnc-latency.desktop
+config.status: creating ../share/applications/linuxcnc.desktop
+config.status: creating ../share/desktop-directories/linuxcnc-cnc.directory
+config.status: creating ../share/desktop-directories/linuxcnc-ref.directory
+config.status: creating ../share/desktop-directories/linuxcnc-doc.directory
+config.status: creating ../share/menus/CNC.menu
+config.status: creating config.h
+config.status: config.h is unchanged
+
+
+######################################################################
+#                LinuxCNC - Enhanced Machine Controller              #
+######################################################################
+#                                                                    #
+#   LinuxCNC is a software system for computer control of machine    #
+#   tools such as milling machines. LinuxCNC is released under the   #
+#   GPL.  Check out http://www.linuxcnc.org/ for more details.       #
+#                                                                    #
+#                                                                    #
+#   It seems that ./configure completed successfully.                #
+#   This means that RT is properly installed                         #
+#   If things don't work check config.log for errors & warnings      #
+#                                                                    #
+#   Next compile by typing                                           #
+#         make                                                       #
+#         sudo make setuid                                           #
+#          (if realtime behavior and hardware access are required)   #
+#                                                                    #
+#   Before running the software, set the environment:                #
+#         . (top dir)/scripts/rip-environment                        #
+#                                                                    #
+#   To run the software type                                         #
+#         linuxcnc                                                   #
+#                                                                    #
+######################################################################
+
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ make
+....
+....
+Making halcompile manpage tristate_float.9
+Making halcompile manpage updown.9
+Making halcompile manpage userkins.9
+Making halcompile manpage wcomp.9
+Making halcompile manpage xhc_hb04_util.9
+Making halcompile manpage xor2.9
+Updating 'whatis' database
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man...
+Updating index cache for path `/home/wruslan/opt/linuxcnc-new/src/../docs/man/man1'. Wait...done.
+Checking for stray cats under /home/wruslan/opt/linuxcnc-new/src/../docs/man...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/es...
+Updating index cache for path `/home/wruslan/opt/linuxcnc-new/src/../docs/man/es/man1'. Wait...done.
+Checking for stray cats under /home/wruslan/opt/linuxcnc-new/src/../docs/man/es...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat1...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat3...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/cat9...
+Processing manual pages under /home/wruslan/opt/linuxcnc-new/src/../docs/man/images...
+6 man subdirectories contained newer manual pages.
+678 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+You now need to run 'sudo make setuid' in order to run in place with access to hardware.
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ sudo make setuid
+[sudo] password for wruslan: 
+chown root ../bin/rtapi_app
+chmod 4750 ../bin/rtapi_app
+chown root ../bin/linuxcnc_module_helper
+chmod 4750 ../bin/linuxcnc_module_helper
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ 
+
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+EXECUTION:
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new/src$ cd ..
+
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ .  scripts/rip-environment
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ linuxcnc
+LINUXCNC - 2.9.0~pre0
+Machine configuration directory is '/home/wruslan/opt/linuxcnc-new/configs/sim/axis'
+Machine configuration file is 'axis.ini'
+Starting LinuxCNC...
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/core_sim.hal
+Note: Using POSIX non-realtime
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/sim_spindle_encoder.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/axis_manualtoolchange.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/simulated_home.hal
+Found file(lib): /home/wruslan/opt/linuxcnc-new/lib/hallib/check_xyz_constraints.hal
+link (updating variable file): No such file or directory
+note: MAXV     max: 5.000 units/sec 300.000 units/min
+note: LJOG     max: 5.000 units/sec 300.000 units/min
+note: LJOG default: 0.250 units/sec 15.000 units/min
+note: jog_order='XYZ'
+note: jog_invert=set([])
+task: main loop took 0.011033 seconds
+task: main loop took 0.113611 seconds
+task: main loop took 0.021055 seconds
+task: main loop took 0.011182 seconds
+task: main loop took 0.159050 seconds
+task: main loop took 0.104922 seconds
+task: main loop took 0.100383 seconds
+task: main loop took 0.071788 seconds
+Shutting down and cleaning up LinuxCNC...
+task: 197085 cycles, min=0.000006, max=0.159050, avg=0.001075, 8 latency excursions (> 10x expected cycle time of 0.001000s)
+Note: Using POSIX non-realtime
+wruslan@HPEliteBk8470p-ubstudio-20:~/opt/linuxcnc-new$ 
+===========================================================
+ALHAMDULILLAH 3 TIMES WRY.
+===========================================================
+
